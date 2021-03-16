@@ -1,0 +1,7 @@
+"Phrases"
+{
+    "Respawn unlocked"
+    {
+        "ru"    "{default}Стены респауна отключены"
+    }
+}

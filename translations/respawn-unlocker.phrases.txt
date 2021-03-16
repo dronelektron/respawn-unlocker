@@ -1,0 +1,7 @@
+"Phrases"
+{
+    "Respawn unlocked"
+    {
+        "en"    "{default}Spawn zone walls disabled"
+    }
+}
