@@ -5,13 +5,13 @@
 #define PREFIX_COLORED "{fuchsia}[Respawn unlocker] "
 #define MAX_WALLS_COUNT 32
 #define ENTITY_NOT_FOUND -1
-#define NO_COLLISION_FLAGS (2 + 8) // COLLISION_GROUP_DEBRIS_TRIGGER + COLLISION_GROUP_PLAYER_MOVEMENT
+#define COLLISION_GROUP_IN_VEHICLE 10
 
 public Plugin myinfo = {
     name = "Respawn unlocker",
     author = "Dron-elektron",
     description = "Allows to unlock respawn at the end of the round",
-    version = "0.1.0",
+    version = "1.0.0",
     url = ""
 }
 
@@ -82,7 +82,7 @@ void RemoveWallsCollisionFlags() {
     for (int wallIndex = 0; wallIndex < g_wallsCount; wallIndex++) {
         int entity = g_wallEntities[wallIndex];
 
-        SetCollisionFlags(entity, NO_COLLISION_FLAGS);
+        SetCollisionFlags(entity, COLLISION_GROUP_IN_VEHICLE);
     }
 }
 
