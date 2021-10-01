@@ -4,4 +4,9 @@
     {
         "en"    "{default}Spawn zone walls disabled"
     }
+
+    "Crates created"
+    {
+        "en"    "{default}Added crates near the spawn zone"
+    }
 }
