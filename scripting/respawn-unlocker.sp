@@ -12,7 +12,7 @@ public Plugin myinfo = {
     name = "Respawn unlocker",
     author = "Dron-elektron",
     description = "Allows you to remove invisible walls and add crates near the spawn zone at the end of the round",
-    version = "1.1.0",
+    version = "1.1.1",
     url = ""
 }
 
