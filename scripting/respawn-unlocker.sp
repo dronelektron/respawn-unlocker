@@ -1,5 +1,5 @@
 #include <sourcemod>
-#include <sdktools_functions>
+#include <sdktools>
 #include <morecolors>
 
 #define PREFIX_COLORED "{fuchsia}[Respawn unlocker] "
@@ -56,7 +56,7 @@ public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcas
 public Action Event_RoundWin(Event event, const char[] name, bool dontBroadcast) {
     RemoveWallsCollisionFlags();
     NotifyAboutRespawnUnlocking();
-    CreateCrates();
+    SpawnCrates();
     NotifyAboutCrates();
 
     return Plugin_Continue;
@@ -163,17 +163,17 @@ void NotifyAboutCrates() {
     CPrintToChatAll("%s%t", PREFIX_COLORED, "Crates created");
 }
 
-void CreateCrates() {
+void SpawnCrates() {
     if (!IsCratesEnabled()) {
         return;
     }
 
     for (int crateIndex = 0; crateIndex < g_cratesCount; crateIndex++) {
-        CreateCrate(g_cratePositions[crateIndex]);
+        SpawnCrate(g_cratePositions[crateIndex]);
     }
 }
 
-void CreateCrate(const float position[3]) {
+void SpawnCrate(const float position[3]) {
     int crate = CreateEntityByName("prop_dynamic_override");
 
     DispatchKeyValue(crate, "model", "models/props_junk/wood_crate001a.mdl");
