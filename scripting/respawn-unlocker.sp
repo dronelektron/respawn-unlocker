@@ -1,8 +1,12 @@
 #include <sourcemod>
 #include <sdktools>
-#include <morecolors>
-#include <wall>
-#include <crate>
+
+#include "morecolors"
+
+#pragma newdecls required
+
+#include "crate"
+#include "wall"
 
 #define PREFIX_COLORED "{fuchsia}[Respawn unlocker] "
 

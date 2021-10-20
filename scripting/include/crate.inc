@@ -3,4 +3,4 @@
 #endif
 #define _crate_included
 
-#define MAX_CRATES_COUNT 8
+#define MAX_CRATES_COUNT 32
