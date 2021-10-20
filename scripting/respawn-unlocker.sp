@@ -15,7 +15,7 @@ public Plugin myinfo = {
     name = "Respawn unlocker",
     author = "Dron-elektron",
     description = "Allows you to unlock respawn at the end of the round",
-    version = "1.1.1",
+    version = "1.2.0",
     url = ""
 }
 
