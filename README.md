@@ -1,6 +1,9 @@
 # Respawn Unlocker
 
-Allows you to remove invisible walls and add crates near the spawn zone at the end of the round.
+Allows you to unlock respawn at the end of the round:
+
+* Remove invisible walls
+* Add crates
 
 ### Supported Games
 
@@ -16,6 +19,10 @@ Allows you to remove invisible walls and add crates near the spawn zone at the e
 * sm_respawnunlocker_walls - Enable (1) or disable (0) walls removing [default: "1"]
 * sm_respawnunlocker_crates - Enable (1) or disable (0) crates adding [default: "1"]
 * sm_respawnunlocker_notifications - Enable (1) or disable (0) notifications [default: "1"]
+
+### Console Commands
+
+* sm_respawnunlocker_reload_crates - Reload crates from config file
 
 ### How to add crates
 

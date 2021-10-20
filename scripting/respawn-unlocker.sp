@@ -1,3 +1,5 @@
+#pragma semicolon 1
+
 #include <sourcemod>
 #include <sdktools>
 
@@ -7,13 +9,12 @@
 
 #include "crate"
 #include "wall"
-
-#define PREFIX_COLORED "{fuchsia}[Respawn unlocker] "
+#include "message"
 
 public Plugin myinfo = {
     name = "Respawn unlocker",
     author = "Dron-elektron",
-    description = "Allows you to remove invisible walls and add crates near the spawn zone at the end of the round",
+    description = "Allows you to unlock respawn at the end of the round",
     version = "1.1.1",
     url = ""
 }
@@ -23,6 +24,7 @@ public void OnPluginStart() {
     HookEvent("dod_round_win", Event_RoundWin);
 
     CreateConVars();
+    CreateConCmds();
     LoadTranslations("respawn-unlocker.phrases");
     AutoExecConfig(true, "respawn-unlocker");
 }
