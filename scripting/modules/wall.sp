@@ -23,6 +23,10 @@ void AddWallToList(int entity, int collisionGroup) {
     g_wallCollisionGroups.Push(collisionGroup);
 }
 
+int GetWallsListSize() {
+    return g_wallEntities.Length;
+}
+
 void FindWalls() {
     ClearWallList();
 
@@ -64,12 +68,4 @@ int GetCollisionFlags(int entity) {
 
 void SetCollisionFlags(int entity, int flags) {
     SetEntProp(entity, Prop_Send, "m_CollisionGroup", flags);
-}
-
-void NotifyAboutRespawnUnlocking() {
-    if (g_wallEntities.Length == 0 || !IsWallsEnabled() || !IsNotificationsEnabled()) {
-        return;
-    }
-
-    CPrintToChatAll("%s%t", PREFIX_COLORED, "Respawn unlocked");
 }

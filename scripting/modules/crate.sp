@@ -20,14 +20,6 @@ int GetCratesListSize() {
     return g_cratePositions.Length;
 }
 
-void NotifyAboutCrates() {
-    if (g_cratePositions.Length == 0 || !IsCratesEnabled() || !IsNotificationsEnabled()) {
-        return;
-    }
-
-    CPrintToChatAll("%s%t", PREFIX_COLORED, "Crates created");
-}
-
 void SpawnCrates() {
     if (!IsCratesEnabled()) {
         return;
