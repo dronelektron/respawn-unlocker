@@ -42,13 +42,13 @@ public void OnMapStart() {
 }
 
 public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast) {
-    RestoreWallsCollisionFlags();
+    RestoreWallsCollisionGroup();
 
     return Plugin_Continue;
 }
 
 public Action Event_RoundWin(Event event, const char[] name, bool dontBroadcast) {
-    RemoveWallsCollisionFlags();
+    RemoveWallsCollisionGroup();
     NotifyAboutRespawnUnlocking();
     SpawnCrates();
     NotifyAboutCrates();

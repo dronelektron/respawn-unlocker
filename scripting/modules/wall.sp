@@ -34,14 +34,14 @@ void FindWalls() {
 
     for (int classIndex = 0; classIndex < sizeof(g_wallEntityClasses); classIndex++) {
         while ((entity = FindEntityByClassname(entity, g_wallEntityClasses[classIndex])) != ENTITY_NOT_FOUND) {
-            int collisionGroup = GetCollisionFlags(entity);
+            int collisionGroup = GetCollisionGroup(entity);
 
             AddWallToList(entity, collisionGroup);
         }
     }
 }
 
-void RemoveWallsCollisionFlags() {
+void RemoveWallsCollisionGroup() {
     if (!IsWallsEnabled()) {
         return;
     }
@@ -49,23 +49,23 @@ void RemoveWallsCollisionFlags() {
     for (int i = 0; i < g_wallEntities.Length; i++) {
         int entity = g_wallEntities.Get(i);
 
-        SetCollisionFlags(entity, COLLISION_GROUP_IN_VEHICLE);
+        SetCollisionGroup(entity, COLLISION_GROUP_IN_VEHICLE);
     }
 }
 
-void RestoreWallsCollisionFlags() {
+void RestoreWallsCollisionGroup() {
     for (int i = 0; i < g_wallEntities.Length; i++) {
         int entity = g_wallEntities.Get(i);
         int collisionGroup = g_wallCollisionGroups.Get(i);
 
-        SetCollisionFlags(entity, collisionGroup);
+        SetCollisionGroup(entity, collisionGroup);
     }
 }
 
-int GetCollisionFlags(int entity) {
+int GetCollisionGroup(int entity) {
     return GetEntProp(entity, Prop_Send, "m_CollisionGroup");
 }
 
-void SetCollisionFlags(int entity, int flags) {
-    SetEntProp(entity, Prop_Send, "m_CollisionGroup", flags);
+void SetCollisionGroup(int entity, int group) {
+    SetEntProp(entity, Prop_Send, "m_CollisionGroup", group);
 }
