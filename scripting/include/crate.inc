@@ -3,4 +3,9 @@
 #endif
 #define _crate_included
 
-#define MAX_CRATES_COUNT 32
+#define MAP_NAME_MAX_LENGTH 256
+#define POSITION_SIZE 3
+
+typeset KeyValuesCallback {
+    function void (KeyValues kv);
+}

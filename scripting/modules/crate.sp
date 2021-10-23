@@ -1,48 +1,23 @@
-static int g_cratesCount = 0;
-static float g_cratePositions[MAX_CRATES_COUNT][3];
+static ArrayList g_cratePositions = null;
 
-void LoadCrates() {
-    char configPath[PLATFORM_MAX_PATH];
-    char mapName[256];
-
-    GetCurrentMap(mapName, sizeof(mapName));
-    BuildPath(Path_SM, configPath, sizeof(configPath), "configs/respawn-unlocker.txt");
-
-    if (!FileExists(configPath)) {
-        return;
-    }
-
-    KeyValues kv = new KeyValues("Crates");
-
-    kv.ImportFromFile(configPath);
-    g_cratesCount = 0;
-
-    if (!kv.JumpToKey(mapName) || !kv.GotoFirstSubKey()) {
-        LogMessage("No crates for this map");
-
-        delete kv;
-
-        return;
-    }
-
-    do {
-        g_cratePositions[g_cratesCount][0] = kv.GetFloat("position_x");
-        g_cratePositions[g_cratesCount][1] = kv.GetFloat("position_y");
-        g_cratePositions[g_cratesCount][2] = kv.GetFloat("position_z");
-        g_cratesCount++;
-    } while (kv.GotoNextKey());
-
-    LogMessage("Loaded %d crates for this map", g_cratesCount);
-
-    delete kv;
+void CreateCrateList() {
+    g_cratePositions = new ArrayList(POSITION_SIZE);
 }
 
-void NotifyAboutCrates() {
-    if (g_cratesCount == 0 || !IsCratesEnabled() || !IsNotificationsEnabled()) {
-        return;
-    }
+void DestroyCrateList() {
+    delete g_cratePositions;
+}
 
-    CPrintToChatAll("%s%t", PREFIX_COLORED, "Crates created");
+void ClearCrateList() {
+    g_cratePositions.Clear();
+}
+
+void AddCrateToList(float cratePosition[POSITION_SIZE]) {
+    g_cratePositions.PushArray(cratePosition);
+}
+
+int GetCratesListSize() {
+    return g_cratePositions.Length;
 }
 
 void SpawnCrates() {
@@ -50,12 +25,16 @@ void SpawnCrates() {
         return;
     }
 
-    for (int crateIndex = 0; crateIndex < g_cratesCount; crateIndex++) {
-        SpawnCrate(g_cratePositions[crateIndex]);
+    float cratePosition[POSITION_SIZE];
+
+    for (int i = 0; i < g_cratePositions.Length; i++) {
+        g_cratePositions.GetArray(i, cratePosition);
+
+        SpawnCrate(cratePosition);
     }
 }
 
-void SpawnCrate(const float position[3]) {
+void SpawnCrate(float position[POSITION_SIZE]) {
     int crate = CreateEntityByName("prop_dynamic_override");
 
     DispatchKeyValue(crate, "model", "models/props_junk/wood_crate001a.mdl");
@@ -66,8 +45,8 @@ void SpawnCrate(const float position[3]) {
     SetEntityRenderColor(crate, 255, 255, 255, 127);
     SetEntityRenderMode(crate, RENDER_TRANSCOLOR);
 
-    float minBounds[3];
-    float newPosition[3];
+    float minBounds[POSITION_SIZE];
+    float newPosition[POSITION_SIZE];
 
     GetEntPropVector(crate, Prop_Send, "m_vecMins", minBounds);
 
