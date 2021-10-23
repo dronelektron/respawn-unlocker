@@ -1,10 +1,9 @@
-#pragma semicolon 1
-
 #include <sourcemod>
 #include <sdktools>
 
 #include "morecolors"
 
+#pragma semicolon 1
 #pragma newdecls required
 
 #include "crate"
@@ -20,18 +19,21 @@ public Plugin myinfo = {
 }
 
 public void OnPluginStart() {
-    HookEvent("dod_round_start", Event_RoundStart);
-    HookEvent("dod_round_win", Event_RoundWin);
-
     CreateConVars();
     CreateConCmds();
+    CreateWallList();
+    HookEvent("dod_round_start", Event_RoundStart);
+    HookEvent("dod_round_win", Event_RoundWin);
     LoadTranslations("respawn-unlocker.phrases");
     AutoExecConfig(true, "respawn-unlocker");
 }
 
+public void OnPluginEnd() {
+    DestroyWallList();
+}
+
 public void OnMapStart() {
-    FindWallEntities();
-    SaveWallsCollisionFlags();
+    FindWalls();
     LoadCrates();
 }
 

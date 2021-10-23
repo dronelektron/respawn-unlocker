@@ -1,27 +1,39 @@
 static char g_wallEntityClasses[][] = {"func_team_wall", "func_teamblocker"};
 
-static int g_wallsCount = 0;
-static int g_wallEntities[MAX_WALLS_COUNT];
-static int g_wallCollisionFlags[MAX_WALLS_COUNT];
+static ArrayList g_wallEntities = null;
+static ArrayList g_wallCollisionGroups = null;
 
-void FindWallEntities() {
-    int wallIndex = 0;
+void CreateWallList() {
+    g_wallEntities = new ArrayList();
+    g_wallCollisionGroups = new ArrayList();
+}
+
+void DestroyWallList() {
+    delete g_wallEntities;
+    delete g_wallCollisionGroups;
+}
+
+void ClearWallList() {
+    g_wallEntities.Clear();
+    g_wallCollisionGroups.Clear();
+}
+
+void AddWallToList(int entity, int collisionGroup) {
+    g_wallEntities.Push(entity);
+    g_wallCollisionGroups.Push(collisionGroup);
+}
+
+void FindWalls() {
+    ClearWallList();
+
     int entity = ENTITY_NOT_FOUND;
 
     for (int classIndex = 0; classIndex < sizeof(g_wallEntityClasses); classIndex++) {
         while ((entity = FindEntityByClassname(entity, g_wallEntityClasses[classIndex])) != ENTITY_NOT_FOUND) {
-            g_wallEntities[wallIndex++] = entity;
+            int collisionGroup = GetCollisionFlags(entity);
+
+            AddWallToList(entity, collisionGroup);
         }
-    }
-
-    g_wallsCount = wallIndex;
-}
-
-void SaveWallsCollisionFlags() {
-    for (int wallIndex = 0; wallIndex < g_wallsCount; wallIndex++) {
-        int entity = g_wallEntities[wallIndex];
-
-        g_wallCollisionFlags[wallIndex] = GetCollisionFlags(entity);
     }
 }
 
@@ -30,18 +42,19 @@ void RemoveWallsCollisionFlags() {
         return;
     }
 
-    for (int wallIndex = 0; wallIndex < g_wallsCount; wallIndex++) {
-        int entity = g_wallEntities[wallIndex];
+    for (int i = 0; i < g_wallEntities.Length; i++) {
+        int entity = g_wallEntities.Get(i);
 
         SetCollisionFlags(entity, COLLISION_GROUP_IN_VEHICLE);
     }
 }
 
 void RestoreWallsCollisionFlags() {
-    for (int wallIndex = 0; wallIndex < g_wallsCount; wallIndex++) {
-        int entity = g_wallEntities[wallIndex];
+    for (int i = 0; i < g_wallEntities.Length; i++) {
+        int entity = g_wallEntities.Get(i);
+        int collisionGroup = g_wallCollisionGroups.Get(i);
 
-        SetCollisionFlags(entity, g_wallCollisionFlags[wallIndex]);
+        SetCollisionFlags(entity, collisionGroup);
     }
 }
 
@@ -54,7 +67,7 @@ void SetCollisionFlags(int entity, int flags) {
 }
 
 void NotifyAboutRespawnUnlocking() {
-    if (g_wallsCount == 0 || !IsWallsEnabled() || !IsNotificationsEnabled()) {
+    if (g_wallEntities.Length == 0 || !IsWallsEnabled() || !IsNotificationsEnabled()) {
         return;
     }
 
