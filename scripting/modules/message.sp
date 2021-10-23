@@ -1,4 +1,4 @@
-void NotifyAboutRespawnUnlocking() {
+void NotifyAboutWalls() {
     if (GetWallsListSize() == 0 || !IsWallsEnabled() || !IsNotificationsEnabled()) {
         return;
     }

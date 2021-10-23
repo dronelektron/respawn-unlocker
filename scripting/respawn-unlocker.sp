@@ -49,7 +49,7 @@ public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcas
 
 public Action Event_RoundWin(Event event, const char[] name, bool dontBroadcast) {
     RemoveWallsCollisionGroup();
-    NotifyAboutRespawnUnlocking();
+    NotifyAboutWalls();
     SpawnCrates();
     NotifyAboutCrates();
 
