@@ -22,6 +22,8 @@ public void OnPluginStart() {
     CreateConVars();
     CreateConCmds();
     CreateWallList();
+    CreateCrateList();
+    BuildConfigPath();
     HookEvent("dod_round_start", Event_RoundStart);
     HookEvent("dod_round_win", Event_RoundWin);
     LoadTranslations("respawn-unlocker.phrases");
@@ -30,11 +32,13 @@ public void OnPluginStart() {
 
 public void OnPluginEnd() {
     DestroyWallList();
+    DestroyCrateList();
 }
 
 public void OnMapStart() {
+    SaveCurrentMapName();
     FindWalls();
-    LoadCrates();
+    ApplyToKeyValues(LoadCratesFromFile);
 }
 
 public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast) {

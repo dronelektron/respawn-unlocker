@@ -1,44 +1,58 @@
-static int g_cratesCount = 0;
-static float g_cratePositions[MAX_CRATES_COUNT][3];
+static char g_mapName[MAP_NAME_MAX_LENGTH];
+static char g_configPath[PLATFORM_MAX_PATH];
 
-void LoadCrates() {
-    char configPath[PLATFORM_MAX_PATH];
-    char mapName[256];
+static ArrayList g_cratePositions = null;
 
-    GetCurrentMap(mapName, sizeof(mapName));
-    BuildPath(Path_SM, configPath, sizeof(configPath), "configs/respawn-unlocker.txt");
+void SaveCurrentMapName() {
+    GetCurrentMap(g_mapName, sizeof(g_mapName));
+}
 
-    if (!FileExists(configPath)) {
-        return;
-    }
+void BuildConfigPath() {
+    BuildPath(Path_SM, g_configPath, sizeof(g_configPath), "configs/respawn-unlocker.txt");
+}
 
-    KeyValues kv = new KeyValues("Crates");
+void CreateCrateList() {
+    g_cratePositions = new ArrayList(POSITION_SIZE);
+}
 
-    kv.ImportFromFile(configPath);
-    g_cratesCount = 0;
+void DestroyCrateList() {
+    delete g_cratePositions;
+}
 
-    if (!kv.JumpToKey(mapName) || !kv.GotoFirstSubKey()) {
+void ClearCrateList() {
+    g_cratePositions.Clear();
+}
+
+void AddCrateToList(float cratePosition[POSITION_SIZE]) {
+    g_cratePositions.PushArray(cratePosition);
+}
+
+void LoadCratesFromFile(KeyValues kv) {
+    ClearCrateList();
+
+    if (!kv.JumpToKey(g_mapName) || !kv.GotoFirstSubKey()) {
         LogMessage("No crates for this map");
-
-        delete kv;
 
         return;
     }
 
     do {
-        g_cratePositions[g_cratesCount][0] = kv.GetFloat("position_x");
-        g_cratePositions[g_cratesCount][1] = kv.GetFloat("position_y");
-        g_cratePositions[g_cratesCount][2] = kv.GetFloat("position_z");
-        g_cratesCount++;
+        float cratePosition[POSITION_SIZE];
+
+        cratePosition[0] = kv.GetFloat("position_x");
+        cratePosition[1] = kv.GetFloat("position_y");
+        cratePosition[2] = kv.GetFloat("position_z");
+
+        AddCrateToList(cratePosition);
     } while (kv.GotoNextKey());
 
-    LogMessage("Loaded %d crates for this map", g_cratesCount);
+    int cratesCount = g_cratePositions.Length;
 
-    delete kv;
+    LogMessage("Loaded %d crates for this map", cratesCount);
 }
 
 void NotifyAboutCrates() {
-    if (g_cratesCount == 0 || !IsCratesEnabled() || !IsNotificationsEnabled()) {
+    if (g_cratePositions.Length == 0 || !IsCratesEnabled() || !IsNotificationsEnabled()) {
         return;
     }
 
@@ -50,12 +64,16 @@ void SpawnCrates() {
         return;
     }
 
-    for (int crateIndex = 0; crateIndex < g_cratesCount; crateIndex++) {
-        SpawnCrate(g_cratePositions[crateIndex]);
+    float cratePosition[POSITION_SIZE];
+
+    for (int i = 0; i < g_cratePositions.Length; i++) {
+        g_cratePositions.GetArray(i, cratePosition);
+
+        SpawnCrate(cratePosition);
     }
 }
 
-void SpawnCrate(const float position[3]) {
+void SpawnCrate(float position[POSITION_SIZE]) {
     int crate = CreateEntityByName("prop_dynamic_override");
 
     DispatchKeyValue(crate, "model", "models/props_junk/wood_crate001a.mdl");
@@ -66,8 +84,8 @@ void SpawnCrate(const float position[3]) {
     SetEntityRenderColor(crate, 255, 255, 255, 127);
     SetEntityRenderMode(crate, RENDER_TRANSCOLOR);
 
-    float minBounds[3];
-    float newPosition[3];
+    float minBounds[POSITION_SIZE];
+    float newPosition[POSITION_SIZE];
 
     GetEntPropVector(crate, Prop_Send, "m_vecMins", minBounds);
 
@@ -76,4 +94,19 @@ void SpawnCrate(const float position[3]) {
     newPosition[2] = position[2] - minBounds[2];
 
     TeleportEntity(crate, newPosition, NULL_VECTOR, NULL_VECTOR);
+}
+
+void ApplyToKeyValues(KeyValuesCallback callback) {
+    KeyValues kv = new KeyValues("Crates");
+
+    if (FileExists(g_configPath)) {
+        kv.ImportFromFile(g_configPath);
+        kv.Rewind();
+    }
+
+    Call_StartFunction(INVALID_HANDLE, callback);
+    Call_PushCell(kv);
+    Call_Finish();
+
+    delete kv;
 }
