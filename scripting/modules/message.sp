@@ -7,7 +7,7 @@ void NotifyAboutWalls() {
 }
 
 void NotifyAboutCrates() {
-    if (GetCratesListSize() == 0 || !IsCratesEnabled() || !IsNotificationsEnabled()) {
+    if (g_cratePositions.Length == 0 || !IsCratesEnabled() || !IsNotificationsEnabled()) {
         return;
     }
 

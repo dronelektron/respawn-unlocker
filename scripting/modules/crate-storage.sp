@@ -1,6 +1,8 @@
 char g_mapName[MAP_NAME_MAX_LENGTH];
 char g_configPath[PLATFORM_MAX_PATH];
 
+ArrayList g_cratePositions = null;
+
 void SaveCurrentMapName() {
     GetCurrentMap(g_mapName, sizeof(g_mapName));
 }
@@ -9,8 +11,16 @@ void BuildConfigPath() {
     BuildPath(Path_SM, g_configPath, sizeof(g_configPath), "configs/respawn-unlocker.txt");
 }
 
+void CreateCrateList() {
+    g_cratePositions = new ArrayList(POSITION_SIZE);
+}
+
+void DestroyCrateList() {
+    delete g_cratePositions;
+}
+
 void LoadCratesFromFile(KeyValues kv) {
-    ClearCrateList();
+    g_cratePositions.Clear();
 
     if (!kv.JumpToKey(g_mapName) || !kv.GotoFirstSubKey()) {
         LogMessage("No crates for this map");
@@ -25,12 +35,10 @@ void LoadCratesFromFile(KeyValues kv) {
         cratePosition[1] = kv.GetFloat("position_y");
         cratePosition[2] = kv.GetFloat("position_z");
 
-        AddCrateToList(cratePosition);
+        g_cratePositions.PushArray(cratePosition);
     } while (kv.GotoNextKey());
 
-    int cratesCount = GetCratesListSize();
-
-    LogMessage("Loaded %d crates for this map", cratesCount);
+    LogMessage("Loaded %d crates for this map", g_cratePositions.Length);
 }
 
 void ApplyToKeyValues(KeyValuesCallback callback) {

@@ -1,25 +1,3 @@
-ArrayList g_cratePositions = null;
-
-void CreateCrateList() {
-    g_cratePositions = new ArrayList(POSITION_SIZE);
-}
-
-void DestroyCrateList() {
-    delete g_cratePositions;
-}
-
-void ClearCrateList() {
-    g_cratePositions.Clear();
-}
-
-void AddCrateToList(float cratePosition[POSITION_SIZE]) {
-    g_cratePositions.PushArray(cratePosition);
-}
-
-int GetCratesListSize() {
-    return g_cratePositions.Length;
-}
-
 void SpawnCrates() {
     if (!IsCratesEnabled()) {
         return;
