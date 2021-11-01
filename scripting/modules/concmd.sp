@@ -1,10 +1,9 @@
 void CreateConCmds() {
-    RegAdminCmd("sm_respawnunlocker_reload_crates", Command_ReloadCrates, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_crates_load", Command_LoadCrates, ADMFLAG_GENERIC);
 }
 
-public Action Command_ReloadCrates(int client, int args) {
+public Action Command_LoadCrates(int client, int args) {
     ApplyToKeyValues(LoadCratesFromFile);
-    ReplyCratesReloaded(client);
 
     return Plugin_Handled;
 }

@@ -9,9 +9,4 @@
     {
         "en"    "{default}Added crates near the spawn zone"
     }
-
-    "Crates reloaded"
-    {
-        "en"    "Crates reloaded"
-    }
 }

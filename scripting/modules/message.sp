@@ -13,7 +13,3 @@ void NotifyAboutCrates() {
 
     CPrintToChatAll("%s%t", PREFIX_COLORED, "Crates created");
 }
-
-void ReplyCratesReloaded(int client) {
-    ReplyToCommand(client, "%s%t", PREFIX, "Crates reloaded");
-}
