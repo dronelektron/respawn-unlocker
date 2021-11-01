@@ -4,7 +4,7 @@ void CreateConCmds() {
 
 public Action Command_ReloadCrates(int client, int args) {
     ApplyToKeyValues(LoadCratesFromFile);
-    ReplyToCommand(client, "%s%t", PREFIX, "Crates reloaded");
+    ReplyCratesReloaded(client);
 
     return Plugin_Handled;
 }
