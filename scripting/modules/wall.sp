@@ -1,8 +1,3 @@
-char g_wallEntityClasses[][] = {"func_team_wall", "func_teamblocker"};
-
-ArrayList g_wallEntities = null;
-ArrayList g_wallCollisionGroups = null;
-
 void CreateWallList() {
     g_wallEntities = new ArrayList();
     g_wallCollisionGroups = new ArrayList();
@@ -13,22 +8,9 @@ void DestroyWallList() {
     delete g_wallCollisionGroups;
 }
 
-void ClearWallList() {
+void FindWalls() {
     g_wallEntities.Clear();
     g_wallCollisionGroups.Clear();
-}
-
-void AddWallToList(int entity, int collisionGroup) {
-    g_wallEntities.Push(entity);
-    g_wallCollisionGroups.Push(collisionGroup);
-}
-
-int GetWallsListSize() {
-    return g_wallEntities.Length;
-}
-
-void FindWalls() {
-    ClearWallList();
 
     int entity = ENTITY_NOT_FOUND;
 
@@ -36,7 +18,8 @@ void FindWalls() {
         while ((entity = FindEntityByClassname(entity, g_wallEntityClasses[classIndex])) != ENTITY_NOT_FOUND) {
             int collisionGroup = GetCollisionGroup(entity);
 
-            AddWallToList(entity, collisionGroup);
+            g_wallEntities.Push(entity);
+            g_wallCollisionGroups.Push(collisionGroup);
         }
     }
 }
@@ -63,9 +46,9 @@ void RestoreWallsCollisionGroup() {
 }
 
 int GetCollisionGroup(int entity) {
-    return GetEntProp(entity, Prop_Send, "m_CollisionGroup");
+    return GetEntProp(entity, Prop_Send, COLLISION_GROUP);
 }
 
 void SetCollisionGroup(int entity, int group) {
-    SetEntProp(entity, Prop_Send, "m_CollisionGroup", group);
+    SetEntProp(entity, Prop_Send, COLLISION_GROUP, group);
 }

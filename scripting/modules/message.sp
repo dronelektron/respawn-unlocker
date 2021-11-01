@@ -1,5 +1,5 @@
 void NotifyAboutWalls() {
-    if (GetWallsListSize() == 0 || !IsWallsEnabled() || !IsNotificationsEnabled()) {
+    if (g_wallEntities.Length == 0 || !IsWallsEnabled() || !IsNotificationsEnabled()) {
         return;
     }
 
