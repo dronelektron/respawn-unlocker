@@ -6,7 +6,7 @@
 #pragma semicolon 1
 #pragma newdecls required
 
-#include "crate"
+#include "crate-storage"
 #include "wall"
 #include "message"
 
