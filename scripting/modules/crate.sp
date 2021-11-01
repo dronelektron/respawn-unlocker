@@ -20,7 +20,7 @@ void SpawnCrate(float position[POSITION_SIZE]) {
     DispatchKeyValue(crate, "solid", "6");
     DispatchSpawn(crate);
 
-    SetEntityRenderColor(crate, 255, 255, 255, 127);
+    SetEntityRenderColor(crate, 255, 255, 255, 190);
     SetEntityRenderMode(crate, RENDER_TRANSCOLOR);
 
     float minBounds[POSITION_SIZE];
