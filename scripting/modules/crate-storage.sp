@@ -23,12 +23,10 @@ void LoadCratesFromFile(KeyValues kv) {
         return;
     }
 
-    do {
-        float cratePosition[POSITION_SIZE];
+    float cratePosition[POSITION_SIZE];
 
-        cratePosition[0] = kv.GetFloat("position_x");
-        cratePosition[1] = kv.GetFloat("position_y");
-        cratePosition[2] = kv.GetFloat("position_z");
+    do {
+        kv.GetVector("position", cratePosition);
 
         g_cratePositions.PushArray(cratePosition);
     } while (kv.GotoNextKey());
