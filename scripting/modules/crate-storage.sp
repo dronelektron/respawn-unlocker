@@ -1,8 +1,3 @@
-char g_mapName[MAP_NAME_MAX_LENGTH];
-char g_configPath[PLATFORM_MAX_PATH];
-
-ArrayList g_cratePositions = null;
-
 void SaveCurrentMapName() {
     GetCurrentMap(g_mapName, sizeof(g_mapName));
 }
