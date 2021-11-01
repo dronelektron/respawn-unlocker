@@ -1,5 +1,5 @@
-static char g_mapName[MAP_NAME_MAX_LENGTH];
-static char g_configPath[PLATFORM_MAX_PATH];
+char g_mapName[MAP_NAME_MAX_LENGTH];
+char g_configPath[PLATFORM_MAX_PATH];
 
 void SaveCurrentMapName() {
     GetCurrentMap(g_mapName, sizeof(g_mapName));

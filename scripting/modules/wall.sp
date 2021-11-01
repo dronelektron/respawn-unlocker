@@ -1,7 +1,7 @@
-static char g_wallEntityClasses[][] = {"func_team_wall", "func_teamblocker"};
+char g_wallEntityClasses[][] = {"func_team_wall", "func_teamblocker"};
 
-static ArrayList g_wallEntities = null;
-static ArrayList g_wallCollisionGroups = null;
+ArrayList g_wallEntities = null;
+ArrayList g_wallCollisionGroups = null;
 
 void CreateWallList() {
     g_wallEntities = new ArrayList();

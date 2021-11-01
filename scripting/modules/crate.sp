@@ -1,4 +1,4 @@
-static ArrayList g_cratePositions = null;
+ArrayList g_cratePositions = null;
 
 void CreateCrateList() {
     g_cratePositions = new ArrayList(POSITION_SIZE);

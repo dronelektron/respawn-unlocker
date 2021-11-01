@@ -1,6 +1,6 @@
-static ConVar g_wallsEnabled = null;
-static ConVar g_cratesEnabled = null;
-static ConVar g_notificationsEnabled = null;
+ConVar g_wallsEnabled = null;
+ConVar g_cratesEnabled = null;
+ConVar g_notificationsEnabled = null;
 
 void CreateConVars() {
     g_wallsEnabled = CreateConVar("sm_respawnunlocker_walls", "1", "Enable (1) or disable (0) walls removing");
