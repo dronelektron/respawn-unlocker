@@ -6,9 +6,10 @@
 #pragma semicolon 1
 #pragma newdecls required
 
-#include "crate-storage"
 #include "wall"
 #include "message"
+#include "crate-storage"
+#include "crate-editor"
 
 public Plugin myinfo = {
     name = "Respawn unlocker",
@@ -23,6 +24,7 @@ public void OnPluginStart() {
     CreateConCmds();
     CreateWallList();
     CreateCrateList();
+    CreateEditorCrateList();
     BuildConfigPath();
     HookEvent("dod_round_start", Event_RoundStart);
     HookEvent("dod_round_win", Event_RoundWin);
@@ -33,12 +35,14 @@ public void OnPluginStart() {
 public void OnPluginEnd() {
     DestroyWallList();
     DestroyCrateList();
+    DestroyEditorCrateList();
 }
 
 public void OnMapStart() {
     SaveCurrentMapName();
     FindWalls();
     ApplyToKeyValues(LoadCratesFromFile);
+    LogCratesLoaded();
 }
 
 public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast) {

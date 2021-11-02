@@ -18,20 +18,43 @@ void LoadCratesFromFile(KeyValues kv) {
     g_cratePositions.Clear();
 
     if (!kv.JumpToKey(g_mapName) || !kv.GotoFirstSubKey()) {
-        LogMessage("No crates for this map");
-
         return;
     }
 
     float cratePosition[POSITION_SIZE];
 
     do {
-        kv.GetVector("position", cratePosition);
+        kv.GetVector(KV_KEY_POSITION, cratePosition);
 
         g_cratePositions.PushArray(cratePosition);
     } while (kv.GotoNextKey());
+}
 
-    LogMessage("Loaded %d crates for this map", g_cratePositions.Length);
+void SaveCratesToFile(KeyValues kv) {
+    if (kv.JumpToKey(g_mapName)) {
+        kv.DeleteThis();
+        kv.Rewind();
+    }
+
+    if (g_cratePositions.Length > 0) {
+        kv.JumpToKey(g_mapName, true);
+    }
+
+    char crateId[CRATE_ID_MAX_LENGTH];
+    float cratePosition[POSITION_SIZE];
+
+    for (int i = 0; i < g_cratePositions.Length; i++) {
+        IntToString(i + 1, crateId, sizeof(crateId));
+
+        g_cratePositions.GetArray(i, cratePosition);
+
+        kv.JumpToKey(crateId, true);
+        kv.SetVector(KV_KEY_POSITION, cratePosition);
+        kv.GoBack();
+    }
+
+    kv.Rewind();
+    kv.ExportToFile(g_configPath);
 }
 
 void ApplyToKeyValues(KeyValuesCallback callback) {

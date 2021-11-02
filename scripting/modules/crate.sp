@@ -12,7 +12,7 @@ void SpawnCrates() {
     }
 }
 
-void SpawnCrate(float position[POSITION_SIZE]) {
+int SpawnCrate(float position[POSITION_SIZE]) {
     int crate = CreateEntityByName("prop_dynamic_override");
 
     DispatchKeyValue(crate, "model", "models/props_junk/wood_crate001a.mdl");
@@ -33,4 +33,6 @@ void SpawnCrate(float position[POSITION_SIZE]) {
     newPosition[2] = position[2] - minBounds[2];
 
     TeleportEntity(crate, newPosition, NULL_VECTOR, NULL_VECTOR);
+
+    return crate;
 }

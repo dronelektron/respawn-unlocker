@@ -9,4 +9,39 @@
     {
         "ru"    "{default}Добавлены ящики возле респауна"
     }
+
+    "Crates loaded"
+    {
+        "ru"    "Ящики загружены"
+    }
+
+    "Crates saved"
+    {
+        "ru"    "Ящики сохранены"
+    }
+
+    "Crates editor enabled"
+    {
+        "ru"    "Редактор ящиков включен"
+    }
+
+    "Crates editor disabled"
+    {
+        "ru"    "Редактор ящиков выключен"
+    }
+
+    "Crate added"
+    {
+        "ru"    "Ящик добавлен ({1}, {2}, {3})"
+    }
+
+    "Crate removed"
+    {
+        "ru"    "Ящик удален ({1}, {2}, {3})"
+    }
+
+    "Crate not found"
+    {
+        "ru"    "Ящик не найден"
+    }
 }

@@ -9,4 +9,41 @@
     {
         "en"    "{default}Added crates near the spawn zone"
     }
+
+    "Crates loaded"
+    {
+        "en"    "Crates loaded"
+    }
+
+    "Crates saved"
+    {
+        "en"    "Crates saved"
+    }
+
+    "Crates editor enabled"
+    {
+        "en"    "Crates editor enabled"
+    }
+
+    "Crates editor disabled"
+    {
+        "en"    "Crates editor disabled"
+    }
+
+    "Crate added"
+    {
+        "#format"   "{1:f},{2:f},{3:f}"
+        "en"    "Crate added ({1}, {2}, {3})"
+    }
+
+    "Crate removed"
+    {
+        "#format"   "{1:f},{2:f},{3:f}"
+        "en"    "Crate removed ({1}, {2}, {3})"
+    }
+
+    "Crate not found"
+    {
+        "en"    "Crate not found"
+    }
 }
