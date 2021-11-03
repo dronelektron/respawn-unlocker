@@ -1,3 +1,6 @@
 #!/bin/bash
 
-spcomp scripting/respawn-unlocker.sp scripting/modules/*.sp -i scripting/include -o plugins/respawn-unlocker.smx
+PLUGIN_NAME="respawn-unlocker"
+
+cd scripting
+spcomp $PLUGIN_NAME.sp modules/*.sp -i include -o ../plugins/$PLUGIN_NAME.smx

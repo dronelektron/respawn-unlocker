@@ -31,34 +31,26 @@ Create a file "addons/sourcemod/configs/respawn-unlocker.txt" with the following
 ```
 "Crates"
 {
-    "dod_gan_games" // Map name
+    // Map name
+    "dod_gan_games"
     {
-        "1" // Crate's number
+        // Crate's number
+        "1"
         {
-            "position_x"    "320"  // Position of the center
-            "position_y"    "-128" // Position of the center
-            "position_z"    "64"   // Position of the bottom
+            // X, Y - position of the center, Z - position of the bottom
+            "position"      "320.000000 -128.000000 64.000000"
         }
-
         "2"
         {
-            "position_x"    "320"
-            "position_y"    "-108"
-            "position_z"    "104"
+            "position"      "320.000000 -108.000000 104.000000"
         }
-
         "3"
         {
-            "position_x"    "2300"
-            "position_y"    "-128"
-            "position_z"    "64"
+            "position"      "2300.000000 -128.000000 64.000000"
         }
-
         "4"
         {
-            "position_x"    "2300"
-            "position_y"    "-108"
-            "position_z"    "104"
+            "position"      "2300.000000 -108.000000 104.000000"
         }
     }
 }
