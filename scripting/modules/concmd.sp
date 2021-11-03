@@ -42,13 +42,7 @@ public Action Command_DisableEditor(int client, int args) {
 public Action Command_AddCrate(int client, int args) {
     float cratePosition[POSITION_SIZE];
 
-    TracePosition(client, cratePosition);
-
-    int crate = SpawnCrate(cratePosition);
-
-    g_cratePositions.PushArray(cratePosition);
-    g_editorCrateEntities.Push(crate);
-
+    AddCrate(client, cratePosition);
     ReplyCrateAdded(client, cratePosition);
     LogCrateAdded(client, cratePosition);
 
@@ -56,26 +50,12 @@ public Action Command_AddCrate(int client, int args) {
 }
 
 public Action Command_RemoveCrate(int client, int args) {
-    int crate = TraceCrate(client);
-    int crateIndex = g_editorCrateEntities.FindValue(crate);
-
-    if (crateIndex == CRATE_NOT_FOUND) {
-        ReplyCrateNotFound(client);
-
-        return Plugin_Handled;
-    }
-
-    DestroyCrate(crate);
-
     float cratePosition[POSITION_SIZE];
 
-    g_cratePositions.GetArray(crateIndex, cratePosition);
-
-    ReplyCrateRemoved(client, cratePosition);
-    LogCrateRemoved(client, cratePosition);
-
-    g_cratePositions.Erase(crateIndex);
-    g_editorCrateEntities.Erase(crateIndex);
+    if (RemoveCrate(client, cratePosition)) {
+        ReplyCrateRemoved(client, cratePosition);
+        LogCrateRemoved(client, cratePosition);
+    }
 
     return Plugin_Handled;
 }

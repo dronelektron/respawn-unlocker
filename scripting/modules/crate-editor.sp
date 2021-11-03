@@ -34,6 +34,34 @@ void DestroyCrate(int crate) {
     AcceptEntityInput(crate, "Kill");
 }
 
+void AddCrate(int client, float cratePosition[POSITION_SIZE]) {
+    TracePosition(client, cratePosition);
+
+    int crate = SpawnCrate(cratePosition);
+
+    g_cratePositions.PushArray(cratePosition);
+    g_editorCrateEntities.Push(crate);
+}
+
+bool RemoveCrate(int client, float cratePosition[POSITION_SIZE]) {
+    int crate = TraceCrate(client);
+    int crateIndex = g_editorCrateEntities.FindValue(crate);
+
+    if (crateIndex == CRATE_NOT_FOUND) {
+        ReplyCrateNotFound(client);
+
+        return false;
+    }
+
+    DestroyCrate(crate);
+
+    g_cratePositions.GetArray(crateIndex, cratePosition);
+    g_cratePositions.Erase(crateIndex);
+    g_editorCrateEntities.Erase(crateIndex);
+
+    return true;
+}
+
 void TracePosition(int client, float position[POSITION_SIZE]) {
     float eyesPosition[POSITION_SIZE];
     float eyesAngles[POSITION_SIZE];
