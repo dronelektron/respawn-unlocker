@@ -22,11 +22,22 @@ Allows you to unlock respawn at the end of the round:
 
 ### Console Commands
 
-* sm_respawnunlocker_reload_crates - Reload crates from config file
+* sm_respawnunlocker_crates_load - Load crates from file
+* sm_respawnunlocker_crates_save - Save crates to file
+* sm_respawnunlocker_editor_enable - Enable crates editor (will spawn crates)
+* sm_respawnunlocker_editor_disable - Disable crates editor (will destroy crates)
+* sm_respawnunlocker_editor_crate_add - Add a crate where you are looking
+* sm_respawnunlocker_editor_crate_remove - Remove a crate where you are looking
 
-### How to add crates
+### Crates Storage
 
-Create a file "addons/sourcemod/configs/respawn-unlocker.txt" with the following structure:
+The crates config file should be created in the following location:
+
+```
+addons/sourcemod/configs/respawn-unlocker.txt
+```
+
+This file will have the following structure:
 
 ```
 "Crates"
