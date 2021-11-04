@@ -1,10 +1,11 @@
 #include <sourcemod>
 #include <sdktools>
 
+#include "morecolors"
+
 #pragma semicolon 1
 #pragma newdecls required
 
-#include "morecolors"
 #include "wall"
 #include "message"
 #include "crate-storage"
