@@ -40,7 +40,7 @@ public Action Command_DisableEditor(int client, int args) {
 }
 
 public Action Command_AddCrate(int client, int args) {
-    float cratePosition[POSITION_SIZE];
+    float cratePosition[VECTOR_SIZE];
 
     AddCrate(client, cratePosition);
     ReplyCrateAdded(client, cratePosition);
@@ -50,7 +50,7 @@ public Action Command_AddCrate(int client, int args) {
 }
 
 public Action Command_RemoveCrate(int client, int args) {
-    float cratePosition[POSITION_SIZE];
+    float cratePosition[VECTOR_SIZE];
 
     if (RemoveCrate(client, cratePosition)) {
         ReplyCrateRemoved(client, cratePosition);
