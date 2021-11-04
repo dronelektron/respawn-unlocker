@@ -1,11 +1,10 @@
 #include <sourcemod>
 #include <sdktools>
 
-#include "morecolors"
-
 #pragma semicolon 1
 #pragma newdecls required
 
+#include "morecolors"
 #include "wall"
 #include "message"
 #include "crate-storage"
@@ -17,7 +16,7 @@ public Plugin myinfo = {
     description = "Allows you to unlock respawn at the end of the round",
     version = "1.3.0",
     url = ""
-}
+};
 
 public void OnPluginStart() {
     CreateConVars();
