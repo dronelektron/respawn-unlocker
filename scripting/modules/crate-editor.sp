@@ -6,6 +6,10 @@ void DestroyEditorCrateList() {
     delete g_editorCrateEntities;
 }
 
+void ClearEditorCrateList() {
+    g_editorCrateEntities.Clear();
+}
+
 void SpawnEditorCrates() {
     DestroyEditorCrates();
 

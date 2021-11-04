@@ -46,6 +46,7 @@ public void OnMapStart() {
 
 public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast) {
     RestoreWallsCollisionGroup();
+    ClearEditorCrateList();
 
     return Plugin_Continue;
 }
