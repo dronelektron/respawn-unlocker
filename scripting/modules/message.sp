@@ -30,7 +30,7 @@ void ReplyCratesEditorDisabled(int client) {
     ReplyToCommand(client, "%s%t", PREFIX, "Crates editor disabled");
 }
 
-void ReplyCrateAdded(int client, float cratePosition[POSITION_SIZE]) {
+void ReplyCrateAdded(int client, float cratePosition[VECTOR_SIZE]) {
     float cratePosX = cratePosition[X];
     float cratePosY = cratePosition[Y];
     float cratePosZ = cratePosition[Z];
@@ -38,7 +38,7 @@ void ReplyCrateAdded(int client, float cratePosition[POSITION_SIZE]) {
     ReplyToCommand(client, "%s%t", PREFIX, "Crate added", cratePosX, cratePosY, cratePosZ);
 }
 
-void ReplyCrateRemoved(int client, float cratePosition[POSITION_SIZE]) {
+void ReplyCrateRemoved(int client, float cratePosition[VECTOR_SIZE]) {
     float cratePosX = cratePosition[X];
     float cratePosY = cratePosition[Y];
     float cratePosZ = cratePosition[Z];
@@ -58,7 +58,7 @@ void LogCratesEditorDisabled(int client) {
     LogMessage("\"%L\" disabled crates editor", client);
 }
 
-void LogCrateAdded(int client, float cratePosition[POSITION_SIZE]) {
+void LogCrateAdded(int client, float cratePosition[VECTOR_SIZE]) {
     float cratePosX = cratePosition[X];
     float cratePosY = cratePosition[Y];
     float cratePosZ = cratePosition[Z];
@@ -66,7 +66,7 @@ void LogCrateAdded(int client, float cratePosition[POSITION_SIZE]) {
     LogMessage("\"%L\" added a crate (%f, %f, %f)", client, cratePosX, cratePosY, cratePosZ);
 }
 
-void LogCrateRemoved(int client, float cratePosition[POSITION_SIZE]) {
+void LogCrateRemoved(int client, float cratePosition[VECTOR_SIZE]) {
     float cratePosX = cratePosition[X];
     float cratePosY = cratePosition[Y];
     float cratePosZ = cratePosition[Z];

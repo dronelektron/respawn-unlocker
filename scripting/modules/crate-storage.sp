@@ -7,7 +7,7 @@ void BuildConfigPath() {
 }
 
 void CreateCrateList() {
-    g_cratePositions = new ArrayList(POSITION_SIZE);
+    g_cratePositions = new ArrayList(VECTOR_SIZE);
 }
 
 void DestroyCrateList() {
@@ -21,7 +21,7 @@ void LoadCratesFromFile(KeyValues kv) {
         return;
     }
 
-    float cratePosition[POSITION_SIZE];
+    float cratePosition[VECTOR_SIZE];
 
     do {
         kv.GetVector(KV_KEY_POSITION, cratePosition);
@@ -41,7 +41,7 @@ void SaveCratesToFile(KeyValues kv) {
     }
 
     char crateId[CRATE_ID_MAX_LENGTH];
-    float cratePosition[POSITION_SIZE];
+    float cratePosition[VECTOR_SIZE];
 
     for (int i = 0; i < g_cratePositions.Length; i++) {
         IntToString(i + 1, crateId, sizeof(crateId));

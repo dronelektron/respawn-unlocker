@@ -3,7 +3,7 @@ void SpawnCrates() {
         return;
     }
 
-    float cratePosition[POSITION_SIZE];
+    float cratePosition[VECTOR_SIZE];
 
     for (int i = 0; i < g_cratePositions.Length; i++) {
         g_cratePositions.GetArray(i, cratePosition);
@@ -12,7 +12,7 @@ void SpawnCrates() {
     }
 }
 
-int SpawnCrate(float position[POSITION_SIZE]) {
+int SpawnCrate(float position[VECTOR_SIZE]) {
     int crate = CreateEntityByName("prop_dynamic_override");
 
     DispatchKeyValue(crate, "model", "models/props_junk/wood_crate001a.mdl");
@@ -23,8 +23,8 @@ int SpawnCrate(float position[POSITION_SIZE]) {
     SetEntityRenderColor(crate, 255, 255, 255, 190);
     SetEntityRenderMode(crate, RENDER_TRANSCOLOR);
 
-    float minBounds[POSITION_SIZE];
-    float newPosition[POSITION_SIZE];
+    float minBounds[VECTOR_SIZE];
+    float newPosition[VECTOR_SIZE];
 
     GetEntPropVector(crate, Prop_Send, "m_vecMins", minBounds);
 

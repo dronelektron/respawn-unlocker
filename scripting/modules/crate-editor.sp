@@ -9,7 +9,7 @@ void DestroyEditorCrateList() {
 void SpawnEditorCrates() {
     DestroyEditorCrates();
 
-    float cratePosition[POSITION_SIZE];
+    float cratePosition[VECTOR_SIZE];
 
     for (int i = 0; i < g_cratePositions.Length; i++) {
         g_cratePositions.GetArray(i, cratePosition);
@@ -34,7 +34,7 @@ void DestroyCrate(int crate) {
     AcceptEntityInput(crate, "Kill");
 }
 
-void AddCrate(int client, float cratePosition[POSITION_SIZE]) {
+void AddCrate(int client, float cratePosition[VECTOR_SIZE]) {
     TracePosition(client, cratePosition);
 
     int crate = SpawnCrate(cratePosition);
@@ -43,7 +43,7 @@ void AddCrate(int client, float cratePosition[POSITION_SIZE]) {
     g_editorCrateEntities.Push(crate);
 }
 
-bool RemoveCrate(int client, float cratePosition[POSITION_SIZE]) {
+bool RemoveCrate(int client, float cratePosition[VECTOR_SIZE]) {
     int crate = TraceCrate(client);
     int crateIndex = g_editorCrateEntities.FindValue(crate);
 
@@ -62,9 +62,9 @@ bool RemoveCrate(int client, float cratePosition[POSITION_SIZE]) {
     return true;
 }
 
-void TracePosition(int client, float position[POSITION_SIZE]) {
-    float eyesPosition[POSITION_SIZE];
-    float eyesAngles[POSITION_SIZE];
+void TracePosition(int client, float position[VECTOR_SIZE]) {
+    float eyesPosition[VECTOR_SIZE];
+    float eyesAngles[VECTOR_SIZE];
 
     GetClientEyePosition(client, eyesPosition);
     GetClientEyeAngles(client, eyesAngles);

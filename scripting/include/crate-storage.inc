@@ -11,7 +11,7 @@ enum {
     X = 0,
     Y,
     Z,
-    POSITION_SIZE
+    VECTOR_SIZE
 };
 
 typeset KeyValuesCallback {
