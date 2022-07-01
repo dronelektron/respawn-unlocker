@@ -6,26 +6,36 @@
 #pragma semicolon 1
 #pragma newdecls required
 
-#include "wall"
-#include "message"
-#include "crate-storage"
-#include "crate-editor"
+#include "ru/crate-storage"
+#include "ru/editor"
+#include "ru/entity"
+#include "ru/message"
+
+#include "modules/console-command.sp"
+#include "modules/console-variable.sp"
+#include "modules/crate-list.sp"
+#include "modules/crate-storage.sp"
+#include "modules/editor.sp"
+#include "modules/entity.sp"
+#include "modules/message.sp"
+#include "modules/use-case.sp"
+#include "modules/wall-list.sp"
 
 public Plugin myinfo = {
     name = "Respawn unlocker",
     author = "Dron-elektron",
     description = "Allows you to unlock respawn at the end of the round",
     version = "1.3.2",
-    url = ""
+    url = "https://github.com/dronelektron/respawn-unlocker"
 };
 
 public void OnPluginStart() {
-    CreateConVars();
-    CreateConCmds();
-    CreateWallList();
-    CreateCrateList();
-    CreateEditorCrateList();
-    BuildConfigPath();
+    Variable_Create();
+    Command_Create();
+    CrateList_Create();
+    WallList_Create();
+    Editor_Create();
+    CrateStorage_BuildConfigPath();
     HookEvent("dod_round_start", Event_RoundStart);
     HookEvent("dod_round_win", Event_RoundWin);
     LoadTranslations("respawn-unlocker.phrases");
@@ -33,30 +43,27 @@ public void OnPluginStart() {
 }
 
 public void OnPluginEnd() {
-    DestroyWallList();
-    DestroyCrateList();
-    DestroyEditorCrateList();
+    CrateList_Destroy();
+    WallList_Destroy();
+    Editor_Destroy();
 }
 
 public void OnMapStart() {
-    SaveCurrentMapName();
-    FindWalls();
-    ApplyToKeyValues(LoadCratesFromFile);
-    LogCratesLoaded();
+    CrateStorage_SaveCurrentMapName();
+    UseCase_FindWalls();
+    UseCase_LoadCrates(NO_CLIENT);
 }
 
 public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast) {
-    RestoreWallsCollisionGroup();
-    ClearEditorCrateList();
+    UseCase_RestoreWalls();
+    Editor_Clear();
 
     return Plugin_Continue;
 }
 
 public Action Event_RoundWin(Event event, const char[] name, bool dontBroadcast) {
-    RemoveWallsCollisionGroup();
-    NotifyAboutWalls();
-    SpawnCrates();
-    NotifyAboutCrates();
+    UseCase_RemoveWalls();
+    UseCase_AddCrates();
 
     return Plugin_Continue;
 }

@@ -1,4 +1,4 @@
-void CreateConCmds() {
+void Command_Create() {
     RegAdminCmd("sm_respawnunlocker_crates_load", Command_LoadCrates, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_crates_save", Command_SaveCrates, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_editor_enable", Command_EnableEditor, ADMFLAG_GENERIC);
@@ -8,54 +8,37 @@ void CreateConCmds() {
 }
 
 public Action Command_LoadCrates(int client, int args) {
-    ApplyToKeyValues(LoadCratesFromFile);
-    ReplyCratesLoaded(client);
-    LogCratesLoaded(client);
+    UseCase_LoadCrates(client);
 
     return Plugin_Handled;
 }
 
 public Action Command_SaveCrates(int client, int args) {
-    ApplyToKeyValues(SaveCratesToFile);
-    ReplyCratesSaved(client);
-    LogCratesSaved(client);
+    UseCase_SaveCrates(client);
 
     return Plugin_Handled;
 }
 
 public Action Command_EnableEditor(int client, int args) {
-    SpawnEditorCrates();
-    ReplyCratesEditorEnabled(client);
-    LogCratesEditorEnabled(client);
+    UseCase_EnableEditor(client);
 
     return Plugin_Handled;
 }
 
 public Action Command_DisableEditor(int client, int args) {
-    DestroyEditorCrates();
-    ReplyCratesEditorDisabled(client);
-    LogCratesEditorDisabled(client);
+    UseCase_DisableEditor(client);
 
     return Plugin_Handled;
 }
 
 public Action Command_AddCrate(int client, int args) {
-    float cratePosition[VECTOR_SIZE];
-
-    AddCrate(client, cratePosition);
-    ReplyCrateAdded(client, cratePosition);
-    LogCrateAdded(client, cratePosition);
+    UseCase_AddCrate(client);
 
     return Plugin_Handled;
 }
 
 public Action Command_RemoveCrate(int client, int args) {
-    float cratePosition[VECTOR_SIZE];
-
-    if (RemoveCrate(client, cratePosition)) {
-        ReplyCrateRemoved(client, cratePosition);
-        LogCrateRemoved(client, cratePosition);
-    }
+    UseCase_RemoveCrate(client);
 
     return Plugin_Handled;
 }

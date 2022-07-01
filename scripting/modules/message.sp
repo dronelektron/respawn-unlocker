@@ -1,91 +1,67 @@
-void NotifyAboutWalls() {
-    if (g_wallEntities.Length == 0 || !IsWallsEnabled() || !IsNotificationsEnabled()) {
+void MessagePrint_WallsRemoved() {
+    if (CrateList_Size() == 0 || !Variable_IsWallsEnabled() || !Variable_IsNotificationsEnabled()) {
         return;
     }
 
     CPrintToChatAll("%s%t", PREFIX_COLORED, "Respawn unlocked");
 }
 
-void NotifyAboutCrates() {
-    if (g_cratePositions.Length == 0 || !IsCratesEnabled() || !IsNotificationsEnabled()) {
+void MessagePrint_CratesAdded() {
+    if (CrateList_Size() == 0 || !Variable_IsCratesEnabled() || !Variable_IsNotificationsEnabled()) {
         return;
     }
 
     CPrintToChatAll("%s%t", PREFIX_COLORED, "Crates created");
 }
 
-void ReplyCratesLoaded(int client) {
-    ReplyToCommand(client, "%s%t", PREFIX, "Crates loaded");
+void Message_CratesLoaded(int client) {
+    int cratesAmount = CrateList_Size();
+
+    if (client == NO_CLIENT) {
+        if (cratesAmount == 0) {
+            LogMessage("No crates for this map", cratesAmount);
+        } else {
+            LogMessage("Loaded %d crates", cratesAmount);
+        }
+    } else {
+        ReplyToCommand(client, "%s%t", PREFIX, "Crates loaded");
+        LogMessage("\"%L\" loaded %d crates", client, cratesAmount);
+    }
 }
 
-void ReplyCratesSaved(int client) {
+void Message_CratesSaved(int client) {
     ReplyToCommand(client, "%s%t", PREFIX, "Crates saved");
+    LogMessage("\"%L\" saved %d crates", client, CrateList_Size());
 }
 
-void ReplyCratesEditorEnabled(int client) {
+void Message_EditorEnabled(int client) {
     ReplyToCommand(client, "%s%t", PREFIX, "Crates editor enabled");
+    LogMessage("\"%L\" enabled crates editor", client);
 }
 
-void ReplyCratesEditorDisabled(int client) {
+void Message_EditorDisabled(int client) {
     ReplyToCommand(client, "%s%t", PREFIX, "Crates editor disabled");
+    LogMessage("\"%L\" disabled crates editor", client);
 }
 
-void ReplyCrateAdded(int client, float cratePosition[VECTOR_SIZE]) {
+void Message_CrateAdded(int client, float cratePosition[VECTOR_SIZE]) {
     float cratePosX = cratePosition[X];
     float cratePosY = cratePosition[Y];
     float cratePosZ = cratePosition[Z];
 
     ReplyToCommand(client, "%s%t", PREFIX, "Crate added", cratePosX, cratePosY, cratePosZ);
+    LogMessage("\"%L\" added a crate (%f, %f, %f)", client, cratePosX, cratePosY, cratePosZ);
 }
 
-void ReplyCrateRemoved(int client, float cratePosition[VECTOR_SIZE]) {
+void Message_CrateRemoved(int client, float cratePosition[VECTOR_SIZE]) {
     float cratePosX = cratePosition[X];
     float cratePosY = cratePosition[Y];
     float cratePosZ = cratePosition[Z];
 
     ReplyToCommand(client, "%s%t", PREFIX, "Crate removed", cratePosX, cratePosY, cratePosZ);
-}
-
-void ReplyCrateNotFound(int client) {
-    ReplyToCommand(client, "%s%t", PREFIX, "Crate not found");
-}
-
-void LogCratesEditorEnabled(int client) {
-    LogMessage("\"%L\" enabled crates editor", client);
-}
-
-void LogCratesEditorDisabled(int client) {
-    LogMessage("\"%L\" disabled crates editor", client);
-}
-
-void LogCrateAdded(int client, float cratePosition[VECTOR_SIZE]) {
-    float cratePosX = cratePosition[X];
-    float cratePosY = cratePosition[Y];
-    float cratePosZ = cratePosition[Z];
-
-    LogMessage("\"%L\" added a crate (%f, %f, %f)", client, cratePosX, cratePosY, cratePosZ);
-}
-
-void LogCrateRemoved(int client, float cratePosition[VECTOR_SIZE]) {
-    float cratePosX = cratePosition[X];
-    float cratePosY = cratePosition[Y];
-    float cratePosZ = cratePosition[Z];
-
     LogMessage("\"%L\" removed a crate (%f, %f, %f)", client, cratePosX, cratePosY, cratePosZ);
 }
 
-void LogCratesLoaded(int client = NO_CLIENT) {
-    if (client == NO_CLIENT) {
-        if (g_cratePositions.Length == 0) {
-            LogMessage("No crates for this map", g_cratePositions.Length);
-        } else {
-            LogMessage("Loaded %d crates", g_cratePositions.Length);
-        }
-    } else {
-        LogMessage("\"%L\" loaded %d crates", client, g_cratePositions.Length);
-    }
-}
-
-void LogCratesSaved(int client) {
-    LogMessage("\"%L\" saved %d crates", client, g_cratePositions.Length);
+void MessageReply_CrateNotFound(int client) {
+    ReplyToCommand(client, "%s%t", PREFIX, "Crate not found");
 }
