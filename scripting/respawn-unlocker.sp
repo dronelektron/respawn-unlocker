@@ -51,7 +51,7 @@ public void OnPluginEnd() {
 public void OnMapStart() {
     CrateStorage_SaveCurrentMapName();
     UseCase_FindWalls();
-    UseCase_LoadCrates(NO_CLIENT);
+    UseCase_LoadCrates(CONSOLE);
 }
 
 public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast) {

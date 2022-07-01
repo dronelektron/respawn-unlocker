@@ -17,7 +17,7 @@ void MessagePrint_CratesAdded() {
 void Message_CratesLoaded(int client) {
     int cratesAmount = CrateList_Size();
 
-    if (client == NO_CLIENT) {
+    if (client == CONSOLE) {
         if (cratesAmount == 0) {
             LogMessage("No crates for this map", cratesAmount);
         } else {

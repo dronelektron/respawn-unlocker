@@ -6,4 +6,4 @@
 #define PREFIX "[Respawn unlocker] "
 #define PREFIX_COLORED "{fuchsia}[Respawn unlocker] "
 
-#define NO_CLIENT -1
+#define CONSOLE 0
