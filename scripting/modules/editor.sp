@@ -40,7 +40,9 @@ void Editor_DestroyCrate(int crate) {
     AcceptEntityInput(crate, "Kill");
 }
 
-void Editor_AddCrate(int client, float cratePosition[VECTOR_SIZE]) {
+void Editor_AddCrate(int client) {
+    float cratePosition[VECTOR_SIZE];
+
     Editor_TracePosition(client, cratePosition);
 
     int crate = Entity_SpawnCrate(cratePosition);
@@ -49,7 +51,7 @@ void Editor_AddCrate(int client, float cratePosition[VECTOR_SIZE]) {
     g_editorCrateEntities.Push(crate);
 }
 
-bool Editor_RemoveCrate(int client, float cratePosition[VECTOR_SIZE]) {
+bool Editor_RemoveCrate(int client) {
     int crate = Editor_TraceCrate(client);
     int crateIndex = g_editorCrateEntities.FindValue(crate);
 
@@ -60,8 +62,6 @@ bool Editor_RemoveCrate(int client, float cratePosition[VECTOR_SIZE]) {
     }
 
     Editor_DestroyCrate(crate);
-
-    CrateList_Get(crateIndex, cratePosition);
     CrateList_Remove(crateIndex);
     g_editorCrateEntities.Erase(crateIndex);
 

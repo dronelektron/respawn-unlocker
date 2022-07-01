@@ -12,12 +12,14 @@
 
     "Crates loaded"
     {
-        "en"    "Crates loaded"
+        "#format"   "{1:d}"
+        "en"    "Loaded {1} crates"
     }
 
     "Crates saved"
     {
-        "en"    "Crates saved"
+        "#format"   "{1:d}"
+        "en"    "Saved {2} crates"
     }
 
     "Crates editor enabled"
@@ -32,14 +34,12 @@
 
     "Crate added"
     {
-        "#format"   "{1:f},{2:f},{3:f}"
-        "en"    "Crate added ({1}, {2}, {3})"
+        "en"    "Crate added"
     }
 
     "Crate removed"
     {
-        "#format"   "{1:f},{2:f},{3:f}"
-        "en"    "Crate removed ({1}, {2}, {3})"
+        "en"    "Crate removed"
     }
 
     "Crate not found"

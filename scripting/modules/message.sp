@@ -24,42 +24,36 @@ void Message_CratesLoaded(int client) {
             LogMessage("Loaded %d crates", cratesAmount);
         }
     } else {
-        ReplyToCommand(client, "%s%t", PREFIX, "Crates loaded");
+        ShowActivity2(client, PREFIX, "%t", "Crates loaded", cratesAmount);
         LogMessage("\"%L\" loaded %d crates", client, cratesAmount);
     }
 }
 
 void Message_CratesSaved(int client) {
-    ReplyToCommand(client, "%s%t", PREFIX, "Crates saved");
-    LogMessage("\"%L\" saved %d crates", client, CrateList_Size());
+    int cratesAmount = CrateList_Size();
+
+    ShowActivity2(client, PREFIX, "%t", "Crates saved", cratesAmount);
+    LogMessage("\"%L\" saved %d crates", client, cratesAmount);
 }
 
 void Message_EditorEnabled(int client) {
-    ReplyToCommand(client, "%s%t", PREFIX, "Crates editor enabled");
+    ShowActivity2(client, PREFIX, "%t", "Crates editor enabled");
     LogMessage("\"%L\" enabled crates editor", client);
 }
 
 void Message_EditorDisabled(int client) {
-    ReplyToCommand(client, "%s%t", PREFIX, "Crates editor disabled");
+    ShowActivity2(client, PREFIX, "%t", "Crates editor disabled");
     LogMessage("\"%L\" disabled crates editor", client);
 }
 
-void Message_CrateAdded(int client, float cratePosition[VECTOR_SIZE]) {
-    float cratePosX = cratePosition[X];
-    float cratePosY = cratePosition[Y];
-    float cratePosZ = cratePosition[Z];
-
-    ReplyToCommand(client, "%s%t", PREFIX, "Crate added", cratePosX, cratePosY, cratePosZ);
-    LogMessage("\"%L\" added a crate (%f, %f, %f)", client, cratePosX, cratePosY, cratePosZ);
+void Message_CrateAdded(int client) {
+    ShowActivity2(client, PREFIX, "%t", "Crate added");
+    LogMessage("\"%L\" added a crate", client);
 }
 
-void Message_CrateRemoved(int client, float cratePosition[VECTOR_SIZE]) {
-    float cratePosX = cratePosition[X];
-    float cratePosY = cratePosition[Y];
-    float cratePosZ = cratePosition[Z];
-
-    ReplyToCommand(client, "%s%t", PREFIX, "Crate removed", cratePosX, cratePosY, cratePosZ);
-    LogMessage("\"%L\" removed a crate (%f, %f, %f)", client, cratePosX, cratePosY, cratePosZ);
+void Message_CrateRemoved(int client) {
+    ShowActivity2(client, PREFIX, "%t", "Crate removed");
+    LogMessage("\"%L\" removed a crate", client);
 }
 
 void MessageReply_CrateNotFound(int client) {

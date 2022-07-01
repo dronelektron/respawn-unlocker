@@ -73,16 +73,12 @@ void UseCase_DisableEditor(int client) {
 }
 
 void UseCase_AddCrate(int client) {
-    float cratePosition[VECTOR_SIZE];
-
-    Editor_AddCrate(client, cratePosition);
-    Message_CrateAdded(client, cratePosition);
+    Editor_AddCrate(client);
+    Message_CrateAdded(client);
 }
 
 void UseCase_RemoveCrate(int client) {
-    float cratePosition[VECTOR_SIZE];
-
-    if (Editor_RemoveCrate(client, cratePosition)) {
-        Message_CrateRemoved(client, cratePosition);
+    if (Editor_RemoveCrate(client)) {
+        Message_CrateRemoved(client);
     }
 }
