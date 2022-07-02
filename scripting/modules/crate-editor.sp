@@ -78,8 +78,8 @@ void CrateEditor_TracePosition(int client, float position[VECTOR_SIZE]) {
 }
 
 int CrateEditor_TraceCrate(int client) {
-    float eyesPosition[3];
-    float eyesAngles[3];
+    float eyesPosition[VECTOR_SIZE];
+    float eyesAngles[VECTOR_SIZE];
 
     GetClientEyePosition(client, eyesPosition);
     GetClientEyeAngles(client, eyesAngles);

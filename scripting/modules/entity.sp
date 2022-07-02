@@ -3,20 +3,20 @@ int Entity_SpawnCrate(float position[VECTOR_SIZE]) {
 
     DispatchKeyValue(crate, "model", "models/props_junk/wood_crate001a.mdl");
     DispatchKeyValue(crate, "disableshadows", "1");
-    DispatchKeyValue(crate, "solid", "6");
     DispatchSpawn(crate);
 
-    SetEntityRenderColor(crate, 255, 255, 255, 190);
+    SetEntProp(crate, Prop_Send, SOLID_TYPE, SOLID_TYPE_VPHYSICS);
     SetEntityRenderMode(crate, RENDER_TRANSCOLOR);
+    Entity_SetColorFromVariable(crate);
 
     float minBounds[VECTOR_SIZE];
     float newPosition[VECTOR_SIZE];
 
-    GetEntPropVector(crate, Prop_Send, "m_vecMins", minBounds);
+    GetEntPropVector(crate, Prop_Send, VECTOR_MINS, minBounds);
 
-    newPosition[0] = position[0];
-    newPosition[1] = position[1];
-    newPosition[2] = position[2] - minBounds[2];
+    newPosition[X] = position[X];
+    newPosition[Y] = position[Y];
+    newPosition[Z] = position[Z] - minBounds[Z];
 
     TeleportEntity(crate, newPosition, NULL_VECTOR, NULL_VECTOR);
 
@@ -29,4 +29,13 @@ int Entity_GetCollisionGroup(int entity) {
 
 void Entity_SetCollisionGroup(int entity, int group) {
     SetEntProp(entity, Prop_Send, COLLISION_GROUP, group);
+}
+
+void Entity_SetColorFromVariable(int entity) {
+    int red = Variable_GetCrateColorRed();
+    int green = Variable_GetCrateColorGreen();
+    int blue = Variable_GetCrateColorBlue();
+    int alpha = Variable_GetCrateColorAlpha();
+
+    SetEntityRenderColor(entity, red, green, blue, alpha);
 }
