@@ -1,13 +1,13 @@
 "Phrases"
 {
-    "Respawn unlocked"
+    "Walls removed"
     {
-        "en"    "{default}Spawn zone walls disabled"
+        "en"    "{default}Walls removed"
     }
 
-    "Crates created"
+    "Crates added"
     {
-        "en"    "{default}Added crates near the spawn zone"
+        "en"    "{default}Crates added"
     }
 
     "Crates loaded"

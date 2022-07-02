@@ -3,7 +3,7 @@ void MessagePrint_WallsRemoved() {
         return;
     }
 
-    CPrintToChatAll("%s%t", PREFIX_COLORED, "Respawn unlocked");
+    CPrintToChatAll("%s%t", PREFIX_COLORED, "Walls removed");
 }
 
 void MessagePrint_CratesAdded() {
@@ -11,7 +11,7 @@ void MessagePrint_CratesAdded() {
         return;
     }
 
-    CPrintToChatAll("%s%t", PREFIX_COLORED, "Crates created");
+    CPrintToChatAll("%s%t", PREFIX_COLORED, "Crates added");
 }
 
 void Message_CratesLoaded(int client) {

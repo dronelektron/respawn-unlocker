@@ -1,13 +1,13 @@
 "Phrases"
 {
-    "Respawn unlocked"
+    "Walls removed"
     {
-        "ru"    "{default}Стены респауна отключены"
+        "ru"    "{default}Стены убраны"
     }
 
-    "Crates created"
+    "Crates added"
     {
-        "ru"    "{default}Добавлены ящики возле респауна"
+        "ru"    "{default}Ящики добавлены"
     }
 
     "Crates loaded"
