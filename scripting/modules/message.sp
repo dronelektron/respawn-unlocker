@@ -1,5 +1,5 @@
 void MessagePrint_WallsRemoved() {
-    if (CrateList_Size() == 0 || !Variable_IsWallsEnabled() || !Variable_IsNotificationsEnabled()) {
+    if (WallList_Size() == 0 || !Variable_IsWallsEnabled() || !Variable_IsNotificationsEnabled()) {
         return;
     }
 
