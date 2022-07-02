@@ -1,19 +1,19 @@
 static ArrayList g_editorCrateEntities = null;
 
-void Editor_Create() {
+void CrateEditor_Create() {
     g_editorCrateEntities = new ArrayList();
 }
 
-void Editor_Destroy() {
+void CrateEditor_Destroy() {
     delete g_editorCrateEntities;
 }
 
-void Editor_Clear() {
+void CrateEditor_Clear() {
     g_editorCrateEntities.Clear();
 }
 
-void Editor_SpawnCrates() {
-    Editor_DestroyCrates();
+void CrateEditor_SpawnCrates() {
+    CrateEditor_DestroyCrates();
 
     float cratePosition[VECTOR_SIZE];
 
@@ -26,24 +26,24 @@ void Editor_SpawnCrates() {
     }
 }
 
-void Editor_DestroyCrates() {
+void CrateEditor_DestroyCrates() {
     for (int i = 0; i < g_editorCrateEntities.Length; i++) {
         int crate = g_editorCrateEntities.Get(i);
 
-        Editor_DestroyCrate(crate);
+        CrateEditor_DestroyCrate(crate);
     }
 
     g_editorCrateEntities.Clear();
 }
 
-void Editor_DestroyCrate(int crate) {
+void CrateEditor_DestroyCrate(int crate) {
     AcceptEntityInput(crate, "Kill");
 }
 
-void Editor_AddCrate(int client) {
+void CrateEditor_AddCrate(int client) {
     float cratePosition[VECTOR_SIZE];
 
-    Editor_TracePosition(client, cratePosition);
+    CrateEditor_TracePosition(client, cratePosition);
 
     int crate = Entity_SpawnCrate(cratePosition);
 
@@ -51,8 +51,8 @@ void Editor_AddCrate(int client) {
     g_editorCrateEntities.Push(crate);
 }
 
-bool Editor_RemoveCrate(int client) {
-    int crate = Editor_TraceCrate(client);
+bool CrateEditor_RemoveCrate(int client) {
+    int crate = CrateEditor_TraceCrate(client);
     int crateIndex = g_editorCrateEntities.FindValue(crate);
 
     if (crateIndex == CRATE_NOT_FOUND) {
@@ -61,14 +61,14 @@ bool Editor_RemoveCrate(int client) {
         return false;
     }
 
-    Editor_DestroyCrate(crate);
+    CrateEditor_DestroyCrate(crate);
     CrateList_Remove(crateIndex);
     g_editorCrateEntities.Erase(crateIndex);
 
     return true;
 }
 
-void Editor_TracePosition(int client, float position[VECTOR_SIZE]) {
+void CrateEditor_TracePosition(int client, float position[VECTOR_SIZE]) {
     float eyesPosition[VECTOR_SIZE];
     float eyesAngles[VECTOR_SIZE];
 
@@ -81,7 +81,7 @@ void Editor_TracePosition(int client, float position[VECTOR_SIZE]) {
     CloseHandle(trace);
 }
 
-int Editor_TraceCrate(int client) {
+int CrateEditor_TraceCrate(int client) {
     float eyesPosition[3];
     float eyesAngles[3];
 

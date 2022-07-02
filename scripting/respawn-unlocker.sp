@@ -8,17 +8,17 @@
 #pragma semicolon 1
 #pragma newdecls required
 
+#include "ru/crate-editor"
 #include "ru/crate-storage"
-#include "ru/editor"
 #include "ru/entity"
 #include "ru/menu"
 #include "ru/message"
 
 #include "modules/console-command.sp"
 #include "modules/console-variable.sp"
+#include "modules/crate-editor.sp"
 #include "modules/crate-list.sp"
 #include "modules/crate-storage.sp"
-#include "modules/editor.sp"
 #include "modules/entity.sp"
 #include "modules/menu.sp"
 #include "modules/message.sp"
@@ -38,7 +38,7 @@ public void OnPluginStart() {
     Command_Create();
     CrateList_Create();
     WallList_Create();
-    Editor_Create();
+    CrateEditor_Create();
     AdminMenu_Create();
     CrateStorage_BuildConfigPath();
     HookEvent("dod_round_start", Event_RoundStart);
@@ -50,7 +50,7 @@ public void OnPluginStart() {
 public void OnPluginEnd() {
     CrateList_Destroy();
     WallList_Destroy();
-    Editor_Destroy();
+    CrateEditor_Destroy();
 }
 
 public void OnMapStart() {
@@ -71,7 +71,7 @@ public void OnLibraryRemoved(const char[] name) {
 
 public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast) {
     UseCase_RestoreWalls();
-    Editor_Clear();
+    CrateEditor_Clear();
 
     return Plugin_Continue;
 }

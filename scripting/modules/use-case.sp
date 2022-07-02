@@ -63,22 +63,22 @@ void UseCase_SaveCrates(int client) {
 }
 
 void UseCase_EnableEditor(int client) {
-    Editor_SpawnCrates();
+    CrateEditor_SpawnCrates();
     Message_EditorEnabled(client);
 }
 
 void UseCase_DisableEditor(int client) {
-    Editor_DestroyCrates();
+    CrateEditor_DestroyCrates();
     Message_EditorDisabled(client);
 }
 
 void UseCase_AddCrate(int client) {
-    Editor_AddCrate(client);
+    CrateEditor_AddCrate(client);
     Message_CrateAdded(client);
 }
 
 void UseCase_RemoveCrate(int client) {
-    if (Editor_RemoveCrate(client)) {
+    if (CrateEditor_RemoveCrate(client)) {
         Message_CrateRemoved(client);
     }
 }
