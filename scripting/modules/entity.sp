@@ -12,7 +12,7 @@ int Entity_SpawnCrate(float position[VECTOR_SIZE]) {
     float minBounds[VECTOR_SIZE];
     float newPosition[VECTOR_SIZE];
 
-    GetEntPropVector(crate, Prop_Send, "m_vecMins", minBounds);
+    GetEntPropVector(crate, Prop_Send, VECTOR_MINS, minBounds);
 
     newPosition[X] = position[X];
     newPosition[Y] = position[Y];

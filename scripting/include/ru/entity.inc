@@ -11,6 +11,8 @@
 #define SOLID_TYPE "m_nSolidType"
 #define SOLID_TYPE_VPHYSICS 6
 
+#define VECTOR_MINS "m_vecMins"
+
 #define X 0
 #define Y 1
 #define Z 2
