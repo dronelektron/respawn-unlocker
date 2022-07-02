@@ -30,14 +30,10 @@ void CrateEditor_DestroyCrates() {
     for (int i = 0; i < g_editorCrateEntities.Length; i++) {
         int crate = g_editorCrateEntities.Get(i);
 
-        CrateEditor_DestroyCrate(crate);
+        RemoveEntity(crate);
     }
 
     g_editorCrateEntities.Clear();
-}
-
-void CrateEditor_DestroyCrate(int crate) {
-    AcceptEntityInput(crate, "Kill");
 }
 
 void CrateEditor_AddCrate(int client) {
@@ -61,7 +57,7 @@ bool CrateEditor_RemoveCrate(int client) {
         return false;
     }
 
-    CrateEditor_DestroyCrate(crate);
+    RemoveEntity(crate);
     CrateList_Remove(crateIndex);
     g_editorCrateEntities.Erase(crateIndex);
 
