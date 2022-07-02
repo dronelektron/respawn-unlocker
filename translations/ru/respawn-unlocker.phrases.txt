@@ -1,23 +1,23 @@
 "Phrases"
 {
-    "Respawn unlocked"
+    "Walls removed"
     {
-        "ru"    "{default}Стены респауна отключены"
+        "ru"    "{default}Стены убраны"
     }
 
-    "Crates created"
+    "Crates added"
     {
-        "ru"    "{default}Добавлены ящики возле респауна"
+        "ru"    "{default}Ящики добавлены"
     }
 
     "Crates loaded"
     {
-        "ru"    "Ящики загружены"
+        "ru"    "Загружено {1} ящиков"
     }
 
     "Crates saved"
     {
-        "ru"    "Ящики сохранены"
+        "ru"    "Сохранено {1} ящиков"
     }
 
     "Crates editor enabled"
@@ -32,16 +32,51 @@
 
     "Crate added"
     {
-        "ru"    "Ящик добавлен ({1}, {2}, {3})"
+        "ru"    "Ящик добавлен"
     }
 
     "Crate removed"
     {
-        "ru"    "Ящик удален ({1}, {2}, {3})"
+        "ru"    "Ящик удален"
     }
 
     "Crate not found"
     {
         "ru"    "Ящик не найден"
+    }
+
+    "Respawn unlocker"
+    {
+        "ru"    "Разблокировка респауна"
+    }
+
+    "Enable editor"
+    {
+        "ru"    "Включить редактор"
+    }
+
+    "Disable editor"
+    {
+        "ru"    "Выключить редактор"
+    }
+
+    "Add crate"
+    {
+        "ru"    "Добавить ящик"
+    }
+
+    "Remove crate"
+    {
+        "ru"    "Удалить ящик"
+    }
+
+    "Load crates"
+    {
+        "ru"    "Загрузить ящики"
+    }
+
+    "Save crates"
+    {
+        "ru"    "Сохранить ящики"
     }
 }

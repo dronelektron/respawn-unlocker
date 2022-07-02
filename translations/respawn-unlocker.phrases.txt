@@ -1,23 +1,25 @@
 "Phrases"
 {
-    "Respawn unlocked"
+    "Walls removed"
     {
-        "en"    "{default}Spawn zone walls disabled"
+        "en"    "{default}Walls removed"
     }
 
-    "Crates created"
+    "Crates added"
     {
-        "en"    "{default}Added crates near the spawn zone"
+        "en"    "{default}Crates added"
     }
 
     "Crates loaded"
     {
-        "en"    "Crates loaded"
+        "#format"   "{1:d}"
+        "en"    "Loaded {1} crates"
     }
 
     "Crates saved"
     {
-        "en"    "Crates saved"
+        "#format"   "{1:d}"
+        "en"    "Saved {2} crates"
     }
 
     "Crates editor enabled"
@@ -32,18 +34,51 @@
 
     "Crate added"
     {
-        "#format"   "{1:f},{2:f},{3:f}"
-        "en"    "Crate added ({1}, {2}, {3})"
+        "en"    "Crate added"
     }
 
     "Crate removed"
     {
-        "#format"   "{1:f},{2:f},{3:f}"
-        "en"    "Crate removed ({1}, {2}, {3})"
+        "en"    "Crate removed"
     }
 
     "Crate not found"
     {
         "en"    "Crate not found"
+    }
+
+    "Respawn unlocker"
+    {
+        "en"    "Respawn unlocker"
+    }
+
+    "Enable editor"
+    {
+        "en"    "Enable editor"
+    }
+
+    "Disable editor"
+    {
+        "en"    "Disable editor"
+    }
+
+    "Add crate"
+    {
+        "en"    "Add crate"
+    }
+
+    "Remove crate"
+    {
+        "en"    "Remove crate"
+    }
+
+    "Load crates"
+    {
+        "en"    "Load crates"
+    }
+
+    "Save crates"
+    {
+        "en"    "Save crates"
     }
 }

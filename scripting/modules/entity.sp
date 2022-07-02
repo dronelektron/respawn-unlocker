@@ -1,18 +1,4 @@
-void SpawnCrates() {
-    if (!IsCratesEnabled()) {
-        return;
-    }
-
-    float cratePosition[VECTOR_SIZE];
-
-    for (int i = 0; i < g_cratePositions.Length; i++) {
-        g_cratePositions.GetArray(i, cratePosition);
-
-        SpawnCrate(cratePosition);
-    }
-}
-
-int SpawnCrate(float position[VECTOR_SIZE]) {
+int Entity_SpawnCrate(float position[VECTOR_SIZE]) {
     int crate = CreateEntityByName("prop_dynamic_override");
 
     DispatchKeyValue(crate, "model", "models/props_junk/wood_crate001a.mdl");
@@ -35,4 +21,12 @@ int SpawnCrate(float position[VECTOR_SIZE]) {
     TeleportEntity(crate, newPosition, NULL_VECTOR, NULL_VECTOR);
 
     return crate;
+}
+
+int Entity_GetCollisionGroup(int entity) {
+    return GetEntProp(entity, Prop_Send, COLLISION_GROUP);
+}
+
+void Entity_SetCollisionGroup(int entity, int group) {
+    SetEntProp(entity, Prop_Send, COLLISION_GROUP, group);
 }

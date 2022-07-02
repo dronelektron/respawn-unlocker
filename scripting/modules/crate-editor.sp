@@ -1,72 +1,70 @@
-void CreateEditorCrateList() {
+static ArrayList g_editorCrateEntities = null;
+
+void CrateEditor_Create() {
     g_editorCrateEntities = new ArrayList();
 }
 
-void DestroyEditorCrateList() {
+void CrateEditor_Destroy() {
     delete g_editorCrateEntities;
 }
 
-void ClearEditorCrateList() {
+void CrateEditor_Clear() {
     g_editorCrateEntities.Clear();
 }
 
-void SpawnEditorCrates() {
-    DestroyEditorCrates();
+void CrateEditor_SpawnCrates() {
+    CrateEditor_DestroyCrates();
 
     float cratePosition[VECTOR_SIZE];
 
-    for (int i = 0; i < g_cratePositions.Length; i++) {
-        g_cratePositions.GetArray(i, cratePosition);
+    for (int i = 0; i < CrateList_Size(); i++) {
+        CrateList_Get(i, cratePosition);
 
-        int crate = SpawnCrate(cratePosition);
+        int crate = Entity_SpawnCrate(cratePosition);
 
         g_editorCrateEntities.Push(crate);
     }
 }
 
-void DestroyEditorCrates() {
+void CrateEditor_DestroyCrates() {
     for (int i = 0; i < g_editorCrateEntities.Length; i++) {
         int crate = g_editorCrateEntities.Get(i);
 
-        DestroyCrate(crate);
+        RemoveEntity(crate);
     }
 
     g_editorCrateEntities.Clear();
 }
 
-void DestroyCrate(int crate) {
-    AcceptEntityInput(crate, "Kill");
-}
+void CrateEditor_AddCrate(int client) {
+    float cratePosition[VECTOR_SIZE];
 
-void AddCrate(int client, float cratePosition[VECTOR_SIZE]) {
-    TracePosition(client, cratePosition);
+    CrateEditor_TracePosition(client, cratePosition);
 
-    int crate = SpawnCrate(cratePosition);
+    int crate = Entity_SpawnCrate(cratePosition);
 
-    g_cratePositions.PushArray(cratePosition);
+    CrateList_Add(cratePosition);
     g_editorCrateEntities.Push(crate);
 }
 
-bool RemoveCrate(int client, float cratePosition[VECTOR_SIZE]) {
-    int crate = TraceCrate(client);
+bool CrateEditor_RemoveCrate(int client) {
+    int crate = CrateEditor_TraceCrate(client);
     int crateIndex = g_editorCrateEntities.FindValue(crate);
 
     if (crateIndex == CRATE_NOT_FOUND) {
-        ReplyCrateNotFound(client);
+        MessageReply_CrateNotFound(client);
 
         return false;
     }
 
-    DestroyCrate(crate);
-
-    g_cratePositions.GetArray(crateIndex, cratePosition);
-    g_cratePositions.Erase(crateIndex);
+    RemoveEntity(crate);
+    CrateList_Remove(crateIndex);
     g_editorCrateEntities.Erase(crateIndex);
 
     return true;
 }
 
-void TracePosition(int client, float position[VECTOR_SIZE]) {
+void CrateEditor_TracePosition(int client, float position[VECTOR_SIZE]) {
     float eyesPosition[VECTOR_SIZE];
     float eyesAngles[VECTOR_SIZE];
 
@@ -79,7 +77,7 @@ void TracePosition(int client, float position[VECTOR_SIZE]) {
     CloseHandle(trace);
 }
 
-int TraceCrate(int client) {
+int CrateEditor_TraceCrate(int client) {
     float eyesPosition[3];
     float eyesAngles[3];
 
