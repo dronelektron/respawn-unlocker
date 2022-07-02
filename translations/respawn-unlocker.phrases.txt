@@ -46,4 +46,39 @@
     {
         "en"    "Crate not found"
     }
+
+    "Respawn unlocker"
+    {
+        "en"    "Respawn unlocker"
+    }
+
+    "Enable editor"
+    {
+        "en"    "Enable editor"
+    }
+
+    "Disable editor"
+    {
+        "en"    "Disable editor"
+    }
+
+    "Add crate"
+    {
+        "en"    "Add crate"
+    }
+
+    "Remove crate"
+    {
+        "en"    "Remove crate"
+    }
+
+    "Load crates"
+    {
+        "en"    "Load crates"
+    }
+
+    "Save crates"
+    {
+        "en"    "Save crates"
+    }
 }

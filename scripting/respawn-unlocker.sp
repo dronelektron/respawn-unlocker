@@ -1,5 +1,7 @@
 #include <sourcemod>
 #include <sdktools>
+#undef REQUIRE_PLUGIN
+#include <adminmenu>
 
 #include "morecolors"
 
@@ -9,6 +11,7 @@
 #include "ru/crate-storage"
 #include "ru/editor"
 #include "ru/entity"
+#include "ru/menu"
 #include "ru/message"
 
 #include "modules/console-command.sp"
@@ -17,6 +20,7 @@
 #include "modules/crate-storage.sp"
 #include "modules/editor.sp"
 #include "modules/entity.sp"
+#include "modules/menu.sp"
 #include "modules/message.sp"
 #include "modules/use-case.sp"
 #include "modules/wall-list.sp"
@@ -35,6 +39,7 @@ public void OnPluginStart() {
     CrateList_Create();
     WallList_Create();
     Editor_Create();
+    AdminMenu_Create();
     CrateStorage_BuildConfigPath();
     HookEvent("dod_round_start", Event_RoundStart);
     HookEvent("dod_round_win", Event_RoundWin);
@@ -52,6 +57,16 @@ public void OnMapStart() {
     CrateStorage_SaveCurrentMapName();
     UseCase_FindWalls();
     UseCase_LoadCrates(CONSOLE);
+}
+
+public void OnAdminMenuReady(Handle topMenu) {
+    AdminMenu_OnReady(topMenu);
+}
+
+public void OnLibraryRemoved(const char[] name) {
+    if (strcmp(name, ADMIN_MENU) == 0) {
+        AdminMenu_Destroy();
+    }
 }
 
 public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast) {
