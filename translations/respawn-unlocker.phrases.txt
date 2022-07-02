@@ -2,7 +2,7 @@
 {
     "Walls removed"
     {
-        "en"    "{default}Walls removed"
+        "en"    "{default}Invisible walls removed"
     }
 
     "Crates added"

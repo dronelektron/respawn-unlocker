@@ -2,7 +2,7 @@
 {
     "Walls removed"
     {
-        "ru"    "{default}Стены убраны"
+        "ru"    "{default}Невидимые стены удалены"
     }
 
     "Crates added"
