@@ -19,6 +19,10 @@ Allows you to unlock respawn at the end of the round:
 * sm_respawnunlocker_walls - Enable (1) or disable (0) walls removing [default: "1"]
 * sm_respawnunlocker_crates - Enable (1) or disable (0) crates adding [default: "1"]
 * sm_respawnunlocker_notifications - Enable (1) or disable (0) notifications [default: "1"]
+* sm_respawnunlocker_crate_color_red - Crate color (red channel) [default: "0"]
+* sm_respawnunlocker_crate_color_green - Crate color (green channel) [default: "255"]
+* sm_respawnunlocker_crate_color_blue - Crate color (blue channel) [default: "255"]
+* sm_respawnunlocker_crate_color_alpha - Crate color (alpha channel) [default: "255"]
 
 ### Console Commands
 
