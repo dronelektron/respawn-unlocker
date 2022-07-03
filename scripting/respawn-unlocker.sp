@@ -8,9 +8,9 @@
 #pragma semicolon 1
 #pragma newdecls required
 
-#include "ru/crate-editor"
 #include "ru/crate-storage"
 #include "ru/entity"
+#include "ru/math"
 #include "ru/menu"
 #include "ru/message"
 
