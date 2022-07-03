@@ -2,12 +2,12 @@
 {
     "Walls removed"
     {
-        "ru"    "{default}Невидимые стены удалены"
+        "ru"    "{default}Удалены невидимые стены"
     }
 
     "Crates added"
     {
-        "ru"    "{default}Ящики добавлены"
+        "ru"    "{default}Добавлены ящики"
     }
 
     "Crates loaded"

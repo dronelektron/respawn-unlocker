@@ -2,12 +2,12 @@
 {
     "Walls removed"
     {
-        "en"    "{default}Invisible walls removed"
+        "en"    "{default}Removed invisible walls"
     }
 
     "Crates added"
     {
-        "en"    "{default}Crates added"
+        "en"    "{default}Added crates"
     }
 
     "Crates loaded"
