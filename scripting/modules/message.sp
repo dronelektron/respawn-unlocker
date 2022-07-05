@@ -15,7 +15,7 @@ void Message_CratesLoaded(int client) {
 
     if (client == CONSOLE) {
         if (cratesAmount == 0) {
-            LogMessage("No crates for this map", cratesAmount);
+            LogMessage("No crates for this map");
         } else {
             LogMessage("Loaded %d crates", cratesAmount);
         }
@@ -30,6 +30,28 @@ void Message_CratesSaved(int client) {
 
     ShowActivity2(client, PREFIX, "%t", "Crates saved", cratesAmount);
     LogMessage("\"%L\" saved %d crates", client, cratesAmount);
+}
+
+void Message_TriggersLoaded(int client) {
+    int triggersAmount = TriggerList_Size();
+
+    if (client == CONSOLE) {
+        if (triggersAmount == 0) {
+            LogMessage("No triggers for this map");
+        } else {
+            LogMessage("Loaded %d triggers", triggersAmount);
+        }
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Triggers loaded", triggersAmount);
+        LogMessage("\"%L\" loaded %d triggers", client, triggersAmount);
+    }
+}
+
+void Message_TriggersSaved(int client) {
+    int triggersAmount = TriggerList_Size();
+
+    ShowActivity2(client, PREFIX, "%t", "Triggers saved", triggersAmount);
+    LogMessage("\"%L\" saved %d triggers", client, triggersAmount);
 }
 
 void Message_EditorEnabled(int client) {

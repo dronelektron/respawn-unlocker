@@ -24,7 +24,19 @@
     "Crates saved"
     {
         "#format"   "{1:d}"
-        "en"    "Saved {2} crates"
+        "en"    "Saved {1} crates"
+    }
+
+    "Triggers loaded"
+    {
+        "#format"   "{1:d}"
+        "en"    "Loaded {1} triggers"
+    }
+
+    "Triggers saved"
+    {
+        "#format"   "{1:d}"
+        "en"    "Saved {1} triggers"
     }
 
     "Crates editor enabled"

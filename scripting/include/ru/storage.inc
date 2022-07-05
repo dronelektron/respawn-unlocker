@@ -11,8 +11,10 @@
 #define KEY_ROOT "Entities"
 #define KEY_CRATES "Crates"
 #define KEY_CRATE_POSITION "position"
+#define KEY_TRIGGERS "Triggers"
+#define KEY_TRIGGER_ENTITY "entity"
 
-#define CRATE_ID_MAX_LENGTH 256
+#define ID_MAX_LENGTH 12
 #define CREATE_YES true
 
 typedef KeyValuesCallback = function void (KeyValues kv);

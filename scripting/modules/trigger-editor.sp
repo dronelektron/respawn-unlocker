@@ -11,6 +11,8 @@ int TriggerEditor_SelectTrigger(int client) {
     GetClientEyePosition(client, eyesPosition);
     GetClientEyeAngles(client, eyesAngles);
 
+    g_selectedEntity[client] = ENTITY_NOT_FOUND;
+
     TR_EnumerateEntities(eyesPosition, eyesAngles, PARTITION_TRIGGER_EDICTS, RayType_Infinite, TraceEntityEnumerator_Triggers, client);
 
     return g_selectedEntity[client];

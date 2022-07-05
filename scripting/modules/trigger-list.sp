@@ -8,6 +8,10 @@ void TriggerList_Destroy() {
     delete g_entities;
 }
 
+void TriggerList_Clear() {
+    g_entities.Clear();
+}
+
 int TriggerList_Size() {
     return g_entities.Length;
 }

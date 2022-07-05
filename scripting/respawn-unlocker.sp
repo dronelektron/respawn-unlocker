@@ -64,6 +64,7 @@ public void OnMapStart() {
     Visualizer_PrecacheTempEntityModels();
     UseCase_FindWalls();
     UseCase_LoadCrates(CONSOLE);
+    UseCase_LoadTriggers(CONSOLE);
 }
 
 public void OnClientConnected(int client) {

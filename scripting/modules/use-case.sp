@@ -157,3 +157,13 @@ void UseCase_VisualizeTrigger(int client, int entity) {
     Math_CalculateZoneVertices(entityGlobalMinBounds, entityGlobalMaxBounds, entityVertices);
     Visualizer_DrawTrigger(client, entityVertices);
 }
+
+void UseCase_LoadTriggers(int client) {
+    Storage_ApplyToKeyValues(Storage_LoadTriggers);
+    Message_TriggersLoaded(client);
+}
+
+void UseCase_SaveTriggers(int client) {
+    Storage_ApplyToKeyValues(Storage_SaveTriggers);
+    Message_TriggersSaved(client);
+}

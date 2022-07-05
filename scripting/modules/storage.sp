@@ -56,7 +56,7 @@ void Storage_SaveCrates(KeyValues kv) {
         kv.JumpToKey(KEY_CRATES, CREATE_YES);
     }
 
-    char crateId[CRATE_ID_MAX_LENGTH];
+    char crateId[ID_MAX_LENGTH];
     float cratePosition[VECTOR_SIZE];
 
     for (int i = 0; i < cratesAmount; i++) {
@@ -65,6 +65,48 @@ void Storage_SaveCrates(KeyValues kv) {
 
         kv.JumpToKey(crateId, CREATE_YES);
         kv.SetVector(KEY_CRATE_POSITION, cratePosition);
+        kv.GoBack();
+    }
+
+    kv.Rewind();
+    kv.ExportToFile(g_configPath);
+}
+
+void Storage_LoadTriggers(KeyValues kv) {
+    TriggerList_Clear();
+
+    if (!kv.JumpToKey(KEY_TRIGGERS) || !kv.GotoFirstSubKey()) {
+        return;
+    }
+
+    do {
+        int entity = kv.GetNum(KEY_TRIGGER_ENTITY);
+
+        TriggerList_Add(entity);
+    } while (kv.GotoNextKey());
+}
+
+void Storage_SaveTriggers(KeyValues kv) {
+    if (kv.JumpToKey(KEY_TRIGGERS)) {
+        kv.DeleteThis();
+        kv.Rewind();
+    }
+
+    int triggersAmount = TriggerList_Size();
+
+    if (triggersAmount > 0) {
+        kv.JumpToKey(KEY_TRIGGERS, CREATE_YES);
+    }
+
+    char triggerId[ID_MAX_LENGTH];
+
+    for (int i = 0; i < triggersAmount; i++) {
+        IntToString(i + 1, triggerId, sizeof(triggerId));
+
+        int entity = TriggerList_Get(i);
+
+        kv.JumpToKey(triggerId, CREATE_YES);
+        kv.SetNum(KEY_TRIGGER_ENTITY, entity);
         kv.GoBack();
     }
 
