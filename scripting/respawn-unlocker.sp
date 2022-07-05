@@ -76,7 +76,7 @@ public void OnAdminMenuReady(Handle topMenu) {
 }
 
 public void OnLibraryRemoved(const char[] name) {
-    if (strcmp(name, ADMIN_MENU) == 0) {
+    if (StrEqual(name, ADMIN_MENU)) {
         AdminMenu_Destroy();
     }
 }

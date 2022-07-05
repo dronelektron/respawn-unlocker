@@ -90,6 +90,16 @@
         "ru"    "Разблокировка респауна"
     }
 
+    "Crates management"
+    {
+        "ru"    "Управление ящиками"
+    }
+
+    "Triggers management"
+    {
+        "ru"    "Управление триггерами"
+    }
+
     "Enable editor"
     {
         "ru"    "Включить редактор"
@@ -118,5 +128,25 @@
     "Save crates"
     {
         "ru"    "Сохранить ящики"
+    }
+
+    "Add trigger to list"
+    {
+        "ru"    "Добавить триггер в список"
+    }
+
+    "Remove trigger from list"
+    {
+        "ru"    "Удалить триггер из списка"
+    }
+
+    "Load triggers"
+    {
+        "ru"    "Загрузить триггеры"
+    }
+
+    "Save triggers"
+    {
+        "ru"    "Сохранить триггеры"
     }
 }

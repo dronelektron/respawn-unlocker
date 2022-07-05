@@ -98,6 +98,16 @@
         "en"    "Respawn unlocker"
     }
 
+    "Crates management"
+    {
+        "en"    "Crates management"
+    }
+
+    "Triggers management"
+    {
+        "en"    "Triggers management"
+    }
+
     "Enable editor"
     {
         "en"    "Enable editor"
@@ -126,5 +136,25 @@
     "Save crates"
     {
         "en"    "Save crates"
+    }
+
+    "Add trigger to list"
+    {
+        "en"    "Add trigger to list"
+    }
+
+    "Remove trigger from list"
+    {
+        "en"    "Remove trigger from list"
+    }
+
+    "Load triggers"
+    {
+        "en"    "Load triggers"
+    }
+
+    "Save triggers"
+    {
+        "en"    "Save triggers"
     }
 }
