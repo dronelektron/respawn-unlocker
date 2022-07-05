@@ -4,6 +4,7 @@ Allows you to unlock respawn at the end of the round:
 
 * Remove invisible walls
 * Add crates
+* Remove triggers
 
 ### Supported Games
 
@@ -18,6 +19,7 @@ Allows you to unlock respawn at the end of the round:
 
 * sm_respawnunlocker_walls - Enable (1) or disable (0) walls removing [default: "1"]
 * sm_respawnunlocker_crates - Enable (1) or disable (0) crates adding [default: "1"]
+* sm_respawnunlocker_triggers - Enable (1) or disable (0) triggers removing [default: "1"]
 * sm_respawnunlocker_notifications - Enable (1) or disable (0) notifications [default: "1"]
 * sm_respawnunlocker_crate_color_red - Crate color (red channel) [default: "0"]
 * sm_respawnunlocker_crate_color_green - Crate color (green channel) [default: "255"]
@@ -26,51 +28,60 @@ Allows you to unlock respawn at the end of the round:
 
 ### Console Commands
 
-* sm_respawnunlocker_crates_load - Load crates from file
-* sm_respawnunlocker_crates_save - Save crates to file
+* sm_respawnunlocker_crates_load - Load crates from the file
+* sm_respawnunlocker_crates_save - Save crates to the file
 * sm_respawnunlocker_editor_enable - Enable crates editor (will spawn crates)
 * sm_respawnunlocker_editor_disable - Disable crates editor (will destroy crates)
-* sm_respawnunlocker_editor_crate_add - Add a crate where you are looking
-* sm_respawnunlocker_editor_crate_remove - Remove a crate where you are looking
+* sm_respawnunlocker_editor_crate_add - Add a crate
+* sm_respawnunlocker_editor_crate_remove - Remove a crate
+* sm_respawnunlocker_trigger_add - Add a trigger to the list
+* sm_respawnunlocker_trigger_remove - Remove a trigger from the list
+* sm_respawnunlocker_triggers_load - Load triggers from the file
+* sm_respawnunlocker_triggers_save - Save triggers to the file
 
 ### Crates Storage
 
-The crates config file should be created in the following location:
+Each map has its own configuration file:
 
 ```
-addons/sourcemod/configs/respawn-unlocker.txt
+addons/sourcemod/configs/respawn-unlocker/{map_name}.txt
 ```
 
 This file will have the following structure:
 
 ```
-"Crates"
+"Entities"
 {
-    // Map name
-    "dod_gan_games"
+    "Crates"
     {
-        // Crate's number
         "1"
         {
             // X, Y - position of the center, Z - position of the bottom
-            "position"      "320.000000 -128.000000 64.000000"
+            "position"      "-157.499695 1407.957275 -255.968750"
         }
         "2"
         {
-            "position"      "320.000000 -108.000000 104.000000"
+            "position"      "224.163727 1086.800537 -255.968750"
         }
         "3"
         {
-            "position"      "2300.000000 -128.000000 64.000000"
+            "position"      "205.046783 1086.626831 -216.018341"
         }
-        "4"
+    }
+    "Triggers"
+    {
+        "1"
         {
-            "position"      "2300.000000 -108.000000 104.000000"
+            "entity"        "140"
+        }
+        "2"
+        {
+            "entity"        "233"
         }
     }
 }
 ```
 
-This is how crates "3" and "4" will look like in the game:
+What the crates will look at the end of the round:
 
-![dod_gan_games](https://i.imgur.com/uxp9rcY.png)
+![dod_gan_games](https://i.imgur.com/ZNyOoSg.jpeg)

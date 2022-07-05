@@ -10,6 +10,11 @@
         "ru"    "{default}Ящики добавлены"
     }
 
+    "Triggers removed"
+    {
+        "ru"    "{default}Триггеры удалены"
+    }
+
     "Crates loaded"
     {
         "ru"    "Загружено {1} ящиков"
@@ -18,6 +23,16 @@
     "Crates saved"
     {
         "ru"    "Сохранено {1} ящиков"
+    }
+
+    "Triggers loaded"
+    {
+        "ru"    "Загружено {1} триггеров"
+    }
+
+    "Triggers saved"
+    {
+        "ru"    "Сохранено {1} триггеров"
     }
 
     "Crates editor enabled"
@@ -45,9 +60,44 @@
         "ru"    "Ящик не найден"
     }
 
+    "Trigger not found"
+    {
+        "ru"    "Триггер не найден"
+    }
+
+    "Trigger added to list"
+    {
+        "ru"    "Триггер {1} добавлен в список"
+    }
+
+    "Trigger already added to list"
+    {
+        "ru"    "Триггер {1} уже добавлен в список"
+    }
+
+    "Trigger removed from list"
+    {
+        "ru"    "Триггер {1} удален из списка"
+    }
+
+    "Trigger already removed from list"
+    {
+        "ru"    "Триггер {1} уже удален из списка"
+    }
+
     "Respawn unlocker"
     {
         "ru"    "Разблокировка респауна"
+    }
+
+    "Crates management"
+    {
+        "ru"    "Управление ящиками"
+    }
+
+    "Triggers management"
+    {
+        "ru"    "Управление триггерами"
     }
 
     "Enable editor"
@@ -78,5 +128,25 @@
     "Save crates"
     {
         "ru"    "Сохранить ящики"
+    }
+
+    "Add trigger to list"
+    {
+        "ru"    "Добавить триггер в список"
+    }
+
+    "Remove trigger from list"
+    {
+        "ru"    "Удалить триггер из списка"
+    }
+
+    "Load triggers"
+    {
+        "ru"    "Загрузить триггеры"
+    }
+
+    "Save triggers"
+    {
+        "ru"    "Сохранить триггеры"
     }
 }

@@ -2,12 +2,17 @@
 {
     "Walls removed"
     {
-        "en"    "{default}Invisible walls removed"
+        "en"    "{default}Invisible walls are removed"
     }
 
     "Crates added"
     {
-        "en"    "{default}Crates added"
+        "en"    "{default}Crates are added"
+    }
+
+    "Triggers removed"
+    {
+        "en"    "{default}Triggers are removed"
     }
 
     "Crates loaded"
@@ -19,7 +24,19 @@
     "Crates saved"
     {
         "#format"   "{1:d}"
-        "en"    "Saved {2} crates"
+        "en"    "Saved {1} crates"
+    }
+
+    "Triggers loaded"
+    {
+        "#format"   "{1:d}"
+        "en"    "Loaded {1} triggers"
+    }
+
+    "Triggers saved"
+    {
+        "#format"   "{1:d}"
+        "en"    "Saved {1} triggers"
     }
 
     "Crates editor enabled"
@@ -47,9 +64,48 @@
         "en"    "Crate not found"
     }
 
+    "Trigger not found"
+    {
+        "en"    "Trigger is not found"
+    }
+
+    "Trigger added to list"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} is added to the list"
+    }
+
+    "Trigger already added to list"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} is already added to the list"
+    }
+
+    "Trigger removed from list"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} is removed from the list"
+    }
+
+    "Trigger already removed from list"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} is already removed from the list"
+    }
+
     "Respawn unlocker"
     {
         "en"    "Respawn unlocker"
+    }
+
+    "Crates management"
+    {
+        "en"    "Crates management"
+    }
+
+    "Triggers management"
+    {
+        "en"    "Triggers management"
     }
 
     "Enable editor"
@@ -80,5 +136,25 @@
     "Save crates"
     {
         "en"    "Save crates"
+    }
+
+    "Add trigger to list"
+    {
+        "en"    "Add trigger to list"
+    }
+
+    "Remove trigger from list"
+    {
+        "en"    "Remove trigger from list"
+    }
+
+    "Load triggers"
+    {
+        "en"    "Load triggers"
+    }
+
+    "Save triggers"
+    {
+        "en"    "Save triggers"
     }
 }

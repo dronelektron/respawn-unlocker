@@ -1,12 +1,8 @@
 static TopMenu g_adminMenu = null;
 
 static TopMenuObject g_respawnUnlockerCategory = INVALID_TOPMENUOBJECT;
-static TopMenuObject g_menuItemEnableEditor = INVALID_TOPMENUOBJECT;
-static TopMenuObject g_menuItemDisableEditor = INVALID_TOPMENUOBJECT;
-static TopMenuObject g_menuItemAddCrate = INVALID_TOPMENUOBJECT;
-static TopMenuObject g_menuItemRemoveCrate = INVALID_TOPMENUOBJECT;
-static TopMenuObject g_menuItemLoadCrates = INVALID_TOPMENUOBJECT;
-static TopMenuObject g_menuItemSaveCrates = INVALID_TOPMENUOBJECT;
+static TopMenuObject g_menuItemCratesManagement = INVALID_TOPMENUOBJECT;
+static TopMenuObject g_menuItemTriggersManagement = INVALID_TOPMENUOBJECT;
 
 void AdminMenu_Create() {
     TopMenu topMenu = GetAdminTopMenu();
@@ -36,12 +32,8 @@ void AdminMenu_Fill() {
     g_respawnUnlockerCategory = g_adminMenu.AddCategory(RESPAWN_UNLOCKER, AdminMenuHandler_RespawnUnlocker);
 
     if (g_respawnUnlockerCategory != INVALID_TOPMENUOBJECT) {
-        g_menuItemEnableEditor = AdminMenu_AddItem(ITEM_EDITOR_ENABLE);
-        g_menuItemDisableEditor = AdminMenu_AddItem(ITEM_EDITOR_DISABLE);
-        g_menuItemAddCrate = AdminMenu_AddItem(ITEM_EDITOR_CRATE_ADD);
-        g_menuItemRemoveCrate = AdminMenu_AddItem(ITEM_EDITOR_CRATE_REMOVE);
-        g_menuItemLoadCrates = AdminMenu_AddItem(ITEM_CRATES_LOAD);
-        g_menuItemSaveCrates = AdminMenu_AddItem(ITEM_CRATES_SAVE);
+        g_menuItemCratesManagement = AdminMenu_AddItem(CRATES_MANAGEMENT);
+        g_menuItemTriggersManagement = AdminMenu_AddItem(TRIGGERS_MANAGEMENT);
     }
 }
 
@@ -53,38 +45,120 @@ public void AdminMenuHandler_RespawnUnlocker(TopMenu topmenu, TopMenuAction acti
     if (action == TopMenuAction_DisplayOption) {
         if (topobj_id == g_respawnUnlockerCategory) {
             Format(buffer, maxlength, "%T", RESPAWN_UNLOCKER, param);
-        } else if (topobj_id == g_menuItemEnableEditor) {
-            Format(buffer, maxlength, "%T", ITEM_EDITOR_ENABLE, param);
-        } else if (topobj_id == g_menuItemDisableEditor) {
-            Format(buffer, maxlength, "%T", ITEM_EDITOR_DISABLE, param);
-        } else if (topobj_id == g_menuItemAddCrate) {
-            Format(buffer, maxlength, "%T", ITEM_EDITOR_CRATE_ADD, param);
-        } else if (topobj_id == g_menuItemRemoveCrate) {
-            Format(buffer, maxlength, "%T", ITEM_EDITOR_CRATE_REMOVE, param);
-        } else if (topobj_id == g_menuItemLoadCrates) {
-            Format(buffer, maxlength, "%T", ITEM_CRATES_LOAD, param);
-        } else if (topobj_id == g_menuItemSaveCrates) {
-            Format(buffer, maxlength, "%T", ITEM_CRATES_SAVE, param);
+        } else if (topobj_id == g_menuItemCratesManagement) {
+            Format(buffer, maxlength, "%T", CRATES_MANAGEMENT, param);
+        } else if (topobj_id == g_menuItemTriggersManagement) {
+            Format(buffer, maxlength, "%T", TRIGGERS_MANAGEMENT, param);
         }
     } else if (action == TopMenuAction_DisplayTitle) {
         if (topobj_id == g_respawnUnlockerCategory) {
             Format(buffer, maxlength, "%T", RESPAWN_UNLOCKER, param);
         }
     } else if (action == TopMenuAction_SelectOption) {
-        if (topobj_id == g_menuItemEnableEditor) {
-            UseCase_EnableEditor(param);
-        } else if (topobj_id == g_menuItemDisableEditor) {
-            UseCase_DisableEditor(param);
-        } else if (topobj_id == g_menuItemAddCrate) {
-            UseCase_AddCrate(param);
-        } else if (topobj_id == g_menuItemRemoveCrate) {
-            UseCase_RemoveCrate(param);
-        } else if (topobj_id == g_menuItemLoadCrates) {
-            UseCase_LoadCrates(param);
-        } else if (topobj_id == g_menuItemSaveCrates) {
-            UseCase_SaveCrates(param);
+        if (topobj_id == g_menuItemCratesManagement) {
+            Menu_CratesManagement(param);
+        } else if (topobj_id == g_menuItemTriggersManagement) {
+            Menu_TriggersManagement(param);
+        }
+    }
+}
+
+void Menu_CratesManagement(int client) {
+    Menu menu = new Menu(MenuHandler_CratesManagement);
+
+    menu.SetTitle("%T", CRATES_MANAGEMENT, client);
+
+    Menu_AddItem(menu, ITEM_EDITOR_ENABLE, client);
+    Menu_AddItem(menu, ITEM_EDITOR_DISABLE, client);
+    Menu_AddItem(menu, ITEM_EDITOR_CRATE_ADD, client);
+    Menu_AddItem(menu, ITEM_EDITOR_CRATE_REMOVE, client);
+    Menu_AddItem(menu, ITEM_CRATES_LOAD, client);
+    Menu_AddItem(menu, ITEM_CRATES_SAVE, client);
+
+    menu.ExitBackButton = true;
+    menu.Display(client, MENU_TIME_FOREVER);
+}
+
+public int MenuHandler_CratesManagement(Menu menu, MenuAction action, int param1, int param2) {
+    if (action == MenuAction_Select) {
+        char info[MENU_ITEM_INFO_MAX_SIZE];
+
+        menu.GetItem(param2, info, sizeof(info));
+
+        if (StrEqual(info, ITEM_EDITOR_ENABLE)) {
+            UseCase_EnableEditor(param1);
+        } else if (StrEqual(info, ITEM_EDITOR_DISABLE)) {
+            UseCase_DisableEditor(param1);
+        } else if (StrEqual(info, ITEM_EDITOR_CRATE_ADD)) {
+            UseCase_AddCrate(param1);
+        } else if (StrEqual(info, ITEM_EDITOR_CRATE_REMOVE)) {
+            UseCase_RemoveCrate(param1);
+        } else if (StrEqual(info, ITEM_CRATES_LOAD)) {
+            UseCase_LoadCrates(param1);
+        } else if (StrEqual(info, ITEM_CRATES_SAVE)) {
+            UseCase_SaveCrates(param1);
         }
 
-        topmenu.DisplayCategory(g_respawnUnlockerCategory, param);
+        Menu_CratesManagement(param1);
+    } else {
+        MenuHandler_Default(menu, action, param1, param2);
     }
+
+    return 0;
+}
+
+void Menu_TriggersManagement(int client) {
+    Menu menu = new Menu(MenuHandler_TriggersManagement);
+
+    menu.SetTitle("%T", TRIGGERS_MANAGEMENT, client);
+
+    Menu_AddItem(menu, ITEM_TRIGGER_ADD, client);
+    Menu_AddItem(menu, ITEM_TRIGGER_REMOVE, client);
+    Menu_AddItem(menu, ITEM_TRIGGERS_LOAD, client);
+    Menu_AddItem(menu, ITEM_TRIGGERS_SAVE, client);
+
+    menu.ExitBackButton = true;
+    menu.Display(client, MENU_TIME_FOREVER);
+}
+
+public int MenuHandler_TriggersManagement(Menu menu, MenuAction action, int param1, int param2) {
+    if (action == MenuAction_Select) {
+        char info[MENU_ITEM_INFO_MAX_SIZE];
+
+        menu.GetItem(param2, info, sizeof(info));
+
+        if (StrEqual(info, ITEM_TRIGGER_ADD)) {
+            UseCase_AddTriggerToList(param1);
+        } else if (StrEqual(info, ITEM_TRIGGER_REMOVE)) {
+            UseCase_RemoveTriggerFromList(param1);
+        } else if (StrEqual(info, ITEM_TRIGGERS_LOAD)) {
+            UseCase_LoadTriggers(param1);
+        } else if (StrEqual(info, ITEM_TRIGGERS_SAVE)) {
+            UseCase_SaveTriggers(param1);
+        }
+
+        Menu_TriggersManagement(param1);
+    } else {
+        MenuHandler_Default(menu, action, param1, param2);
+    }
+
+    return 0;
+}
+
+void MenuHandler_Default(Menu menu, MenuAction action, int param1, int param2) {
+    if (action == MenuAction_End) {
+        delete menu;
+    } else if (action == MenuAction_Cancel) {
+        if (param2 == MenuCancel_ExitBack && g_adminMenu != null) {
+            g_adminMenu.Display(param1, TopMenuPosition_LastCategory);
+        }
+    }
+}
+
+void Menu_AddItem(Menu menu, const char[] phrase, int client) {
+    char buffer[TEXT_BUFFER_MAX_SIZE];
+
+    Format(buffer, sizeof(buffer), "%T", phrase, client);
+
+    menu.AddItem(phrase, buffer);
 }

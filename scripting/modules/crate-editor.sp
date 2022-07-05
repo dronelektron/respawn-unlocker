@@ -51,7 +51,7 @@ bool CrateEditor_RemoveCrate(int client) {
     int crate = CrateEditor_TraceCrate(client);
     int crateIndex = g_editorCrateEntities.FindValue(crate);
 
-    if (crateIndex == CRATE_NOT_FOUND) {
+    if (crateIndex == ENTITY_NOT_FOUND) {
         MessageReply_CrateNotFound(client);
 
         return false;

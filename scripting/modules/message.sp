@@ -1,17 +1,13 @@
 void MessagePrint_WallsRemoved() {
-    if (WallList_Size() == 0 || !Variable_IsWallsEnabled() || !Variable_IsNotificationsEnabled()) {
-        return;
-    }
-
     CPrintToChatAll("%s%t", PREFIX_COLORED, "Walls removed");
 }
 
 void MessagePrint_CratesAdded() {
-    if (CrateList_Size() == 0 || !Variable_IsCratesEnabled() || !Variable_IsNotificationsEnabled()) {
-        return;
-    }
-
     CPrintToChatAll("%s%t", PREFIX_COLORED, "Crates added");
+}
+
+void MessagePrint_TriggersRemoved() {
+    CPrintToChatAll("%s%t", PREFIX_COLORED, "Triggers removed");
 }
 
 void Message_CratesLoaded(int client) {
@@ -19,7 +15,7 @@ void Message_CratesLoaded(int client) {
 
     if (client == CONSOLE) {
         if (cratesAmount == 0) {
-            LogMessage("No crates for this map", cratesAmount);
+            LogMessage("No crates for this map");
         } else {
             LogMessage("Loaded %d crates", cratesAmount);
         }
@@ -34,6 +30,28 @@ void Message_CratesSaved(int client) {
 
     ShowActivity2(client, PREFIX, "%t", "Crates saved", cratesAmount);
     LogMessage("\"%L\" saved %d crates", client, cratesAmount);
+}
+
+void Message_TriggersLoaded(int client) {
+    int triggersAmount = TriggerList_Size();
+
+    if (client == CONSOLE) {
+        if (triggersAmount == 0) {
+            LogMessage("No triggers for this map");
+        } else {
+            LogMessage("Loaded %d triggers", triggersAmount);
+        }
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Triggers loaded", triggersAmount);
+        LogMessage("\"%L\" loaded %d triggers", client, triggersAmount);
+    }
+}
+
+void Message_TriggersSaved(int client) {
+    int triggersAmount = TriggerList_Size();
+
+    ShowActivity2(client, PREFIX, "%t", "Triggers saved", triggersAmount);
+    LogMessage("\"%L\" saved %d triggers", client, triggersAmount);
 }
 
 void Message_EditorEnabled(int client) {
@@ -58,4 +76,26 @@ void Message_CrateRemoved(int client) {
 
 void MessageReply_CrateNotFound(int client) {
     ReplyToCommand(client, "%s%t", PREFIX, "Crate not found");
+}
+
+void MessageReply_TriggerNotFound(int client) {
+    ReplyToCommand(client, "%s%t", PREFIX, "Trigger not found");
+}
+
+void Message_TriggerAddedToList(int client, int entity) {
+    ShowActivity2(client, PREFIX, "%t", "Trigger added to list", entity);
+    LogMessage("\"%L\" added trigger %d to list", client, entity);
+}
+
+void MessageReply_TriggerAlreadyAddedToList(int client, int entity) {
+    ReplyToCommand(client, "%s%t", PREFIX, "Trigger already added to list", entity);
+}
+
+void Message_TriggerRemovedFromList(int client, int entity) {
+    ShowActivity2(client, PREFIX, "%t", "Trigger removed from list", entity);
+    LogMessage("\"%L\" removed trigger %d from list", client, entity);
+}
+
+void MessageReply_TriggerAlreadyRemovedFromList(int client, int entity) {
+    ReplyToCommand(client, "%s%t", PREFIX, "Trigger already removed from list", entity);
 }
