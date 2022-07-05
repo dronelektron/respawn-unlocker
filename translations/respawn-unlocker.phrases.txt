@@ -2,12 +2,17 @@
 {
     "Walls removed"
     {
-        "en"    "{default}Removed invisible walls"
+        "en"    "{default}Invisible walls are removed"
     }
 
     "Crates added"
     {
-        "en"    "{default}Added crates"
+        "en"    "{default}Crates are added"
+    }
+
+    "Triggers removed"
+    {
+        "en"    "{default}Triggers are removed"
     }
 
     "Crates loaded"
@@ -45,6 +50,35 @@
     "Crate not found"
     {
         "en"    "Crate not found"
+    }
+
+    "Trigger not found"
+    {
+        "en"    "Trigger is not found"
+    }
+
+    "Trigger added to list"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} is added to the list"
+    }
+
+    "Trigger already added to list"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} is already added to the list"
+    }
+
+    "Trigger removed from list"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} is removed from the list"
+    }
+
+    "Trigger already removed from list"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} is already removed from the list"
     }
 
     "Respawn unlocker"

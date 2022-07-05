@@ -11,4 +11,6 @@
 #define SOLID_TYPE "m_nSolidType"
 #define SOLID_TYPE_VPHYSICS 6
 
-#define VECTOR_MINS "m_vecMins"
+#define VECTOR_ORIGIN "m_vecOrigin"
+#define VECTOR_BOUNDS_MIN "m_vecMins"
+#define VECTOR_BOUNDS_MAX "m_vecMaxs"

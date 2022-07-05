@@ -1,17 +1,13 @@
 void MessagePrint_WallsRemoved() {
-    if (WallList_Size() == 0 || !Variable_IsWallsEnabled() || !Variable_IsNotificationsEnabled()) {
-        return;
-    }
-
     CPrintToChatAll("%s%t", PREFIX_COLORED, "Walls removed");
 }
 
 void MessagePrint_CratesAdded() {
-    if (CrateList_Size() == 0 || !Variable_IsCratesEnabled() || !Variable_IsNotificationsEnabled()) {
-        return;
-    }
-
     CPrintToChatAll("%s%t", PREFIX_COLORED, "Crates added");
+}
+
+void MessagePrint_TriggersRemoved() {
+    CPrintToChatAll("%s%t", PREFIX_COLORED, "Triggers removed");
 }
 
 void Message_CratesLoaded(int client) {
@@ -58,4 +54,26 @@ void Message_CrateRemoved(int client) {
 
 void MessageReply_CrateNotFound(int client) {
     ReplyToCommand(client, "%s%t", PREFIX, "Crate not found");
+}
+
+void MessageReply_TriggerNotFound(int client) {
+    ReplyToCommand(client, "%s%t", PREFIX, "Trigger not found");
+}
+
+void Message_TriggerAddedToList(int client, int entity) {
+    ShowActivity2(client, PREFIX, "%t", "Trigger added to list", entity);
+    LogMessage("\"%L\" added trigger %d to list", client, entity);
+}
+
+void MessageReply_TriggerAlreadyAddedToList(int client, int entity) {
+    ReplyToCommand(client, "%s%t", PREFIX, "Trigger already added to list", entity);
+}
+
+void Message_TriggerRemovedFromList(int client, int entity) {
+    ShowActivity2(client, PREFIX, "%t", "Trigger removed from list", entity);
+    LogMessage("\"%L\" removed trigger %d from list", client, entity);
+}
+
+void MessageReply_TriggerAlreadyRemovedFromList(int client, int entity) {
+    ReplyToCommand(client, "%s%t", PREFIX, "Trigger already removed from list", entity);
 }

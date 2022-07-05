@@ -13,6 +13,7 @@
 #include "ru/math"
 #include "ru/menu"
 #include "ru/message"
+#include "ru/visualizer"
 
 #include "modules/console-command.sp"
 #include "modules/console-variable.sp"
@@ -20,9 +21,13 @@
 #include "modules/crate-list.sp"
 #include "modules/crate-storage.sp"
 #include "modules/entity.sp"
+#include "modules/math.sp"
 #include "modules/menu.sp"
 #include "modules/message.sp"
+#include "modules/trigger-editor.sp"
+#include "modules/trigger-list.sp"
 #include "modules/use-case.sp"
+#include "modules/visualizer.sp"
 #include "modules/wall-list.sp"
 
 public Plugin myinfo = {
@@ -38,6 +43,7 @@ public void OnPluginStart() {
     Command_Create();
     CrateList_Create();
     WallList_Create();
+    TriggerList_Create();
     CrateEditor_Create();
     AdminMenu_Create();
     CrateStorage_BuildConfigPath();
@@ -50,13 +56,19 @@ public void OnPluginStart() {
 public void OnPluginEnd() {
     CrateList_Destroy();
     WallList_Destroy();
+    TriggerList_Destroy();
     CrateEditor_Destroy();
 }
 
 public void OnMapStart() {
     CrateStorage_SaveCurrentMapName();
+    Visualizer_PrecacheTempEntityModels();
     UseCase_FindWalls();
     UseCase_LoadCrates(CONSOLE);
+}
+
+public void OnClientConnected(int client) {
+    TriggerEditor_Reset(client);
 }
 
 public void OnAdminMenuReady(Handle topMenu) {
@@ -79,6 +91,7 @@ public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcas
 public Action Event_RoundWin(Event event, const char[] name, bool dontBroadcast) {
     UseCase_RemoveWalls();
     UseCase_AddCrates();
+    UseCase_RemoveTriggers();
 
     return Plugin_Continue;
 }

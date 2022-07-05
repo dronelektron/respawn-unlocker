@@ -25,7 +25,9 @@ void UseCase_RemoveWalls() {
         Entity_SetCollisionGroup(entity, COLLISION_GROUP_IN_VEHICLE);
     }
 
-    MessagePrint_WallsRemoved();
+    if (Variable_IsNotificationsEnabled() && WallList_Size() > 0) {
+        MessagePrint_WallsRemoved();
+    }
 }
 
 void UseCase_RestoreWalls() {
@@ -49,7 +51,25 @@ void UseCase_AddCrates() {
         Entity_SpawnCrate(cratePosition);
     }
 
-    MessagePrint_CratesAdded();
+    if (Variable_IsNotificationsEnabled() && CrateList_Size() > 0) {
+        MessagePrint_CratesAdded();
+    }
+}
+
+void UseCase_RemoveTriggers() {
+    if (!Variable_IsTriggersEnabled) {
+        return;
+    }
+
+    for (int i = 0; i < TriggerList_Size(); i++) {
+        int entity = TriggerList_Get(i);
+
+        Entity_Disable(entity);
+    }
+
+    if (Variable_IsNotificationsEnabled() && TriggerList_Size() > 0) {
+        MessagePrint_TriggersRemoved();
+    }
 }
 
 void UseCase_LoadCrates(int client) {
@@ -81,4 +101,59 @@ void UseCase_RemoveCrate(int client) {
     if (CrateEditor_RemoveCrate(client)) {
         Message_CrateRemoved(client);
     }
+}
+
+void UseCase_AddTriggerToList(int client) {
+    int entity = TriggerEditor_SelectTrigger(client);
+
+    if (entity == ENTITY_NOT_FOUND) {
+        MessageReply_TriggerNotFound(client);
+
+        return;
+    }
+
+    UseCase_VisualizeTrigger(client, entity);
+
+    if (TriggerList_Add(entity)) {
+        Message_TriggerAddedToList(client, entity);
+    } else {
+        MessageReply_TriggerAlreadyAddedToList(client, entity);
+    }
+}
+
+void UseCase_RemoveTriggerFromList(int client) {
+    int entity = TriggerEditor_SelectTrigger(client);
+
+    if (entity == ENTITY_NOT_FOUND) {
+        MessageReply_TriggerNotFound(client);
+
+        return;
+    }
+
+    UseCase_VisualizeTrigger(client, entity);
+
+    if (TriggerList_Remove(entity)) {
+        Message_TriggerRemovedFromList(client, entity);
+    } else {
+        MessageReply_TriggerAlreadyRemovedFromList(client, entity);
+    }
+}
+
+void UseCase_VisualizeTrigger(int client, int entity) {
+    float entityPosition[VECTOR_SIZE];
+    float entityMinBounds[VECTOR_SIZE];
+    float entityMaxBounds[VECTOR_SIZE];
+    float entityGlobalMinBounds[VECTOR_SIZE];
+    float entityGlobalMaxBounds[VECTOR_SIZE];
+    float entityVertices[VERTICES_COUNT][VECTOR_SIZE];
+
+    GetEntPropVector(entity, Prop_Send, VECTOR_ORIGIN, entityPosition);
+    GetEntPropVector(entity, Prop_Send, VECTOR_BOUNDS_MIN, entityMinBounds);
+    GetEntPropVector(entity, Prop_Send, VECTOR_BOUNDS_MAX, entityMaxBounds);
+
+    AddVectors(entityPosition, entityMinBounds, entityGlobalMinBounds);
+    AddVectors(entityPosition, entityMaxBounds, entityGlobalMaxBounds);
+
+    Math_CalculateZoneVertices(entityGlobalMinBounds, entityGlobalMaxBounds, entityVertices);
+    Visualizer_DrawTrigger(client, entityVertices);
 }

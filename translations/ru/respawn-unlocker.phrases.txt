@@ -2,12 +2,17 @@
 {
     "Walls removed"
     {
-        "ru"    "{default}Удалены невидимые стены"
+        "ru"    "{default}Невидимые стены удалены"
     }
 
     "Crates added"
     {
-        "ru"    "{default}Добавлены ящики"
+        "ru"    "{default}Ящики добавлены"
+    }
+
+    "Triggers removed"
+    {
+        "ru"    "{default}Триггеры удалены"
     }
 
     "Crates loaded"
@@ -43,6 +48,31 @@
     "Crate not found"
     {
         "ru"    "Ящик не найден"
+    }
+
+    "Trigger not found"
+    {
+        "ru"    "Триггер не найден"
+    }
+
+    "Trigger added to list"
+    {
+        "ru"    "Триггер {1} добавлен в список"
+    }
+
+    "Trigger already added to list"
+    {
+        "ru"    "Триггер {1} уже добавлен в список"
+    }
+
+    "Trigger removed from list"
+    {
+        "ru"    "Триггер {1} удален из списка"
+    }
+
+    "Trigger already removed from list"
+    {
+        "ru"    "Триггер {1} уже удален из списка"
     }
 
     "Respawn unlocker"
