@@ -8,22 +8,22 @@
 #pragma semicolon 1
 #pragma newdecls required
 
-#include "ru/crate-storage"
 #include "ru/entity"
 #include "ru/math"
 #include "ru/menu"
 #include "ru/message"
+#include "ru/storage"
 #include "ru/visualizer"
 
 #include "modules/console-command.sp"
 #include "modules/console-variable.sp"
 #include "modules/crate-editor.sp"
 #include "modules/crate-list.sp"
-#include "modules/crate-storage.sp"
 #include "modules/entity.sp"
 #include "modules/math.sp"
 #include "modules/menu.sp"
 #include "modules/message.sp"
+#include "modules/storage.sp"
 #include "modules/trigger-editor.sp"
 #include "modules/trigger-list.sp"
 #include "modules/use-case.sp"
@@ -46,7 +46,6 @@ public void OnPluginStart() {
     TriggerList_Create();
     CrateEditor_Create();
     AdminMenu_Create();
-    CrateStorage_BuildConfigPath();
     HookEvent("dod_round_start", Event_RoundStart);
     HookEvent("dod_round_win", Event_RoundWin);
     LoadTranslations("respawn-unlocker.phrases");
@@ -61,7 +60,7 @@ public void OnPluginEnd() {
 }
 
 public void OnMapStart() {
-    CrateStorage_SaveCurrentMapName();
+    Storage_BuildConfigPath();
     Visualizer_PrecacheTempEntityModels();
     UseCase_FindWalls();
     UseCase_LoadCrates(CONSOLE);

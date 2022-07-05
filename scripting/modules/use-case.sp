@@ -73,12 +73,12 @@ void UseCase_RemoveTriggers() {
 }
 
 void UseCase_LoadCrates(int client) {
-    CrateStorage_ApplyToKeyValues(CrateStorage_LoadFromFile);
+    Storage_ApplyToKeyValues(Storage_LoadCrates);
     Message_CratesLoaded(client);
 }
 
 void UseCase_SaveCrates(int client) {
-    CrateStorage_ApplyToKeyValues(CrateStorage_SaveToFile);
+    Storage_ApplyToKeyValues(Storage_SaveCrates);
     Message_CratesSaved(client);
 }
 
