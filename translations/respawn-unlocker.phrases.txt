@@ -15,6 +15,26 @@
         "en"    "{default}Crates are added"
     }
 
+    "Crate added"
+    {
+        "en"    "Crate is added"
+    }
+
+    "Crate removed"
+    {
+        "en"    "Crate is removed"
+    }
+
+    "Crates shown"
+    {
+        "en"    "Crates are shown"
+    }
+
+    "Crates hidden"
+    {
+        "en"    "Crates are hidden"
+    }
+
     "Crates loaded"
     {
         "#format"   "{1:d}"
@@ -27,41 +47,9 @@
         "en"    "Saved {1} crates"
     }
 
-    "Triggers loaded"
-    {
-        "#format"   "{1:d}"
-        "en"    "Loaded {1} triggers"
-    }
-
-    "Triggers saved"
-    {
-        "#format"   "{1:d}"
-        "en"    "Saved {1} triggers"
-    }
-
-    "Crates editor enabled"
-    {
-        "en"    "Crates editor enabled"
-    }
-
-    "Crates editor disabled"
-    {
-        "en"    "Crates editor disabled"
-    }
-
-    "Crate added"
-    {
-        "en"    "Crate added"
-    }
-
-    "Crate removed"
-    {
-        "en"    "Crate removed"
-    }
-
     "Crate not found"
     {
-        "en"    "Crate not found"
+        "en"    "Crate is not found"
     }
 
     "Trigger not found"
@@ -93,6 +81,18 @@
         "en"    "Trigger {1} is already removed from the list"
     }
 
+    "Triggers loaded"
+    {
+        "#format"   "{1:d}"
+        "en"    "Loaded {1} triggers"
+    }
+
+    "Triggers saved"
+    {
+        "#format"   "{1:d}"
+        "en"    "Saved {1} triggers"
+    }
+
     "Respawn unlocker"
     {
         "en"    "Respawn unlocker"
@@ -108,53 +108,53 @@
         "en"    "Triggers management"
     }
 
-    "Enable editor"
-    {
-        "en"    "Enable editor"
-    }
-
-    "Disable editor"
-    {
-        "en"    "Disable editor"
-    }
-
     "Add crate"
     {
-        "en"    "Add crate"
+        "en"    "Add a crate"
     }
 
     "Remove crate"
     {
-        "en"    "Remove crate"
+        "en"    "Remove the crate"
+    }
+
+    "Show crates"
+    {
+        "en"    "Show the crates"
+    }
+
+    "Hide crates"
+    {
+        "en"    "Hide the crates"
     }
 
     "Load crates"
     {
-        "en"    "Load crates"
+        "en"    "Load the crates"
     }
 
     "Save crates"
     {
-        "en"    "Save crates"
+        "en"    "Save the crates"
     }
 
     "Add trigger to list"
     {
-        "en"    "Add trigger to list"
+        "en"    "Add the trigger to the list"
     }
 
     "Remove trigger from list"
     {
-        "en"    "Remove trigger from list"
+        "en"    "Remove the trigger from the list"
     }
 
     "Load triggers"
     {
-        "en"    "Load triggers"
+        "en"    "Load the triggers"
     }
 
     "Save triggers"
     {
-        "en"    "Save triggers"
+        "en"    "Save the triggers"
     }
 }
