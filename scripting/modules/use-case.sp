@@ -14,7 +14,7 @@ void UseCase_FindWallsByClassName(const char[] className) {
     }
 }
 
-void UseCase_RemoveWalls() {
+void UseCase_DisableWalls() {
     if (!Variable_IsWallsEnabled()) {
         return;
     }
@@ -26,7 +26,7 @@ void UseCase_RemoveWalls() {
     }
 
     if (Variable_IsNotificationsEnabled() && WallList_Size() > 0) {
-        MessagePrint_WallsRemoved();
+        MessagePrint_WallsDisabled();
     }
 }
 
@@ -36,6 +36,22 @@ void UseCase_RestoreWalls() {
         int collisionGroup = WallList_GetCollisionGroup(i);
 
         Entity_SetCollisionGroup(entity, collisionGroup);
+    }
+}
+
+void UseCase_DisableTriggers() {
+    if (!Variable_IsTriggersEnabled) {
+        return;
+    }
+
+    for (int i = 0; i < TriggerList_Size(); i++) {
+        int entity = TriggerList_Get(i);
+
+        Entity_Disable(entity);
+    }
+
+    if (Variable_IsNotificationsEnabled() && TriggerList_Size() > 0) {
+        MessagePrint_TriggersDisabled();
     }
 }
 
@@ -53,22 +69,6 @@ void UseCase_AddCrates() {
 
     if (Variable_IsNotificationsEnabled() && CrateList_Size() > 0) {
         MessagePrint_CratesAdded();
-    }
-}
-
-void UseCase_RemoveTriggers() {
-    if (!Variable_IsTriggersEnabled) {
-        return;
-    }
-
-    for (int i = 0; i < TriggerList_Size(); i++) {
-        int entity = TriggerList_Get(i);
-
-        Entity_Disable(entity);
-    }
-
-    if (Variable_IsNotificationsEnabled() && TriggerList_Size() > 0) {
-        MessagePrint_TriggersRemoved();
     }
 }
 

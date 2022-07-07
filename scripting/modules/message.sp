@@ -1,13 +1,13 @@
-void MessagePrint_WallsRemoved() {
-    CPrintToChatAll("%s%t", PREFIX_COLORED, "Walls removed");
+void MessagePrint_WallsDisabled() {
+    CPrintToChatAll("%s%t", PREFIX_COLORED, "Walls disabled");
+}
+
+void MessagePrint_TriggersDisabled() {
+    CPrintToChatAll("%s%t", PREFIX_COLORED, "Triggers disabled");
 }
 
 void MessagePrint_CratesAdded() {
     CPrintToChatAll("%s%t", PREFIX_COLORED, "Crates added");
-}
-
-void MessagePrint_TriggersRemoved() {
-    CPrintToChatAll("%s%t", PREFIX_COLORED, "Triggers removed");
 }
 
 void Message_CratesLoaded(int client) {
