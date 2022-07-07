@@ -1,10 +1,10 @@
-# Respawn Unlocker
+# Respawn unlocker
 
 Allows you to unlock respawn at the end of the round:
 
-* Remove invisible walls
+* Disable invisible walls
+* Disable triggers
 * Add crates
-* Remove triggers
 
 ### Supported Games
 

@@ -1,18 +1,18 @@
 "Phrases"
 {
-    "Walls removed"
+    "Walls disabled"
     {
-        "en"    "{default}Invisible walls are removed"
+        "en"    "{default}Invisible walls are disabled"
+    }
+
+    "Triggers disabled"
+    {
+        "en"    "{default}Triggers are disabled"
     }
 
     "Crates added"
     {
         "en"    "{default}Crates are added"
-    }
-
-    "Triggers removed"
-    {
-        "en"    "{default}Triggers are removed"
     }
 
     "Crates loaded"

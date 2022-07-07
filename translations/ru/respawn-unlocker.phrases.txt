@@ -1,18 +1,18 @@
 "Phrases"
 {
-    "Walls removed"
+    "Walls disabled"
     {
-        "ru"    "{default}Невидимые стены удалены"
+        "ru"    "{default}Невидимые стены отключены"
+    }
+
+    "Triggers disabled"
+    {
+        "ru"    "{default}Триггеры отключены"
     }
 
     "Crates added"
     {
         "ru"    "{default}Ящики добавлены"
-    }
-
-    "Triggers removed"
-    {
-        "ru"    "{default}Триггеры удалены"
     }
 
     "Crates loaded"
