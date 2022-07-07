@@ -68,10 +68,10 @@ void Menu_CratesManagement(int client) {
 
     menu.SetTitle("%T", CRATES_MANAGEMENT, client);
 
-    Menu_AddItem(menu, ITEM_EDITOR_ENABLE, client);
-    Menu_AddItem(menu, ITEM_EDITOR_DISABLE, client);
-    Menu_AddItem(menu, ITEM_EDITOR_CRATE_ADD, client);
-    Menu_AddItem(menu, ITEM_EDITOR_CRATE_REMOVE, client);
+    Menu_AddItem(menu, ITEM_CRATE_ADD, client);
+    Menu_AddItem(menu, ITEM_CRATE_REMOVE, client);
+    Menu_AddItem(menu, ITEM_CRATES_SHOW, client);
+    Menu_AddItem(menu, ITEM_CRATES_HIDE, client);
     Menu_AddItem(menu, ITEM_CRATES_LOAD, client);
     Menu_AddItem(menu, ITEM_CRATES_SAVE, client);
 
@@ -85,14 +85,14 @@ public int MenuHandler_CratesManagement(Menu menu, MenuAction action, int param1
 
         menu.GetItem(param2, info, sizeof(info));
 
-        if (StrEqual(info, ITEM_EDITOR_ENABLE)) {
-            UseCase_EnableEditor(param1);
-        } else if (StrEqual(info, ITEM_EDITOR_DISABLE)) {
-            UseCase_DisableEditor(param1);
-        } else if (StrEqual(info, ITEM_EDITOR_CRATE_ADD)) {
+        if (StrEqual(info, ITEM_CRATE_ADD)) {
             UseCase_AddCrate(param1);
-        } else if (StrEqual(info, ITEM_EDITOR_CRATE_REMOVE)) {
+        } else if (StrEqual(info, ITEM_CRATE_REMOVE)) {
             UseCase_RemoveCrate(param1);
+        } else if (StrEqual(info, ITEM_CRATES_SHOW)) {
+            UseCase_ShowCrates(param1);
+        } else if (StrEqual(info, ITEM_CRATES_HIDE)) {
+            UseCase_HideCrates(param1);
         } else if (StrEqual(info, ITEM_CRATES_LOAD)) {
             UseCase_LoadCrates(param1);
         } else if (StrEqual(info, ITEM_CRATES_SAVE)) {

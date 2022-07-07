@@ -17,9 +17,9 @@ Allows you to unlock respawn at the end of the round:
 
 ### Console Variables
 
-* sm_respawnunlocker_walls - Enable (1) or disable (0) walls removing [default: "1"]
+* sm_respawnunlocker_walls - Enable (1) or disable (0) walls disabling [default: "1"]
+* sm_respawnunlocker_triggers - Enable (1) or disable (0) triggers disabling [default: "1"]
 * sm_respawnunlocker_crates - Enable (1) or disable (0) crates adding [default: "1"]
-* sm_respawnunlocker_triggers - Enable (1) or disable (0) triggers removing [default: "1"]
 * sm_respawnunlocker_notifications - Enable (1) or disable (0) notifications [default: "1"]
 * sm_respawnunlocker_crate_color_red - Crate color (red channel) [default: "0"]
 * sm_respawnunlocker_crate_color_green - Crate color (green channel) [default: "255"]
@@ -28,16 +28,16 @@ Allows you to unlock respawn at the end of the round:
 
 ### Console Commands
 
-* sm_respawnunlocker_crates_load - Load crates from the file
-* sm_respawnunlocker_crates_save - Save crates to the file
-* sm_respawnunlocker_editor_enable - Enable crates editor (will spawn crates)
-* sm_respawnunlocker_editor_disable - Disable crates editor (will destroy crates)
-* sm_respawnunlocker_editor_crate_add - Add a crate
-* sm_respawnunlocker_editor_crate_remove - Remove a crate
+* sm_respawnunlocker_crate_add - Add a crate
+* sm_respawnunlocker_crate_remove - Remove the crate
+* sm_respawnunlocker_crates_show - Show the crates
+* sm_respawnunlocker_crates_hide - Hide the crates
+* sm_respawnunlocker_crates_load - Load the crates from the file
+* sm_respawnunlocker_crates_save - Save the crates to the file
 * sm_respawnunlocker_trigger_add - Add a trigger to the list
 * sm_respawnunlocker_trigger_remove - Remove a trigger from the list
-* sm_respawnunlocker_triggers_load - Load triggers from the file
-* sm_respawnunlocker_triggers_save - Save triggers to the file
+* sm_respawnunlocker_triggers_load - Load the triggers from the file
+* sm_respawnunlocker_triggers_save - Save the triggers to the file
 
 ### Crates Storage
 

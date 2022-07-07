@@ -10,10 +10,10 @@
 #define CRATES_MANAGEMENT "Crates management"
 #define TRIGGERS_MANAGEMENT "Triggers management"
 
-#define ITEM_EDITOR_ENABLE "Enable editor"
-#define ITEM_EDITOR_DISABLE "Disable editor"
-#define ITEM_EDITOR_CRATE_ADD "Add crate"
-#define ITEM_EDITOR_CRATE_REMOVE "Remove crate"
+#define ITEM_CRATE_ADD "Add crate"
+#define ITEM_CRATE_REMOVE "Remove crate"
+#define ITEM_CRATES_SHOW "Show crates"
+#define ITEM_CRATES_HIDE "Hide crates"
 #define ITEM_CRATES_LOAD "Load crates"
 #define ITEM_CRATES_SAVE "Save crates"
 

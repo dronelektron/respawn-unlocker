@@ -54,14 +54,14 @@ void Message_TriggersSaved(int client) {
     LogMessage("\"%L\" saved %d triggers", client, triggersAmount);
 }
 
-void Message_EditorEnabled(int client) {
-    ShowActivity2(client, PREFIX, "%t", "Crates editor enabled");
-    LogMessage("\"%L\" enabled crates editor", client);
+void Message_CratesShown(int client) {
+    ShowActivity2(client, PREFIX, "%t", "Crates shown");
+    LogMessage("\"%L\" showed crates", client);
 }
 
-void Message_EditorDisabled(int client) {
-    ShowActivity2(client, PREFIX, "%t", "Crates editor disabled");
-    LogMessage("\"%L\" disabled crates editor", client);
+void Message_CratesHidden(int client) {
+    ShowActivity2(client, PREFIX, "%t", "Crates hidden");
+    LogMessage("\"%L\" hid crates", client);
 }
 
 void Message_CrateAdded(int client) {

@@ -72,26 +72,6 @@ void UseCase_AddCrates() {
     }
 }
 
-void UseCase_LoadCrates(int client) {
-    Storage_ApplyToKeyValues(Storage_LoadCrates);
-    Message_CratesLoaded(client);
-}
-
-void UseCase_SaveCrates(int client) {
-    Storage_ApplyToKeyValues(Storage_SaveCrates);
-    Message_CratesSaved(client);
-}
-
-void UseCase_EnableEditor(int client) {
-    CrateEditor_SpawnCrates();
-    Message_EditorEnabled(client);
-}
-
-void UseCase_DisableEditor(int client) {
-    CrateEditor_DestroyCrates();
-    Message_EditorDisabled(client);
-}
-
 void UseCase_AddCrate(int client) {
     CrateEditor_AddCrate(client);
     Message_CrateAdded(client);
@@ -101,6 +81,26 @@ void UseCase_RemoveCrate(int client) {
     if (CrateEditor_RemoveCrate(client)) {
         Message_CrateRemoved(client);
     }
+}
+
+void UseCase_ShowCrates(int client) {
+    CrateEditor_SpawnCrates();
+    Message_CratesShown(client);
+}
+
+void UseCase_HideCrates(int client) {
+    CrateEditor_DestroyCrates();
+    Message_CratesHidden(client);
+}
+
+void UseCase_LoadCrates(int client) {
+    Storage_ApplyToKeyValues(Storage_LoadCrates);
+    Message_CratesLoaded(client);
+}
+
+void UseCase_SaveCrates(int client) {
+    Storage_ApplyToKeyValues(Storage_SaveCrates);
+    Message_CratesSaved(client);
 }
 
 void UseCase_AddTriggerToList(int client) {

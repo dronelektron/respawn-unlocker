@@ -33,7 +33,7 @@ void CrateEditor_DestroyCrates() {
         RemoveEntity(crate);
     }
 
-    g_editorCrateEntities.Clear();
+    CrateEditor_Clear();
 }
 
 void CrateEditor_AddCrate(int client) {
