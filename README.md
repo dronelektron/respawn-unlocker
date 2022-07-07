@@ -12,7 +12,7 @@ Allows you to unlock respawn at the end of the round:
 
 ### Installation
 
-* Download latest [release](https://github.com/dronelektron/respawn-unlocker/releases) (compiled for SourceMod 1.10)
+* Download latest [release](https://github.com/dronelektron/respawn-unlocker/releases) (compiled for SourceMod 1.11)
 * Extract "plugins" and "translations" folders to "addons/sourcemod" folder of your server
 
 ### Console Variables
