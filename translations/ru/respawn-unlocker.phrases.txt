@@ -2,17 +2,17 @@
 {
     "Walls disabled"
     {
-        "ru"    "{default}Невидимые стены отключены"
+        "ru"    "Невидимые стены отключены"
     }
 
     "Triggers disabled"
     {
-        "ru"    "{default}Триггеры отключены"
+        "ru"    "Триггеры отключены"
     }
 
     "Crates added"
     {
-        "ru"    "{default}Ящики добавлены"
+        "ru"    "Ящики добавлены"
     }
 
     "Crate added"

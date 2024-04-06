@@ -3,11 +3,6 @@
 #undef REQUIRE_PLUGIN
 #include <adminmenu>
 
-#include "morecolors"
-
-#pragma semicolon 1
-#pragma newdecls required
-
 #include "ru/entity"
 #include "ru/math"
 #include "ru/menu"
