@@ -1,7 +1,7 @@
-#if defined _ru_menu_included
+#if defined _respawn_unlocker_menu_included
  #endinput
 #endif
-#define _ru_menu_included
+#define _respawn_unlocker_menu_included
 
 #define TEXT_BUFFER_MAX_SIZE (256 * 4)
 #define MENU_ITEM_INFO_MAX_SIZE 32

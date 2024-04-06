@@ -1,7 +1,7 @@
-#if defined _ru_message_included
+#if defined _respawn_unlocker_message_included
  #endinput
 #endif
-#define _ru_message_included
+#define _respawn_unlocker_message_included
 
 #define COLOR_DEFAULT "\x01"
 

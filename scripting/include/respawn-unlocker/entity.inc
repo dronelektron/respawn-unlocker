@@ -1,7 +1,7 @@
-#if defined _ru_entity_included
+#if defined _respawn_unlocker_entity_included
  #endinput
 #endif
-#define _ru_entity_included
+#define _respawn_unlocker_entity_included
 
 #define ENTITY_NOT_FOUND -1
 

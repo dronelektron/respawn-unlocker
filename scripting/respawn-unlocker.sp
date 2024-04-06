@@ -3,12 +3,12 @@
 #undef REQUIRE_PLUGIN
 #include <adminmenu>
 
-#include "ru/entity"
-#include "ru/math"
-#include "ru/menu"
-#include "ru/message"
-#include "ru/storage"
-#include "ru/visualizer"
+#include "respawn-unlocker/entity"
+#include "respawn-unlocker/math"
+#include "respawn-unlocker/menu"
+#include "respawn-unlocker/message"
+#include "respawn-unlocker/storage"
+#include "respawn-unlocker/visualizer"
 
 #include "modules/console-command.sp"
 #include "modules/console-variable.sp"
