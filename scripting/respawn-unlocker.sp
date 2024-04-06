@@ -3,23 +3,19 @@
 #undef REQUIRE_PLUGIN
 #include <adminmenu>
 
-#include "morecolors"
-
-#pragma semicolon 1
-#pragma newdecls required
-
-#include "ru/entity"
-#include "ru/math"
-#include "ru/menu"
-#include "ru/message"
-#include "ru/storage"
-#include "ru/visualizer"
+#include "respawn-unlocker/entity"
+#include "respawn-unlocker/math"
+#include "respawn-unlocker/menu"
+#include "respawn-unlocker/message"
+#include "respawn-unlocker/storage"
+#include "respawn-unlocker/visualizer"
 
 #include "modules/console-command.sp"
 #include "modules/console-variable.sp"
 #include "modules/crate-editor.sp"
 #include "modules/crate-list.sp"
 #include "modules/entity.sp"
+#include "modules/event.sp"
 #include "modules/math.sp"
 #include "modules/menu.sp"
 #include "modules/message.sp"
@@ -34,7 +30,7 @@ public Plugin myinfo = {
     name = "Respawn unlocker",
     author = "Dron-elektron",
     description = "Allows you to unlock respawn at the end of the round",
-    version = "1.6.3",
+    version = "1.6.4",
     url = "https://github.com/dronelektron/respawn-unlocker"
 };
 
@@ -46,8 +42,7 @@ public void OnPluginStart() {
     TriggerList_Create();
     CrateEditor_Create();
     AdminMenu_Create();
-    HookEvent("dod_round_start", Event_RoundStart);
-    HookEvent("dod_round_win", Event_RoundWin);
+    Event_Create();
     LoadTranslations("respawn-unlocker.phrases");
     AutoExecConfig(true, "respawn-unlocker");
 }
@@ -79,19 +74,4 @@ public void OnLibraryRemoved(const char[] name) {
     if (StrEqual(name, ADMIN_MENU)) {
         AdminMenu_Destroy();
     }
-}
-
-public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast) {
-    UseCase_RestoreWalls();
-    CrateEditor_Clear();
-
-    return Plugin_Continue;
-}
-
-public Action Event_RoundWin(Event event, const char[] name, bool dontBroadcast) {
-    UseCase_DisableWalls();
-    UseCase_DisableTriggers();
-    UseCase_AddCrates();
-
-    return Plugin_Continue;
 }

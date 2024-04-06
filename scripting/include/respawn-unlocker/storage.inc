@@ -1,7 +1,7 @@
-#if defined _ru_storage_included
+#if defined _respawn_unlocker_storage_included
  #endinput
 #endif
-#define _ru_storage_included
+#define _respawn_unlocker_storage_included
 
 #define PERMISSIONS_USER (FPERM_U_READ | FPERM_U_WRITE | FPERM_U_EXEC)
 #define PERMISSIONS_GROUP (FPERM_G_READ | FPERM_G_WRITE | FPERM_G_EXEC)

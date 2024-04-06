@@ -1,18 +1,23 @@
 "Phrases"
 {
+    "Prefix colored"
+    {
+        "en"    "FF00FF[Respawn unlocker] "
+    }
+
     "Walls disabled"
     {
-        "en"    "{default}Invisible walls are disabled"
+        "en"    "Invisible walls are disabled"
     }
 
     "Triggers disabled"
     {
-        "en"    "{default}Triggers are disabled"
+        "en"    "Triggers are disabled"
     }
 
     "Crates added"
     {
-        "en"    "{default}Crates are added"
+        "en"    "Crates are added"
     }
 
     "Crate added"

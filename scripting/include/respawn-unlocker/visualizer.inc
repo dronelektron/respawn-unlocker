@@ -1,7 +1,7 @@
-#if defined _ru_visualizer_included
+#if defined _respawn_unlocker_visualizer_included
  #endinput
 #endif
-#define _ru_visualizer_included
+#define _respawn_unlocker_visualizer_included
 
 #define BEAM_START_FRAME 0
 #define BEAM_FRAME_RATE 0
