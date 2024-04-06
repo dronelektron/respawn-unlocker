@@ -15,6 +15,7 @@
 #include "modules/crate-editor.sp"
 #include "modules/crate-list.sp"
 #include "modules/entity.sp"
+#include "modules/event.sp"
 #include "modules/math.sp"
 #include "modules/menu.sp"
 #include "modules/message.sp"
@@ -41,8 +42,7 @@ public void OnPluginStart() {
     TriggerList_Create();
     CrateEditor_Create();
     AdminMenu_Create();
-    HookEvent("dod_round_start", Event_RoundStart);
-    HookEvent("dod_round_win", Event_RoundWin);
+    Event_Create();
     LoadTranslations("respawn-unlocker.phrases");
     AutoExecConfig(true, "respawn-unlocker");
 }
@@ -74,19 +74,4 @@ public void OnLibraryRemoved(const char[] name) {
     if (StrEqual(name, ADMIN_MENU)) {
         AdminMenu_Destroy();
     }
-}
-
-public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast) {
-    UseCase_RestoreWalls();
-    CrateEditor_Clear();
-
-    return Plugin_Continue;
-}
-
-public Action Event_RoundWin(Event event, const char[] name, bool dontBroadcast) {
-    UseCase_DisableWalls();
-    UseCase_DisableTriggers();
-    UseCase_AddCrates();
-
-    return Plugin_Continue;
 }
