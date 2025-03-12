@@ -1,5 +1,10 @@
 "Phrases"
 {
+    "Prefix"
+    {
+        "en"    "EE82EE[Respawn unlocker] "
+    }
+
     "Respawn locked"
     {
         "en"    "Respawn is locked"

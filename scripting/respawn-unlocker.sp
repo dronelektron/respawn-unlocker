@@ -6,6 +6,7 @@
 #include "respawn-unlocker/use-case"
 
 #include "modules/console-command.sp"
+#include "modules/console-variable.sp"
 #include "modules/entity.sp"
 #include "modules/event.sp"
 #include "modules/message.sp"
@@ -14,13 +15,15 @@
 public Plugin myinfo = {
     name = "Respawn unlocker",
     author = "Dron-elektron",
-    description = "Allows you to unlock respawn",
+    description = "Allows you to unlock the respawn",
     version = "1.6.4",
     url = "https://github.com/dronelektron/respawn-unlocker"
 };
 
 public void OnPluginStart() {
     Command_Create();
+    Variable_Create();
     Event_Create();
     LoadTranslations("respawn-unlocker.phrases");
+    AutoExecConfig(_, "respawn-unlocker");
 }

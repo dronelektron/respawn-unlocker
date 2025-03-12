@@ -1,6 +1,6 @@
 # Respawn unlocker
 
-Allows you to unlock respawn
+Allows you to unlock the respawn
 
 ### Supported Games
 
@@ -19,3 +19,7 @@ Allows you to unlock respawn
 
 * sm_respawnunlocker_lock - Lock the respawn
 * sm_respawnunlocker_unlock - Unlock the respawn
+
+### Console Variables
+
+* sm_respawnunlocker_auto - Automatic respawn unlock (on - 1, off - 0) [default: "1"]

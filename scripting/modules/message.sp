@@ -4,6 +4,10 @@ void Message_RespawnLocked(int client) {
 }
 
 void Message_RespawnUnlocked(int client) {
-    ShowActivity2(client, PREFIX, "%t", "Respawn unlocked");
-    LogMessage("\"%L\" unlocked the respawn", client);
+    if (client == CONSOLE) {
+        PrintToChatAll("%t%t", PREFIX_COLORED, "Respawn unlocked");
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Respawn unlocked");
+        LogMessage("\"%L\" unlocked the respawn", client);
+    }
 }
