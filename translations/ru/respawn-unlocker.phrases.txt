@@ -1,0 +1,12 @@
+"Phrases"
+{
+    "Respawn locked"
+    {
+        "ru"    "Респаун заблокирован"
+    }
+
+    "Respawn unlocked"
+    {
+        "ru"    "Респаун разблокирован"
+    }
+}

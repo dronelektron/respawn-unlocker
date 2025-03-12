@@ -1,0 +1,12 @@
+"Phrases"
+{
+    "Respawn locked"
+    {
+        "en"    "Respawn is locked"
+    }
+
+    "Respawn unlocked"
+    {
+        "en"    "Respawn is unlocked"
+    }
+}
