@@ -4,7 +4,7 @@ void Event_Create() {
 }
 
 static void OnRoundStart(Event event, const char[] name, bool dontBroadcast) {
-    UseCase_TeamWall_Toggle(ENABLED_YES);
+    Wall_Toggle(WALL_TEAM, ENABLED_YES);
 }
 
 static void OnRoundWin(Event event, const char[] name, bool dontBroadcast) {
