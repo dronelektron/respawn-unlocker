@@ -33,6 +33,7 @@ void Trigger_Mark(int client) {
         return;
     }
 
+    HighlightTrigger(client, entity);
     TriggerList_Add(hammerId);
     Message_TriggerMarked(client, hammerId);
 }
@@ -50,6 +51,7 @@ void Trigger_Unmark(int client) {
         return;
     }
 
+    HighlightTrigger(client, entity);
     TriggerList_RemoveByHammerId(hammerId);
     Message_TriggerUnmarked(client, hammerId);
 }
@@ -78,6 +80,21 @@ static bool TraceTrigger(int client, int& entity, int& hammerId) {
     }
 
     return true;
+}
+
+static void HighlightTrigger(int client, int entity) {
+    float origin[3];
+    float mins[3];
+    float maxs[3];
+    float vertices[8][3];
+
+    Entity_GetOrigin(entity, origin);
+    Entity_GetMins(entity, mins);
+    Entity_GetMaxs(entity, maxs);
+    AddVectors(origin, mins, mins);
+    AddVectors(origin, maxs, maxs);
+    Math_GetVertices(mins, maxs, vertices);
+    Visualizer_DrawBox(client, vertices);
 }
 
 void Trigger_Toggle(bool enabled) {

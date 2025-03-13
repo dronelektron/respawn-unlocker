@@ -2,20 +2,24 @@
 #include <sdktools>
 
 #include "respawn-unlocker/entity"
+#include "respawn-unlocker/math"
 #include "respawn-unlocker/message"
 #include "respawn-unlocker/trigger-filter"
 #include "respawn-unlocker/use-case"
+#include "respawn-unlocker/visualizer"
 #include "respawn-unlocker/wall"
 
 #include "modules/console-command.sp"
 #include "modules/console-variable.sp"
 #include "modules/entity.sp"
 #include "modules/event.sp"
+#include "modules/math.sp"
 #include "modules/message.sp"
 #include "modules/trigger-filter.sp"
 #include "modules/trigger-list.sp"
 #include "modules/trigger.sp"
 #include "modules/use-case.sp"
+#include "modules/visualizer.sp"
 #include "modules/wall.sp"
 
 public Plugin myinfo = {
@@ -38,4 +42,5 @@ public void OnPluginStart() {
 
 public void OnMapStart() {
     TriggerList_Clear();
+    Visualizer_Precache();
 }
