@@ -3,6 +3,7 @@
 
 #include "respawn-unlocker/entity"
 #include "respawn-unlocker/message"
+#include "respawn-unlocker/trigger-filter"
 #include "respawn-unlocker/use-case"
 #include "respawn-unlocker/wall"
 
@@ -11,6 +12,9 @@
 #include "modules/entity.sp"
 #include "modules/event.sp"
 #include "modules/message.sp"
+#include "modules/trigger-filter.sp"
+#include "modules/trigger-list.sp"
+#include "modules/trigger.sp"
 #include "modules/use-case.sp"
 #include "modules/wall.sp"
 
@@ -26,6 +30,12 @@ public void OnPluginStart() {
     Command_Create();
     Variable_Create();
     Event_Create();
+    TriggerFilter_Create();
+    TriggerList_Create();
     LoadTranslations("respawn-unlocker.phrases");
     AutoExecConfig(_, "respawn-unlocker");
+}
+
+public void OnMapStart() {
+    TriggerList_Clear();
 }

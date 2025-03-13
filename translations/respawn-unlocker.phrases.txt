@@ -14,4 +14,43 @@
     {
         "en"    "Respawn is unlocked"
     }
+
+    "Trigger not found"
+    {
+        "en"    "Trigger is not found"
+    }
+
+    "Trigger without hammer id"
+    {
+        "en"    "Trigger does not have a HammerID"
+    }
+
+    "Trigger type not supported"
+    {
+        "en"    "This type of trigger is not supported"
+    }
+
+    "Trigger already marked"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} has already been marked"
+    }
+
+    "Trigger not marked"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} is not marked"
+    }
+
+    "Trigger marked"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} is added to the list"
+    }
+
+    "Trigger unmarked"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} is removed from the list"
+    }
 }

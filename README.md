@@ -1,6 +1,9 @@
 # Respawn unlocker
 
-Allows you to unlock the respawn
+Allows you to unlock the respawn:
+
+* Enable / Disable invisible walls
+* Enable / Disable triggers
 
 ### Supported Games
 
@@ -19,6 +22,8 @@ Allows you to unlock the respawn
 
 * sm_respawnunlocker_lock - Lock the respawn
 * sm_respawnunlocker_unlock - Unlock the respawn
+* sm_respawnunlocker_trigger_mark - Add a trigger to the list
+* sm_respawnunlocker_trigger_unmark - Remove a trigger from the list
 
 ### Console Variables
 

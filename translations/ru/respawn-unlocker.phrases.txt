@@ -9,4 +9,39 @@
     {
         "ru"    "Респаун разблокирован"
     }
+
+    "Trigger not found"
+    {
+        "ru"    "Триггер не найден"
+    }
+
+    "Trigger without hammer id"
+    {
+        "ru"    "У триггера нет HammerID"
+    }
+
+    "Trigger type not supported"
+    {
+        "ru"    "Данный тип триггера не поддерживается"
+    }
+
+    "Trigger already marked"
+    {
+        "ru"    "Триггер {1} уже помечен"
+    }
+
+    "Trigger not marked"
+    {
+        "ru"    "Триггер {1} не помечен"
+    }
+
+    "Trigger marked"
+    {
+        "ru"    "Триггер {1} добавлен в список"
+    }
+
+    "Trigger unmarked"
+    {
+        "ru"    "Триггер {1} удален из списка"
+    }
 }

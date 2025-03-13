@@ -3,7 +3,12 @@
 #endif
 #define _respawn_unlocker_entity_included
 
+#define WORLD 0
+#define INVALID_HAMMER_ID 0
+#define CLASS_NAME_SIZE 32
+
 #define ENTITY_PROPERTY_COLLISION_GROUP "m_CollisionGroup"
+#define ENTITY_PROPERTY_HAMMER_ID "m_iHammerID"
 
 #define COLLISION_GROUP_NONE 0
 #define COLLISION_GROUP_IN_VEHICLE 10
