@@ -5,6 +5,12 @@ Allows you to unlock the respawn:
 * Enable / Disable invisible walls
 * Enable / Disable triggers
 
+Supported trigger types:
+
+* trigger_hurt
+* trigger_push
+* trigger_teleport
+
 ### Supported Games
 
 * Day of Defeat: Source
