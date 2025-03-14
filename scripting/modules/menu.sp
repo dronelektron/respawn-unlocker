@@ -85,7 +85,7 @@ static int Triggers(Menu menu, MenuAction action, int param1, int param2) {
     return 0;
 }
 
-void Menu_ShowPathToTrigger(int client) {
+void Menu_ShowPathToTrigger(int client, int firstItem = 0) {
     Menu menu = new Menu(ShowPathToTrigger);
 
     menu.SetTitle("%T", TRIGGER_PATH, client);
@@ -93,7 +93,7 @@ void Menu_ShowPathToTrigger(int client) {
     AddTriggerItems(menu, client);
 
     menu.ExitBackButton = true;
-    menu.Display(client, MENU_TIME_FOREVER);
+    menu.DisplayAt(client, firstItem, MENU_TIME_FOREVER);
 }
 
 static int ShowPathToTrigger(Menu menu, MenuAction action, int param1, int param2) {
@@ -104,7 +104,7 @@ static int ShowPathToTrigger(Menu menu, MenuAction action, int param1, int param
 
         int hammerId = StringToInt(info);
 
-        Menu_ShowPathToTrigger(param1);
+        Menu_ShowPathToTrigger(param1, menu.Selection);
         Trigger_Path(param1, hammerId);
     } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
         Menu_Triggers(param1);
