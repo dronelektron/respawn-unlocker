@@ -31,6 +31,7 @@ Supported trigger types:
 * sm_respawnunlocker_unlock - Unlock the respawn
 * sm_respawnunlocker_trigger_mark - Add a trigger to the list
 * sm_respawnunlocker_trigger_unmark - Remove a trigger from the list
+* sm_respawnunlocker_trigger_path &lt;hammerid&gt; - Show the path to the trigger
 * sm_respawnunlocker_triggers_save - Save the triggers to the file
 * sm_respawnunlocker_triggers_load - Load the triggers from the file
 

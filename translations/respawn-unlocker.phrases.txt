@@ -94,6 +94,22 @@
         "en"    "Unmark a trigger"
     }
 
+    "Show path to trigger"
+    {
+        "en"    "Show the path to trigger"
+    }
+
+    "Trigger list empty"
+    {
+        "en"    "Trigger list is empty"
+    }
+
+    "Trigger"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1}"
+    }
+
     "Save triggers"
     {
         "en"    "Save the triggers"

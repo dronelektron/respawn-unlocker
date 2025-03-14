@@ -1,3 +1,17 @@
+void Math_GetMiddle(int entity, float middle[3]) {
+    float origin[3];
+    float mins[3];
+    float maxs[3];
+
+    Entity_GetOrigin(entity, origin);
+    Entity_GetMins(entity, mins);
+    Entity_GetMaxs(entity, maxs);
+    AddVectors(origin, mins, mins);
+    AddVectors(origin, maxs, maxs);
+    AddVectors(mins, maxs, middle);
+    ScaleVector(middle, HALF);
+}
+
 void Math_GetVertices(const float start[3], const float end[3], float vertices[8][3]) {
     float min[3];
     float max[3];

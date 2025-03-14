@@ -3,6 +3,8 @@
 #endif
 #define _respawn_unlocker_math_included
 
+#define HALF 0.5
+
 #define X 0
 #define Y 1
 #define Z 2

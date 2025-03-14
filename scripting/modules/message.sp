@@ -42,6 +42,14 @@ void Message_TriggerUnmarked(int client, int hammerId) {
     LogMessage("\"%L\" unmarked the trigger %d", client, hammerId);
 }
 
+void Message_TriggerPathUsage(int client) {
+    ReplyToCommand(client, "%s%s", PREFIX, "Usage: sm_respawnunlocker_trigger_path <hammerid>");
+}
+
+void Message_TriggerListEmpty(int client) {
+    ReplyToCommand(client, "%s%t", PREFIX, "Trigger list empty");
+}
+
 void Message_TriggersSaved(int client) {
     if (client == CONSOLE) {
         LogMessage("Triggers are saved");

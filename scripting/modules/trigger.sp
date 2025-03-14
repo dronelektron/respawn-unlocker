@@ -82,6 +82,15 @@ static bool TraceTrigger(int client, int& entity, int& hammerId) {
     return true;
 }
 
+static void HighlightPath(int client, int entity) {
+    float clientMiddle[3];
+    float entityMiddle[3];
+
+    Math_GetMiddle(client, clientMiddle);
+    Math_GetMiddle(entity, entityMiddle);
+    Visualizer_DrawBeam(client, clientMiddle, entityMiddle);
+}
+
 static void HighlightTrigger(int client, int entity) {
     float origin[3];
     float mins[3];
@@ -95,6 +104,45 @@ static void HighlightTrigger(int client, int entity) {
     AddVectors(origin, maxs, maxs);
     Math_GetVertices(mins, maxs, vertices);
     Visualizer_DrawBox(client, vertices);
+}
+
+void Trigger_Path(int client, int hammerId) {
+    int entity = FindTriggerByHammerId(hammerId);
+
+    if (entity == INVALID_INDEX) {
+        Message_TriggerNotFound(client);
+
+        return;
+    }
+
+    HighlightPath(client, entity);
+    HighlightTrigger(client, entity);
+}
+
+static int FindTriggerByHammerId(int hammerId) {
+    int entity = INVALID_INDEX;
+
+    entity = GetMaxIndex(entity, FindTriggerByClassName(TRIGGER_HURT, hammerId));
+    entity = GetMaxIndex(entity, FindTriggerByClassName(TRIGGER_PUSH, hammerId));
+    entity = GetMaxIndex(entity, FindTriggerByClassName(TRIGGER_TELEPORT, hammerId));
+
+    return entity;
+}
+
+static int FindTriggerByClassName(const char[] className, int hammerId) {
+    int entity = INVALID_INDEX;
+
+    while (FindTrigger(entity, className)) {
+        if (Entity_GetHammerId(entity) == hammerId) {
+            break;
+        }
+    }
+
+    return entity;
+}
+
+static int GetMaxIndex(int index1, int index2) {
+    return index1 > index2 ? index1 : index2;
 }
 
 void Trigger_Toggle(bool enabled) {

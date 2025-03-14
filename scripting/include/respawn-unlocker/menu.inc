@@ -12,5 +12,6 @@
 #define TRIGGERS "Triggers"
 #define TRIGGER_MARK "Mark trigger"
 #define TRIGGER_UNMARK "Unmark trigger"
+#define TRIGGER_PATH "Show path to trigger"
 #define TRIGGERS_SAVE "Save triggers"
 #define TRIGGERS_LOAD "Load triggers"
