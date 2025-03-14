@@ -33,7 +33,6 @@ void Trigger_Mark(int client) {
         return;
     }
 
-    HighlightTrigger(client, entity);
     TriggerList_Add(hammerId);
     Message_TriggerMarked(client, hammerId);
 }
@@ -51,7 +50,6 @@ void Trigger_Unmark(int client) {
         return;
     }
 
-    HighlightTrigger(client, entity);
     TriggerList_RemoveByHammerId(hammerId);
     Message_TriggerUnmarked(client, hammerId);
 }
@@ -64,6 +62,8 @@ static bool TraceTrigger(int client, int& entity, int& hammerId) {
 
         return false;
     }
+
+    HighlightTrigger(client, entity);
 
     hammerId = Entity_GetHammerId(entity);
 
