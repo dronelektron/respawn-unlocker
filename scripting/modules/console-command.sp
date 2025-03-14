@@ -1,10 +1,17 @@
 void Command_Create() {
+    RegAdminCmd("sm_respawnunlocker", OnRespawnUnlocker, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_lock", OnLockRespawn, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_unlock", OnUnlockRespawn, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_trigger_mark", OnMarkTrigger, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_trigger_unmark", OnUnmarkTrigger, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_triggers_save", OnSaveTriggers, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_triggers_load", OnLoadTriggers, ADMFLAG_GENERIC);
+}
+
+static Action OnRespawnUnlocker(int client, int args) {
+    Menu_RespawnUnlocker(client);
+
+    return Plugin_Handled;
 }
 
 static Action OnLockRespawn(int client, int args) {

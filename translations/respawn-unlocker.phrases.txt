@@ -63,4 +63,44 @@
     {
         "en"    "Triggers are loaded"
     }
+
+    "Respawn unlocker"
+    {
+        "en"    "Respawn unlocker"
+    }
+
+    "Lock respawn"
+    {
+        "en"    "Lock the respawn"
+    }
+
+    "Unlock respawn"
+    {
+        "en"    "Unlock the respawn"
+    }
+
+    "Triggers"
+    {
+        "en"    "Triggers"
+    }
+
+    "Mark trigger"
+    {
+        "en"    "Mark a trigger"
+    }
+
+    "Unmark trigger"
+    {
+        "en"    "Unmark a trigger"
+    }
+
+    "Save triggers"
+    {
+        "en"    "Save the triggers"
+    }
+
+    "Load triggers"
+    {
+        "en"    "Load the triggers"
+    }
 }

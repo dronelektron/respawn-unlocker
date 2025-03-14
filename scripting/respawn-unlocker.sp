@@ -3,6 +3,7 @@
 
 #include "respawn-unlocker/entity"
 #include "respawn-unlocker/math"
+#include "respawn-unlocker/menu"
 #include "respawn-unlocker/message"
 #include "respawn-unlocker/storage"
 #include "respawn-unlocker/trigger-filter"
@@ -15,6 +16,7 @@
 #include "modules/entity.sp"
 #include "modules/event.sp"
 #include "modules/math.sp"
+#include "modules/menu.sp"
 #include "modules/message.sp"
 #include "modules/storage.sp"
 #include "modules/trigger-filter.sp"

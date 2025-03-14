@@ -26,6 +26,7 @@ Supported trigger types:
 
 ### Console Commands
 
+* sm_respawnunlocker - Open the menu
 * sm_respawnunlocker_lock - Lock the respawn
 * sm_respawnunlocker_unlock - Unlock the respawn
 * sm_respawnunlocker_trigger_mark - Add a trigger to the list
