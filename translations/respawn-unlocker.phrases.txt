@@ -53,4 +53,14 @@
         "#format"   "{1:d}"
         "en"    "Trigger {1} is removed from the list"
     }
+
+    "Triggers saved"
+    {
+        "en"    "Triggers are saved"
+    }
+
+    "Triggers loaded"
+    {
+        "en"    "Triggers are loaded"
+    }
 }

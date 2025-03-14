@@ -41,3 +41,21 @@ void Message_TriggerUnmarked(int client, int hammerId) {
     ShowActivity2(client, PREFIX, "%t", "Trigger unmarked", hammerId);
     LogMessage("\"%L\" unmarked the trigger %d", client, hammerId);
 }
+
+void Message_TriggersSaved(int client) {
+    if (client == CONSOLE) {
+        LogMessage("Triggers are saved");
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Triggers saved");
+        LogMessage("\"%L\" saved the triggers", client);
+    }
+}
+
+void Message_TriggersLoaded(int client) {
+    if (client == CONSOLE) {
+        LogMessage("Triggers are loaded");
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Triggers loaded");
+        LogMessage("\"%L\" loaded the triggers", client);
+    }
+}

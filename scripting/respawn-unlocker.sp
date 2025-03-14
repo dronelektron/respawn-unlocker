@@ -4,6 +4,7 @@
 #include "respawn-unlocker/entity"
 #include "respawn-unlocker/math"
 #include "respawn-unlocker/message"
+#include "respawn-unlocker/storage"
 #include "respawn-unlocker/trigger-filter"
 #include "respawn-unlocker/use-case"
 #include "respawn-unlocker/visualizer"
@@ -15,6 +16,7 @@
 #include "modules/event.sp"
 #include "modules/math.sp"
 #include "modules/message.sp"
+#include "modules/storage.sp"
 #include "modules/trigger-filter.sp"
 #include "modules/trigger-list.sp"
 #include "modules/trigger.sp"
@@ -40,7 +42,11 @@ public void OnPluginStart() {
     AutoExecConfig(_, "respawn-unlocker");
 }
 
+public void OnMapInit(const char[] mapName) {
+    Storage_BuildPath(mapName);
+}
+
 public void OnMapStart() {
-    TriggerList_Clear();
     Visualizer_Precache();
+    UseCase_LoadTriggers(CONSOLE);
 }

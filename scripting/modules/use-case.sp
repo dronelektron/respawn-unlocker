@@ -11,3 +11,13 @@ void UseCase_UnlockRespawn(int client) {
     Trigger_Toggle(ENABLED_NO);
     Message_RespawnUnlocked(client);
 }
+
+void UseCase_SaveTriggers(int client) {
+    Storage_SaveTriggers();
+    Message_TriggersSaved(client);
+}
+
+void UseCase_LoadTriggers(int client) {
+    Storage_LoadTriggers();
+    Message_TriggersLoaded(client);
+}

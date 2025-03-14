@@ -25,3 +25,11 @@ bool TriggerList_Exists(int hammerId) {
 
     return index > INVALID_INDEX;
 }
+
+int TriggerList_Get(int index) {
+    return g_triggers.Get(index);
+}
+
+int TriggerList_Size() {
+    return g_triggers.Length;
+}
