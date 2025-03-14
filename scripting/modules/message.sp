@@ -1,15 +1,25 @@
 void Message_RespawnLocked(int client) {
-    ShowActivity2(client, PREFIX, "%t", "Respawn locked");
-    LogMessage("\"%L\" locked the respawn", client);
+    if (client == CONSOLE) {
+        ShowConsoleActivity("Respawn locked");
+        LogMessage("Respawn is locked");
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Respawn locked");
+        LogMessage("\"%L\" locked the respawn", client);
+    }
 }
 
 void Message_RespawnUnlocked(int client) {
     if (client == CONSOLE) {
-        PrintToChatAll("%t%t", PREFIX_COLORED, "Respawn unlocked");
+        ShowConsoleActivity("Respawn unlocked");
+        LogMessage("Respawn is unlocked");
     } else {
         ShowActivity2(client, PREFIX, "%t", "Respawn unlocked");
         LogMessage("\"%L\" unlocked the respawn", client);
     }
+}
+
+void Message_RespawnUnlockedColored() {
+    PrintToChatAll("%t%t", PREFIX_COLORED, "Respawn unlocked");
 }
 
 void Message_TriggerNotFound(int client) {
@@ -52,6 +62,7 @@ void Message_TriggerListEmpty(int client) {
 
 void Message_TriggersSaved(int client) {
     if (client == CONSOLE) {
+        ShowConsoleActivity("Triggers saved");
         LogMessage("Triggers are saved");
     } else {
         ShowActivity2(client, PREFIX, "%t", "Triggers saved");
@@ -61,9 +72,14 @@ void Message_TriggersSaved(int client) {
 
 void Message_TriggersLoaded(int client) {
     if (client == CONSOLE) {
+        ShowConsoleActivity("Triggers loaded");
         LogMessage("Triggers are loaded");
     } else {
         ShowActivity2(client, PREFIX, "%t", "Triggers loaded");
         LogMessage("\"%L\" loaded the triggers", client);
     }
+}
+
+static void ShowConsoleActivity(const char[] phrase) {
+    PrintToChatAll("%s%N: %t", PREFIX, CONSOLE, phrase);
 }

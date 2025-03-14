@@ -46,9 +46,9 @@ public void OnPluginStart() {
 
 public void OnMapInit(const char[] mapName) {
     Storage_BuildPath(mapName);
+    Storage_LoadTriggers();
 }
 
 public void OnMapStart() {
     Visualizer_Precache();
-    UseCase_LoadTriggers(CONSOLE);
 }

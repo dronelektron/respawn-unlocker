@@ -6,10 +6,19 @@ void UseCase_LockRespawn(int client) {
 }
 
 void UseCase_UnlockRespawn(int client) {
+    UnlockRespawn();
+    Message_RespawnUnlocked(client);
+}
+
+void UseCase_UnlockRespawnAuto() {
+    UnlockRespawn();
+    Message_RespawnUnlockedColored();
+}
+
+static void UnlockRespawn() {
     Wall_Toggle(WALL_TEAM, ENABLED_NO);
     Wall_Toggle(WALL_BLOCKER, ENABLED_NO);
     Trigger_Toggle(ENABLED_NO);
-    Message_RespawnUnlocked(client);
 }
 
 void UseCase_SaveTriggers(int client) {

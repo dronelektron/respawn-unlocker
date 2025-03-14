@@ -9,6 +9,6 @@ static void OnRoundStart(Event event, const char[] name, bool dontBroadcast) {
 
 static void OnRoundWin(Event event, const char[] name, bool dontBroadcast) {
     if (Variable_AutoUnlock()) {
-        UseCase_UnlockRespawn(CONSOLE);
+        UseCase_UnlockRespawnAuto();
     }
 }
