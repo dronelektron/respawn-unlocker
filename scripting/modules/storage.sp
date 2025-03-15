@@ -38,7 +38,9 @@ static void SaveTriggers(KeyValues kv) {
 
         int hammerId = TriggerList_Get(i);
 
-        kv.SetNum(key, hammerId);
+        kv.JumpToKey(key, KEY_CREATE_YES);
+        kv.SetNum(KEY_HAMMER_ID, hammerId);
+        kv.GoBack();
     }
 }
 
@@ -52,17 +54,17 @@ void Storage_LoadTriggers() {
 static void LoadTriggers(KeyValues kv) {
     TriggerList_Clear();
 
-    if (!kv.JumpToKey(SECTION_TRIGGERS) || !kv.GotoFirstSubKey(KEY_ONLY_NO)) {
+    if (!kv.JumpToKey(SECTION_TRIGGERS) || !kv.GotoFirstSubKey()) {
         return;
     }
 
     do {
-        int hammerId = kv.GetNum(NULL_STRING, INVALID_HAMMER_ID);
+        int hammerId = kv.GetNum(KEY_HAMMER_ID, INVALID_HAMMER_ID);
 
         if (hammerId != INVALID_HAMMER_ID) {
             TriggerList_Add(hammerId);
         }
-    } while (kv.GotoNextKey(KEY_ONLY_NO));
+    } while (kv.GotoNextKey());
 }
 
 static KeyValues LoadKeyValues() {
