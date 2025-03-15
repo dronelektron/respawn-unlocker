@@ -33,25 +33,25 @@
     "Trigger already marked"
     {
         "#format"   "{1:d}"
-        "en"    "Trigger {1} has already been marked"
+        "en"    "Trigger {1} is already in the list"
     }
 
     "Trigger not marked"
     {
         "#format"   "{1:d}"
-        "en"    "Trigger {1} is not marked"
+        "en"    "Trigger {1} is not in the list"
     }
 
     "Trigger marked"
     {
         "#format"   "{1:d}"
-        "en"    "Trigger {1} is added to the list"
+        "en"    "Trigger {1} has been added to the list"
     }
 
     "Trigger unmarked"
     {
         "#format"   "{1:d}"
-        "en"    "Trigger {1} is removed from the list"
+        "en"    "Trigger {1} has been removed from the list"
     }
 
     "Triggers saved"
