@@ -132,7 +132,7 @@ static int FindTriggerByHammerId(int hammerId) {
 static int FindTriggerByClassName(const char[] className, int hammerId) {
     int entity = INVALID_INDEX;
 
-    while (FindTrigger(entity, className)) {
+    while (Entity_FindByClassName(entity, className)) {
         if (Entity_GetHammerId(entity) == hammerId) {
             break;
         }
@@ -154,17 +154,11 @@ void Trigger_Toggle(bool enabled) {
 static void ToggleByClassName(const char[] className, bool enabled) {
     int entity = INVALID_INDEX;
 
-    while (FindTrigger(entity, className)) {
+    while (Entity_FindByClassName(entity, className)) {
         int hammerId = Entity_GetHammerId(entity);
 
         if (TriggerList_Exists(hammerId)) {
             Entity_SetActivity(entity, enabled);
         }
     }
-}
-
-static bool FindTrigger(int& entity, const char[] className) {
-    entity = FindEntityByClassname(entity, className);
-
-    return entity > INVALID_INDEX;
 }

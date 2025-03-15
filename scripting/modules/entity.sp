@@ -21,3 +21,9 @@ int Entity_GetHammerId(int entity) {
 void Entity_SetActivity(int entity, bool enabled) {
     AcceptEntityInput(entity, enabled ? "Enable" : "Disable");
 }
+
+bool Entity_FindByClassName(int& entity, const char[] className) {
+    entity = FindEntityByClassname(entity, className);
+
+    return entity > INVALID_INDEX;
+}

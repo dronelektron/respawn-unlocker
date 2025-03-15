@@ -11,15 +11,9 @@ static int g_collisionGroup[] = {
 void Wall_Toggle(int type, bool enabled) {
     int entity = INVALID_INDEX;
 
-    while (FindWall(entity, g_classNames[type])) {
+    while (Entity_FindByClassName(entity, g_classNames[type])) {
         int collisionGroup = enabled ? g_collisionGroup[type] : COLLISION_GROUP_IN_VEHICLE;
 
         Entity_SetCollisionGroup(entity, collisionGroup);
     }
-}
-
-static bool FindWall(int& entity, const char[] className) {
-    entity = FindEntityByClassname(entity, className);
-
-    return entity > INVALID_INDEX;
 }
