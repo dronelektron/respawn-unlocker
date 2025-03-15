@@ -86,12 +86,12 @@
 
     "Mark trigger"
     {
-        "en"    "Mark a trigger"
+        "en"    "Add trigger to the list"
     }
 
     "Unmark trigger"
     {
-        "en"    "Unmark a trigger"
+        "en"    "Remove trigger from the list"
     }
 
     "Show path to trigger"
