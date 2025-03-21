@@ -36,7 +36,7 @@ static void SaveTriggers(KeyValues kv) {
 
         IntToString(i, key, sizeof(key));
 
-        int hammerId = TriggerList_Get(i);
+        int hammerId = TriggerList_GetHammerId(i);
 
         kv.JumpToKey(key, CREATE_YES);
         kv.SetNum(KEY_HAMMER_ID, hammerId);
@@ -62,7 +62,10 @@ static void LoadTriggers(KeyValues kv) {
         int hammerId = kv.GetNum(KEY_HAMMER_ID, INVALID_HAMMER_ID);
 
         if (hammerId != INVALID_HAMMER_ID) {
-            TriggerList_Add(hammerId);
+            int index = TriggerList_Add();
+
+            TriggerList_SetHammerId(index, hammerId);
+            TriggerList_SetEntity(index, INVALID_INDEX);
         }
     } while (kv.GotoNextKey());
 }

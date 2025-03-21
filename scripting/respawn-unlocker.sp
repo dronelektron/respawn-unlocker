@@ -52,4 +52,5 @@ public void OnMapInit(const char[] mapName) {
 
 public void OnMapStart() {
     Visualizer_Precache();
+    Trigger_UpdateEntities();
 }

@@ -27,13 +27,16 @@ void Trigger_Mark(int client) {
         return;        
     }
 
-    if (TriggerList_Exists(hammerId)) {
+    if (TriggerList_FindByHammerId(hammerId) != INVALID_INDEX) {
         Message_TriggerAlreadyMarked(client, hammerId);
 
         return;
     }
 
-    TriggerList_Add(hammerId);
+    int index = TriggerList_Add();
+
+    TriggerList_SetHammerId(index, hammerId);
+    TriggerList_SetEntity(index, entity);
     Message_TriggerMarked(client, hammerId);
 }
 
@@ -44,13 +47,15 @@ void Trigger_Unmark(int client) {
         return;
     }
 
-    if (!TriggerList_Exists(hammerId)) {
+    int index = TriggerList_FindByHammerId(hammerId);
+
+    if (index == INVALID_INDEX) {
         Message_TriggerNotMarked(client, hammerId);
 
         return;
     }
 
-    TriggerList_RemoveByHammerId(hammerId);
+    TriggerList_Remove(index);
     Message_TriggerUnmarked(client, hammerId);
 }
 
@@ -107,57 +112,44 @@ static void HighlightTrigger(int client, int entity) {
 }
 
 void Trigger_Path(int client, int hammerId) {
-    int entity = FindTriggerByHammerId(hammerId);
+    int index = TriggerList_FindByHammerId(hammerId);
 
-    if (entity == INVALID_INDEX) {
+    if (index == INVALID_INDEX) {
         Message_TriggerNotFound(client);
 
         return;
     }
 
+    int entity = TriggerList_GetEntity(index);
+
     HighlightPath(client, entity);
     HighlightTrigger(client, entity);
 }
 
-static int FindTriggerByHammerId(int hammerId) {
-    int entity = INVALID_INDEX;
-
-    entity = GetMaxIndex(entity, FindTriggerByClassName(TRIGGER_HURT, hammerId));
-    entity = GetMaxIndex(entity, FindTriggerByClassName(TRIGGER_PUSH, hammerId));
-    entity = GetMaxIndex(entity, FindTriggerByClassName(TRIGGER_TELEPORT, hammerId));
-
-    return entity;
+void Trigger_UpdateEntities() {
+    UpdateEntities(TRIGGER_HURT);
+    UpdateEntities(TRIGGER_PUSH);
+    UpdateEntities(TRIGGER_TELEPORT);
 }
 
-static int FindTriggerByClassName(const char[] className, int hammerId) {
-    int entity = INVALID_INDEX;
-
-    while (Entity_FindByClassName(entity, className)) {
-        if (Entity_GetHammerId(entity) == hammerId) {
-            break;
-        }
-    }
-
-    return entity;
-}
-
-static int GetMaxIndex(int index1, int index2) {
-    return index1 > index2 ? index1 : index2;
-}
-
-void Trigger_Toggle(bool enabled) {
-    ToggleByClassName(TRIGGER_HURT, enabled);
-    ToggleByClassName(TRIGGER_PUSH, enabled);
-    ToggleByClassName(TRIGGER_TELEPORT, enabled);
-}
-
-static void ToggleByClassName(const char[] className, bool enabled) {
+static void UpdateEntities(const char[] className) {
     int entity = INVALID_INDEX;
 
     while (Entity_FindByClassName(entity, className)) {
         int hammerId = Entity_GetHammerId(entity);
+        int index = TriggerList_FindByHammerId(hammerId);
 
-        if (TriggerList_Exists(hammerId)) {
+        if (index != INVALID_INDEX) {
+            TriggerList_SetEntity(index, entity);
+        }
+    }
+}
+
+void Trigger_Toggle(bool enabled) {
+    for (int i = 0; i < TriggerList_Size(); i++) {
+        int entity = TriggerList_GetEntity(i);
+
+        if (entity != INVALID_INDEX) {
             Entity_SetActivity(entity, enabled);
         }
     }

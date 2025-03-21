@@ -120,7 +120,7 @@ static void AddTriggerItems(Menu menu, int client) {
     char item[ITEM_SIZE];
 
     for (int i = 0; i < TriggerList_Size(); i++) {
-        int hammerId = TriggerList_Get(i);
+        int hammerId = TriggerList_GetHammerId(i);
 
         IntToString(hammerId, info, sizeof(info));
         FormatEx(item, sizeof(item), "%T", "Trigger", client, hammerId);
