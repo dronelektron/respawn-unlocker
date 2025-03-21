@@ -29,16 +29,16 @@ static void SaveTriggers(KeyValues kv) {
         return;
     }
 
-    kv.JumpToKey(SECTION_TRIGGERS, KEY_CREATE_YES);
+    kv.JumpToKey(SECTION_TRIGGERS, CREATE_YES);
 
     for (int i = 0; i < triggersAmount; i++) {
-        char key[KEY_SIZE];
+        char key[SECTION_SIZE];
 
         IntToString(i, key, sizeof(key));
 
         int hammerId = TriggerList_Get(i);
 
-        kv.JumpToKey(key, KEY_CREATE_YES);
+        kv.JumpToKey(key, CREATE_YES);
         kv.SetNum(KEY_HAMMER_ID, hammerId);
         kv.GoBack();
     }

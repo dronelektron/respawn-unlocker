@@ -2,6 +2,7 @@
 #include <sdktools>
 
 #include "respawn-unlocker/entity"
+#include "respawn-unlocker/key"
 #include "respawn-unlocker/math"
 #include "respawn-unlocker/menu"
 #include "respawn-unlocker/message"
