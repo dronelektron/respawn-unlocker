@@ -1,17 +1,26 @@
 #include <sourcemod>
 #include <sdktools>
+#include <sdkhooks>
+#include <regex>
 
+#include "respawn-unlocker/catapult"
+#include "respawn-unlocker/color"
 #include "respawn-unlocker/entity"
 #include "respawn-unlocker/key"
 #include "respawn-unlocker/math"
 #include "respawn-unlocker/menu"
 #include "respawn-unlocker/message"
+#include "respawn-unlocker/regex"
+#include "respawn-unlocker/sound"
 #include "respawn-unlocker/storage"
 #include "respawn-unlocker/trigger-filter"
 #include "respawn-unlocker/use-case"
 #include "respawn-unlocker/visualizer"
 #include "respawn-unlocker/wall"
 
+#include "modules/catapult-list.sp"
+#include "modules/catapult.sp"
+#include "modules/color.sp"
 #include "modules/console-command.sp"
 #include "modules/console-variable.sp"
 #include "modules/entity.sp"
@@ -19,6 +28,9 @@
 #include "modules/math.sp"
 #include "modules/menu.sp"
 #include "modules/message.sp"
+#include "modules/regex.sp"
+#include "modules/sdk-hook.sp"
+#include "modules/sound.sp"
 #include "modules/storage.sp"
 #include "modules/trigger-filter.sp"
 #include "modules/trigger-list.sp"
@@ -36,9 +48,11 @@ public Plugin myinfo = {
 };
 
 public void OnPluginStart() {
+    CatapultList_Create();
     Command_Create();
     Variable_Create();
     Event_Create();
+    Regex_Create();
     TriggerFilter_Create();
     TriggerList_Create();
     LoadTranslations("respawn-unlocker.phrases");
@@ -48,9 +62,12 @@ public void OnPluginStart() {
 public void OnMapInit(const char[] mapName) {
     Storage_BuildPath(mapName);
     Storage_LoadTriggers();
+    Storage_LoadCatapults();
 }
 
 public void OnMapStart() {
+    Catapult_Precache();
+    Sound_Precache();
     Visualizer_Precache();
     Trigger_UpdateEntities();
 }

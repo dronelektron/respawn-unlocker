@@ -10,8 +10,20 @@ void Entity_GetMaxs(int entity, float maxs[3]) {
     GetEntPropVector(entity, Prop_Send, ENTITY_PROPERTY_VEC_MAXS, maxs);
 }
 
+void Entity_GetAbsVelocity(int entity, float velocity[3]) {
+    GetEntPropVector(entity, Prop_Data, ENTITY_PROPERTY_VEC_ABS_VELOCITY, velocity);
+}
+
 void Entity_SetCollisionGroup(int entity, int collisionGroup) {
     SetEntProp(entity, Prop_Send, ENTITY_PROPERTY_COLLISION_GROUP, collisionGroup);
+}
+
+void Entity_SetSolidType(int entity, int solidType) {
+    SetEntProp(entity, Prop_Send, ENTITY_PROPERTY_SOLID_TYPE, solidType);
+}
+
+void Entity_SetSolidFlags(int entity, int solidFlags) {
+    SetEntProp(entity, Prop_Send, ENTITY_PROPERTY_SOLID_FLAGS, solidFlags);
 }
 
 int Entity_GetHammerId(int entity) {

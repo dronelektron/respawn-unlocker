@@ -33,6 +33,26 @@ void Math_GetVertices(const float start[3], const float end[3], float vertices[8
     FillVector(vertices[RIGHT_REAR_TOP], max[X], min[Y], max[Z]);
 }
 
+float Math_GetCatapultHeight(int index, float target[3]) {
+    float origin[3];
+
+    CatapultList_GetOrigin(index, origin);
+
+    float height = target[Z] - origin[Z];
+
+    if (height < 0.0) {
+        height = CATAPULT_HEIGHT;
+    }
+
+    return height;
+}
+
+float Math_GetCatapultVelocity(int entity) {
+    float height = Catapult_GetHeight(entity);
+
+    return Pow(2.0 * Variable_Gravity() * height, HALF);
+}
+
 static void FillVector(float vector[3], float x, float y, float z) {
     vector[X] = x;
     vector[Y] = y;

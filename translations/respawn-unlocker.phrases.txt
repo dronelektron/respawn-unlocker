@@ -119,4 +119,127 @@
     {
         "en"    "Load the triggers"
     }
+
+    "Tracing failed"
+    {
+        "en"    "Tracing is failed"
+    }
+
+    "Catapult not found"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' is not found"
+    }
+
+    "Catapult added"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' has been added"
+    }
+
+    "Catapult removed"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' has been removed"
+    }
+
+    "Catapult enabled"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' has been enabled"
+    }
+
+    "Catapult disabled"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' has been disabled"
+    }
+
+    "Catapult origin updated"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' origin has been updated"
+    }
+
+    "Catapult height updated"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' height has been updated"
+    }
+
+    "Catapults saved"
+    {
+        "en"    "Catapults are saved"
+    }
+
+    "Catapults loaded"
+    {
+        "en"    "Catapults are loaded"
+    }
+
+    "Catapults"
+    {
+        "en"    "Catapults"
+    }
+
+    "Add catapult"
+    {
+        "en"    "Add catapult"
+    }
+
+    "Catapult list"
+    {
+        "en"    "Catapult list"
+    }
+
+    "Enable catapult"
+    {
+        "en"    "Enable"
+    }
+
+    "Disable catapult"
+    {
+        "en"    "Disable"
+    }
+
+    "Set catapult origin"
+    {
+        "en"    "Set origin"
+    }
+
+    "Set catapult height"
+    {
+        "en"    "Set height"
+    }
+
+    "Show catapult"
+    {
+        "en"    "Show"
+    }
+
+    "Remove catapult"
+    {
+        "en"    "Remove"
+    }
+
+    "Catapult list empty"
+    {
+        "en"    "Catapult list is empty"
+    }
+
+    "Catapult"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult {1}"
+    }
+
+    "Save catapults"
+    {
+        "en"    "Save the catapults"
+    }
+
+    "Load catapults"
+    {
+        "en"    "Load the catapults"
+    }
 }

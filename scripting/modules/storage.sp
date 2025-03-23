@@ -70,6 +70,73 @@ static void LoadTriggers(KeyValues kv) {
     } while (kv.GotoNextKey());
 }
 
+void Storage_SaveCatapults() {
+    KeyValues kv = LoadKeyValues();
+
+    SaveCatapults(kv);
+    SaveKeyValues(kv);
+    CloseHandle(kv);
+}
+
+static void SaveCatapults(KeyValues kv) {
+    if (kv.JumpToKey(SECTION_CATAPULTS)) {
+        kv.DeleteThis();
+    }
+
+    int catapultsAmount = CatapultList_Size();
+
+    if (catapultsAmount == 0) {
+        return;
+    }
+
+    kv.JumpToKey(SECTION_CATAPULTS, CREATE_YES);
+
+    for (int i = 0; i < catapultsAmount; i++) {
+        char name[CATAPULT_NAME_SIZE];
+        float origin[3];
+
+        CatapultList_GetName(i, name);
+        CatapultList_GetOrigin(i, origin);
+
+        float height = CatapultList_GetHeight(i);
+
+        kv.JumpToKey(name, CREATE_YES);
+        kv.SetVector(KEY_ORIGIN, origin);
+        kv.SetFloat(KEY_HEIGHT, height);
+        kv.GoBack();
+    }
+}
+
+void Storage_LoadCatapults() {
+    KeyValues kv = LoadKeyValues();
+
+    LoadCatapults(kv);
+    CloseHandle(kv);
+}
+
+static void LoadCatapults(KeyValues kv) {
+    CatapultList_Clear();
+
+    if (!kv.JumpToKey(SECTION_CATAPULTS) || !kv.GotoFirstSubKey()) {
+        return;
+    }
+
+    do {
+        char name[CATAPULT_NAME_SIZE];
+        float origin[3];
+
+        kv.GetSectionName(name, sizeof(name));
+        kv.GetVector(KEY_ORIGIN, origin);
+
+        float height = kv.GetFloat(KEY_HEIGHT, CATAPULT_HEIGHT);
+        int index = CatapultList_Add();
+
+        CatapultList_SetName(index, name);
+        CatapultList_SetOrigin(index, origin);
+        CatapultList_SetHeight(index, height);
+    } while (kv.GotoNextKey());
+}
+
 static KeyValues LoadKeyValues() {
     KeyValues kv = new KeyValues("RespawnUnlocker");
 
@@ -79,7 +146,7 @@ static KeyValues LoadKeyValues() {
 }
 
 static void SaveKeyValues(KeyValues kv) {
-    if (TriggerList_Size() == 0) {
+    if (TriggerList_Size() == 0 && CatapultList_Size() == 0) {
         DeleteFile(g_configPath);
 
         return;

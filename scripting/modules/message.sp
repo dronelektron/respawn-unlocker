@@ -80,6 +80,100 @@ void Message_TriggersLoaded(int client) {
     }
 }
 
+void Message_CatapultNotCreated() {
+    LogError("Unable to create a catapult");
+}
+
+void Message_CatapultNotSpawned(int entity) {
+    LogError("Unable to spawn the catapult %d", entity);
+}
+
+void Message_CatapultRemoveUsage(int client) {
+    ReplyToCommand(client, "%s%s", PREFIX, "Usage: sm_respawnunlocker_catapult_remove <name>");
+}
+
+void Message_CatapultEnableUsage(int client) {
+    ReplyToCommand(client, "%s%s", PREFIX, "Usage: sm_respawnunlocker_catapult_enable <name>");
+}
+
+void Message_CatapultDisableUsage(int client) {
+    ReplyToCommand(client, "%s%s", PREFIX, "Usage: sm_respawnunlocker_catapult_disable <name>");
+}
+
+void Message_CatapultPathUsage(int client) {
+    ReplyToCommand(client, "%s%s", PREFIX, "Usage: sm_respawnunlocker_catapult_path <name>");
+}
+
+void Message_CatapultSetOriginUsage(int client) {
+    ReplyToCommand(client, "%s%s", PREFIX, "Usage: sm_respawnunlocker_catapult_set_origin <name>");
+}
+
+void Message_CatapultSetHeightUsage(int client) {
+    ReplyToCommand(client, "%s%s", PREFIX, "Usage: sm_respawnunlocker_catapult_set_height <name>");
+}
+
+void Message_TracingFailed(int client) {
+    ReplyToCommand(client, "%s%t", PREFIX, "Tracing failed");
+}
+
+void Message_CatapultNotFound(int client, const char[] name) {
+    ReplyToCommand(client, "%s%t", PREFIX, "Catapult not found", name);
+}
+
+void Message_CatapultListEmpty(int client) {
+    ReplyToCommand(client, "%s%t", PREFIX, "Catapult list empty");
+}
+
+void Message_CatapultAdded(int client, const char[] name) {
+    ShowActivity2(client, PREFIX, "%t", "Catapult added", name);
+    LogMessage("\"%L\" added the '%s' catapult", client, name);
+}
+
+void Message_CatapultRemoved(int client, const char[] name) {
+    ShowActivity2(client, PREFIX, "%t", "Catapult removed", name);
+    LogMessage("\"%L\" removed the '%s' catapult", client, name);
+}
+
+void Message_CatapultEnabled(int client, const char[] name) {
+    ShowActivity2(client, PREFIX, "%t", "Catapult enabled", name);
+    LogMessage("\"%L\" enabled the '%s' catapult", client, name);
+}
+
+void Message_CatapultDisabled(int client, const char[] name) {
+    ShowActivity2(client, PREFIX, "%t", "Catapult disabled", name);
+    LogMessage("\"%L\" disabled the '%s' catapult", client, name);
+}
+
+void Message_CatapultOriginUpdated(int client, const char[] name) {
+    ShowActivity2(client, PREFIX, "%t", "Catapult origin updated", name);
+    LogMessage("\"%L\" updated the '%s' catapult origin", client, name);
+}
+
+void Message_CatapultHeightUpdated(int client, const char[] name) {
+    ShowActivity2(client, PREFIX, "%t", "Catapult height updated", name);
+    LogMessage("\"%L\" updated the '%s' catapult height", client, name);
+}
+
+void Message_CatapultsSaved(int client) {
+    if (client == CONSOLE) {
+        ShowConsoleActivity("Catapults saved");
+        LogMessage("Catapults are saved");
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Catapults saved");
+        LogMessage("\"%L\" saved the catapults", client);
+    }
+}
+
+void Message_CatapultsLoaded(int client) {
+    if (client == CONSOLE) {
+        ShowConsoleActivity("Catapults loaded");
+        LogMessage("Catapults are loaded");
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Catapults loaded");
+        LogMessage("\"%L\" loaded the catapults", client);
+    }
+}
+
 static void ShowConsoleActivity(const char[] phrase) {
     PrintToChatAll("%s%N: %t", PREFIX, CONSOLE, phrase);
 }

@@ -109,4 +109,119 @@
     {
         "ru"    "Загрузить триггеры"
     }
+
+    "Tracing failed"
+    {
+        "ru"    "Трассировка не удалась"
+    }
+
+    "Catapult not found"
+    {
+        "ru"    "Катапульта '{1}' не найдена"
+    }
+
+    "Catapult added"
+    {
+        "ru"    "Катапульта '{1}' добавлена"
+    }
+
+    "Catapult removed"
+    {
+        "ru"    "Катапульта '{1}' удалена"
+    }
+
+    "Catapult enabled"
+    {
+        "ru"    "Катапульта '{1}' включена"
+    }
+
+    "Catapult disabled"
+    {
+        "ru"    "Катапульта '{1}' выключена"
+    }
+
+    "Catapult origin updated"
+    {
+        "ru"    "У катапульты '{1}' обновлено начало"
+    }
+
+    "Catapult height updated"
+    {
+        "ru"    "У катапульты '{1}' обновлена высота"
+    }
+
+    "Catapults saved"
+    {
+        "ru"    "Катапульты сохранены"
+    }
+
+    "Catapults loaded"
+    {
+        "ru"    "Катапульты загружены"
+    }
+
+    "Catapults"
+    {
+        "ru"    "Катапульты"
+    }
+
+    "Add catapult"
+    {
+        "ru"    "Добавить катапульту"
+    }
+
+    "Catapult list"
+    {
+        "ru"    "Список катапульт"
+    }
+
+    "Enable catapult"
+    {
+        "ru"    "Включить"
+    }
+
+    "Disable catapult"
+    {
+        "ru"    "Выключить"
+    }
+
+    "Set catapult origin"
+    {
+        "ru"    "Установить начало"
+    }
+
+    "Set catapult height"
+    {
+        "ru"    "Установить высоту"
+    }
+
+    "Show catapult"
+    {
+        "ru"    "Показать"
+    }
+
+    "Remove catapult"
+    {
+        "ru"    "Удалить"
+    }
+
+    "Catapult list empty"
+    {
+        "ru"    "Список катапульт пустой"
+    }
+
+    "Catapult"
+    {
+        "ru"    "Катапульта {1}"
+    }
+
+    "Save catapults"
+    {
+        "ru"    "Сохранить катапульты"
+    }
+
+    "Load catapults"
+    {
+        "ru"    "Загрузить катапульты"
+    }
 }

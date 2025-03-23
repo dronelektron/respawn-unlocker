@@ -2,8 +2,9 @@
 
 Allows you to unlock the respawn:
 
-* Enable / Disable invisible walls
-* Enable / Disable triggers
+* Manage the invisible walls
+* Manage the triggers
+* Manage the catapults
 
 Supported trigger types:
 
@@ -32,9 +33,19 @@ Supported trigger types:
 * sm_respawnunlocker_trigger_mark - Add trigger to the list
 * sm_respawnunlocker_trigger_unmark - Remove trigger from the list
 * sm_respawnunlocker_trigger_path &lt;hammerid&gt; - Show path to the trigger
-* sm_respawnunlocker_triggers_save - Save the triggers to the file
-* sm_respawnunlocker_triggers_load - Load the triggers from the file
+* sm_respawnunlocker_triggers_save - Save triggers to the file
+* sm_respawnunlocker_triggers_load - Load triggers from the file
+* sm_respawnunlocker_catapult_add - Add catapult
+* sm_respawnunlocker_catapult_remove &lt;name&gt; - Remove catapult
+* sm_respawnunlocker_catapult_enable &lt;name&gt; - Enable catapult
+* sm_respawnunlocker_catapult_disable &lt;name&gt; - Disable catapult
+* sm_respawnunlocker_catapult_path &lt;name&gt; - Show path to the catapult
+* sm_respawnunlocker_catapult_set_origin &lt;name&gt; - Set catapult origin
+* sm_respawnunlocker_catapult_set_height &lt;name&gt; - Set catapult height
+* sm_respawnunlocker_catapults_save - Save catapults to the file
+* sm_respawnunlocker_catapults_load - Load catapults from the file
 
 ### Console Variables
 
 * sm_respawnunlocker_auto - Automatic respawn unlock (on - 1, off - 0) [default: "1"]
+* sm_respawnunlocker_catapult_color - Catapult color (in HEX) [default: "EE82EE"]

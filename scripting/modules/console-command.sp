@@ -7,6 +7,15 @@ void Command_Create() {
     RegAdminCmd("sm_respawnunlocker_trigger_path", OnTriggerPath, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_triggers_save", OnSaveTriggers, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_triggers_load", OnLoadTriggers, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_catapult_add", OnAddCatapult, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_catapult_remove", OnRemoveCatapult, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_catapult_enable", OnEnableCatapult, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_catapult_disable", OnDisableCatapult, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_catapult_path", OnCatapultPath, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_catapult_set_origin", OnSetCatapultOrigin, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_catapult_set_height", OnSetCatapultHeight, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_catapults_save", OnSaveCatapults, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_catapults_load", OnLoadCatapults, ADMFLAG_GENERIC);
 }
 
 static Action OnRespawnUnlocker(int client, int args) {
@@ -61,6 +70,114 @@ static Action OnSaveTriggers(int client, int args) {
 
 static Action OnLoadTriggers(int client, int args) {
     UseCase_LoadTriggers(client);
+
+    return Plugin_Handled;
+}
+
+static Action OnAddCatapult(int client, int args) {
+    Catapult_Add(client);
+
+    return Plugin_Handled;
+}
+
+static Action OnRemoveCatapult(int client, int args) {
+    if (args < 1) {
+        Message_CatapultRemoveUsage(client);
+
+        return Plugin_Handled;
+    }
+
+    char name[CATAPULT_NAME_SIZE];
+
+    GetCmdArg(1, name, sizeof(name));
+    Catapult_Remove(client, name);
+
+    return Plugin_Handled;
+}
+
+static Action OnEnableCatapult(int client, int args) {
+    if (args < 1) {
+        Message_CatapultEnableUsage(client);
+
+        return Plugin_Handled;
+    }
+
+    char name[CATAPULT_NAME_SIZE];
+
+    GetCmdArg(1, name, sizeof(name));
+    Catapult_Toggle(client, name, ENABLED_YES);
+
+    return Plugin_Handled;
+}
+
+static Action OnDisableCatapult(int client, int args) {
+    if (args < 1) {
+        Message_CatapultDisableUsage(client);
+
+        return Plugin_Handled;
+    }
+
+    char name[CATAPULT_NAME_SIZE];
+
+    GetCmdArg(1, name, sizeof(name));
+    Catapult_Toggle(client, name, ENABLED_NO);
+
+    return Plugin_Handled;
+}
+
+static Action OnCatapultPath(int client, int args) {
+    if (args < 1) {
+        Message_CatapultPathUsage(client);
+
+        return Plugin_Handled;
+    }
+
+    char name[CATAPULT_NAME_SIZE];
+
+    GetCmdArg(1, name, sizeof(name));
+    Catapult_Path(client, name);
+
+    return Plugin_Handled;
+}
+
+static Action OnSetCatapultOrigin(int client, int args) {
+    if (args < 1) {
+        Message_CatapultSetOriginUsage(client);
+
+        return Plugin_Handled;
+    }
+
+    char name[CATAPULT_NAME_SIZE];
+
+    GetCmdArg(1, name, sizeof(name));
+    Catapult_SetOrigin(client, name);
+
+    return Plugin_Handled;
+}
+
+static Action OnSetCatapultHeight(int client, int args) {
+    if (args < 1) {
+        Message_CatapultSetHeightUsage(client);
+
+        return Plugin_Handled;
+    }
+
+    char name[CATAPULT_NAME_SIZE];
+
+    GetCmdArg(1, name, sizeof(name));
+    Catapult_SetHeight(client, name);
+
+    return Plugin_Handled;
+}
+
+static Action OnSaveCatapults(int client, int args) {
+    UseCase_SaveCatapults(client);
+
+    return Plugin_Handled;
+}
+
+static Action OnLoadCatapults(int client, int args) {
+    UseCase_LoadCatapults(client);
 
     return Plugin_Handled;
 }
