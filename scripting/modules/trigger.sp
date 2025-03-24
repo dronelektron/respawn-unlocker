@@ -145,7 +145,7 @@ static void UpdateEntities(const char[] className) {
     }
 }
 
-void Trigger_Toggle(bool enabled) {
+void Trigger_ToggleAll(bool enabled) {
     for (int i = 0; i < TriggerList_Size(); i++) {
         int entity = TriggerList_GetEntity(i);
 

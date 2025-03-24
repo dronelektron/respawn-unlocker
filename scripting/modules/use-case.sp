@@ -24,24 +24,24 @@ void UseCase_DisableWalls(int client) {
 }
 
 void UseCase_EnableTriggers(int client) {
-    Trigger_Toggle(ENABLED_YES);
+    Trigger_ToggleAll(ENABLED_YES);
     Message_TriggersEnabled(client);
 }
 
 void UseCase_DisableTriggers(int client) {
-    Trigger_Toggle(ENABLED_NO);
+    Trigger_ToggleAll(ENABLED_NO);
     Message_TriggersDisabled(client);
 }
 
 static void LockRespawn() {
     EnableWalls();
-    Trigger_Toggle(ENABLED_YES);
+    Trigger_ToggleAll(ENABLED_YES);
     Catapult_ToggleAll(ENABLED_NO);
 }
 
 static void UnlockRespawn() {
     DisableWalls();
-    Trigger_Toggle(ENABLED_NO);
+    Trigger_ToggleAll(ENABLED_NO);
     Catapult_ToggleAll(ENABLED_YES);
 }
 
@@ -61,7 +61,7 @@ void UseCase_SaveTriggers(int client) {
 }
 
 void UseCase_LoadTriggers(int client) {
-    Trigger_Toggle(ENABLED_YES);
+    Trigger_ToggleAll(ENABLED_YES);
     Storage_LoadTriggers();
     Trigger_UpdateEntities();
     Message_TriggersLoaded(client);
