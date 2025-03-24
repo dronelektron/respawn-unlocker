@@ -1,53 +1,33 @@
 "Phrases"
 {
+    "Respawn locked"
+    {
+        "ru"    "Респаун заблокирован"
+    }
+
+    "Respawn unlocked"
+    {
+        "ru"    "Респаун разблокирован"
+    }
+
+    "Walls enabled"
+    {
+        "ru"    "Стены включены"
+    }
+
     "Walls disabled"
     {
-        "ru"    "Невидимые стены отключены"
+        "ru"    "Стены выключены"
+    }
+
+    "Triggers enabled"
+    {
+        "ru"    "Триггеры включены"
     }
 
     "Triggers disabled"
     {
-        "ru"    "Триггеры отключены"
-    }
-
-    "Crates added"
-    {
-        "ru"    "Ящики добавлены"
-    }
-
-    "Crate added"
-    {
-        "ru"    "Ящик добавлен"
-    }
-
-    "Crate removed"
-    {
-        "ru"    "Ящик удален"
-    }
-
-    "Crates shown"
-    {
-        "ru"    "Ящики показаны"
-    }
-
-    "Crates hidden"
-    {
-        "ru"    "Ящики скрыты"
-    }
-
-    "Crates loaded"
-    {
-        "ru"    "Загружено {1} ящиков"
-    }
-
-    "Crates saved"
-    {
-        "ru"    "Сохранено {1} ящиков"
-    }
-
-    "Crate not found"
-    {
-        "ru"    "Ящик не найден"
+        "ru"    "Триггеры выключены"
     }
 
     "Trigger not found"
@@ -55,34 +35,44 @@
         "ru"    "Триггер не найден"
     }
 
-    "Trigger added to list"
+    "Trigger without hammer id"
+    {
+        "ru"    "У триггера нет HammerID"
+    }
+
+    "Trigger type not supported"
+    {
+        "ru"    "Данный тип триггера не поддерживается"
+    }
+
+    "Trigger already marked"
+    {
+        "ru"    "Триггер {1} уже есть в списке"
+    }
+
+    "Trigger not marked"
+    {
+        "ru"    "Триггер {1} отсутствует в списке"
+    }
+
+    "Trigger marked"
     {
         "ru"    "Триггер {1} добавлен в список"
     }
 
-    "Trigger already added to list"
-    {
-        "ru"    "Триггер {1} уже добавлен в список"
-    }
-
-    "Trigger removed from list"
+    "Trigger unmarked"
     {
         "ru"    "Триггер {1} удален из списка"
     }
 
-    "Trigger already removed from list"
+    "Triggers saved"
     {
-        "ru"    "Триггер {1} уже удален из списка"
+        "ru"    "Триггеры сохранены"
     }
 
     "Triggers loaded"
     {
-        "ru"    "Загружено {1} триггеров"
-    }
-
-    "Triggers saved"
-    {
-        "ru"    "Сохранено {1} триггеров"
+        "ru"    "Триггеры загружены"
     }
 
     "Respawn unlocker"
@@ -90,54 +80,74 @@
         "ru"    "Разблокировка респауна"
     }
 
-    "Crates management"
+    "Lock respawn"
     {
-        "ru"    "Управление ящиками"
+        "ru"    "Заблокировать респаун"
     }
 
-    "Triggers management"
+    "Unlock respawn"
     {
-        "ru"    "Управление триггерами"
+        "ru"    "Разблокировать респаун"
     }
 
-    "Add crate"
+    "Walls"
     {
-        "ru"    "Добавить ящик"
+        "ru"    "Стены"
     }
 
-    "Remove crate"
+    "Enable walls"
     {
-        "ru"    "Удалить ящик"
+        "ru"    "Включить стены"
     }
 
-    "Show crates"
+    "Disable walls"
     {
-        "ru"    "Показать ящики"
+        "ru"    "Выключить стены"
     }
 
-    "Hide crates"
+    "Triggers"
     {
-        "ru"    "Спрятать ящики"
+        "ru"    "Триггеры"
     }
 
-    "Load crates"
-    {
-        "ru"    "Загрузить ящики"
-    }
-
-    "Save crates"
-    {
-        "ru"    "Сохранить ящики"
-    }
-
-    "Add trigger to list"
+    "Mark trigger"
     {
         "ru"    "Добавить триггер в список"
     }
 
-    "Remove trigger from list"
+    "Unmark trigger"
     {
         "ru"    "Удалить триггер из списка"
+    }
+
+    "Show trigger"
+    {
+        "ru"    "Показать триггер"
+    }
+
+    "Trigger list empty"
+    {
+        "ru"    "Список триггеров пустой"
+    }
+
+    "Trigger"
+    {
+        "ru"    "Триггер {1}"
+    }
+
+    "Enable triggers"
+    {
+        "ru"    "Включить триггеры"
+    }
+
+    "Disable triggers"
+    {
+        "ru"    "Выключить триггеры"
+    }
+
+    "Save triggers"
+    {
+        "ru"    "Сохранить триггеры"
     }
 
     "Load triggers"
@@ -145,8 +155,138 @@
         "ru"    "Загрузить триггеры"
     }
 
-    "Save triggers"
+    "Tracing failed"
     {
-        "ru"    "Сохранить триггеры"
+        "ru"    "Трассировка не удалась"
+    }
+
+    "Catapult not found"
+    {
+        "ru"    "Катапульта '{1}' не найдена"
+    }
+
+    "Catapult added"
+    {
+        "ru"    "Катапульта '{1}' добавлена"
+    }
+
+    "Catapult removed"
+    {
+        "ru"    "Катапульта '{1}' удалена"
+    }
+
+    "Catapult enabled"
+    {
+        "ru"    "Катапульта '{1}' включена"
+    }
+
+    "Catapult disabled"
+    {
+        "ru"    "Катапульта '{1}' выключена"
+    }
+
+    "Catapults enabled"
+    {
+        "ru"    "Катапульты включены"
+    }
+
+    "Catapults disabled"
+    {
+        "ru"    "Катапульты выключены"
+    }
+
+    "Catapult origin updated"
+    {
+        "ru"    "У катапульты '{1}' обновлено начало"
+    }
+
+    "Catapult height updated"
+    {
+        "ru"    "У катапульты '{1}' обновлена высота"
+    }
+
+    "Catapults saved"
+    {
+        "ru"    "Катапульты сохранены"
+    }
+
+    "Catapults loaded"
+    {
+        "ru"    "Катапульты загружены"
+    }
+
+    "Catapults"
+    {
+        "ru"    "Катапульты"
+    }
+
+    "Add catapult"
+    {
+        "ru"    "Добавить катапульту"
+    }
+
+    "Catapult list"
+    {
+        "ru"    "Список катапульт"
+    }
+
+    "Enable catapult"
+    {
+        "ru"    "Включить"
+    }
+
+    "Disable catapult"
+    {
+        "ru"    "Выключить"
+    }
+
+    "Set catapult origin"
+    {
+        "ru"    "Установить начало"
+    }
+
+    "Set catapult height"
+    {
+        "ru"    "Установить высоту"
+    }
+
+    "Show catapult"
+    {
+        "ru"    "Показать"
+    }
+
+    "Remove catapult"
+    {
+        "ru"    "Удалить"
+    }
+
+    "Catapult list empty"
+    {
+        "ru"    "Список катапульт пустой"
+    }
+
+    "Catapult"
+    {
+        "ru"    "Катапульта {1}"
+    }
+
+    "Enable catapults"
+    {
+        "ru"    "Включить катапульты"
+    }
+
+    "Disable catapults"
+    {
+        "ru"    "Выключить катапульты"
+    }
+
+    "Save catapults"
+    {
+        "ru"    "Сохранить катапульты"
+    }
+
+    "Load catapults"
+    {
+        "ru"    "Загрузить катапульты"
     }
 }

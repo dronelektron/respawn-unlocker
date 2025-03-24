@@ -1,13 +1,33 @@
 "Phrases"
 {
-    "Prefix colored"
+    "Prefix"
     {
-        "en"    "FF00FF[Respawn unlocker] "
+        "en"    "EE82EE[Respawn unlocker] "
+    }
+
+    "Respawn locked"
+    {
+        "en"    "Respawn is locked"
+    }
+
+    "Respawn unlocked"
+    {
+        "en"    "Respawn is unlocked"
+    }
+
+    "Walls enabled"
+    {
+        "en"    "Walls are enabled"
     }
 
     "Walls disabled"
     {
-        "en"    "Invisible walls are disabled"
+        "en"    "Walls are disabled"
+    }
+
+    "Triggers enabled"
+    {
+        "en"    "Triggers are enabled"
     }
 
     "Triggers disabled"
@@ -15,87 +35,53 @@
         "en"    "Triggers are disabled"
     }
 
-    "Crates added"
-    {
-        "en"    "Crates are added"
-    }
-
-    "Crate added"
-    {
-        "en"    "Crate is added"
-    }
-
-    "Crate removed"
-    {
-        "en"    "Crate is removed"
-    }
-
-    "Crates shown"
-    {
-        "en"    "Crates are shown"
-    }
-
-    "Crates hidden"
-    {
-        "en"    "Crates are hidden"
-    }
-
-    "Crates loaded"
-    {
-        "#format"   "{1:d}"
-        "en"    "Loaded {1} crates"
-    }
-
-    "Crates saved"
-    {
-        "#format"   "{1:d}"
-        "en"    "Saved {1} crates"
-    }
-
-    "Crate not found"
-    {
-        "en"    "Crate is not found"
-    }
-
     "Trigger not found"
     {
         "en"    "Trigger is not found"
     }
 
-    "Trigger added to list"
+    "Trigger without hammer id"
     {
-        "#format"   "{1:d}"
-        "en"    "Trigger {1} is added to the list"
+        "en"    "Trigger does not have a HammerID"
     }
 
-    "Trigger already added to list"
+    "Trigger type not supported"
     {
-        "#format"   "{1:d}"
-        "en"    "Trigger {1} is already added to the list"
+        "en"    "This type of trigger is not supported"
     }
 
-    "Trigger removed from list"
+    "Trigger already marked"
     {
         "#format"   "{1:d}"
-        "en"    "Trigger {1} is removed from the list"
+        "en"    "Trigger {1} is already in the list"
     }
 
-    "Trigger already removed from list"
+    "Trigger not marked"
     {
         "#format"   "{1:d}"
-        "en"    "Trigger {1} is already removed from the list"
+        "en"    "Trigger {1} is not in the list"
     }
 
-    "Triggers loaded"
+    "Trigger marked"
     {
         "#format"   "{1:d}"
-        "en"    "Loaded {1} triggers"
+        "en"    "Trigger {1} has been added to the list"
+    }
+
+    "Trigger unmarked"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1} has been removed from the list"
     }
 
     "Triggers saved"
     {
-        "#format"   "{1:d}"
-        "en"    "Saved {1} triggers"
+        "en"    "Triggers are saved"
+    }
+
+    "Triggers loaded"
+    {
+        "en"    "Triggers are loaded"
     }
 
     "Respawn unlocker"
@@ -103,54 +89,75 @@
         "en"    "Respawn unlocker"
     }
 
-    "Crates management"
+    "Lock respawn"
     {
-        "en"    "Crates management"
+        "en"    "Lock the respawn"
     }
 
-    "Triggers management"
+    "Unlock respawn"
     {
-        "en"    "Triggers management"
+        "en"    "Unlock the respawn"
     }
 
-    "Add crate"
+    "Walls"
     {
-        "en"    "Add a crate"
+        "en"    "Walls"
     }
 
-    "Remove crate"
+    "Enable walls"
     {
-        "en"    "Remove the crate"
+        "en"    "Enable the walls"
     }
 
-    "Show crates"
+    "Disable walls"
     {
-        "en"    "Show the crates"
+        "en"    "Disable the walls"
     }
 
-    "Hide crates"
+    "Triggers"
     {
-        "en"    "Hide the crates"
+        "en"    "Triggers"
     }
 
-    "Load crates"
+    "Mark trigger"
     {
-        "en"    "Load the crates"
+        "en"    "Add trigger to the list"
     }
 
-    "Save crates"
+    "Unmark trigger"
     {
-        "en"    "Save the crates"
+        "en"    "Remove trigger from the list"
     }
 
-    "Add trigger to list"
+    "Show trigger"
     {
-        "en"    "Add the trigger to the list"
+        "en"    "Show trigger"
     }
 
-    "Remove trigger from list"
+    "Trigger list empty"
     {
-        "en"    "Remove the trigger from the list"
+        "en"    "Trigger list is empty"
+    }
+
+    "Trigger"
+    {
+        "#format"   "{1:d}"
+        "en"    "Trigger {1}"
+    }
+
+    "Enable triggers"
+    {
+        "en"    "Enable the triggers"
+    }
+
+    "Disable triggers"
+    {
+        "en"    "Disable the triggers"
+    }
+
+    "Save triggers"
+    {
+        "en"    "Save the triggers"
     }
 
     "Load triggers"
@@ -158,8 +165,146 @@
         "en"    "Load the triggers"
     }
 
-    "Save triggers"
+    "Tracing failed"
     {
-        "en"    "Save the triggers"
+        "en"    "Tracing is failed"
+    }
+
+    "Catapult not found"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' is not found"
+    }
+
+    "Catapult added"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' has been added"
+    }
+
+    "Catapult removed"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' has been removed"
+    }
+
+    "Catapult enabled"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' has been enabled"
+    }
+
+    "Catapult disabled"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' has been disabled"
+    }
+
+    "Catapults enabled"
+    {
+        "en"    "Catapults are enabled"
+    }
+
+    "Catapults disabled"
+    {
+        "en"    "Catapults are disabled"
+    }
+
+    "Catapult origin updated"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' origin has been updated"
+    }
+
+    "Catapult height updated"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult '{1}' height has been updated"
+    }
+
+    "Catapults saved"
+    {
+        "en"    "Catapults are saved"
+    }
+
+    "Catapults loaded"
+    {
+        "en"    "Catapults are loaded"
+    }
+
+    "Catapults"
+    {
+        "en"    "Catapults"
+    }
+
+    "Add catapult"
+    {
+        "en"    "Add catapult"
+    }
+
+    "Catapult list"
+    {
+        "en"    "Catapult list"
+    }
+
+    "Enable catapult"
+    {
+        "en"    "Enable"
+    }
+
+    "Disable catapult"
+    {
+        "en"    "Disable"
+    }
+
+    "Set catapult origin"
+    {
+        "en"    "Set origin"
+    }
+
+    "Set catapult height"
+    {
+        "en"    "Set height"
+    }
+
+    "Show catapult"
+    {
+        "en"    "Show"
+    }
+
+    "Remove catapult"
+    {
+        "en"    "Remove"
+    }
+
+    "Catapult list empty"
+    {
+        "en"    "Catapult list is empty"
+    }
+
+    "Catapult"
+    {
+        "#format"   "{1:s}"
+        "en"    "Catapult {1}"
+    }
+
+    "Enable catapults"
+    {
+        "en"    "Enable the catapults"
+    }
+
+    "Disable catapults"
+    {
+        "en"    "Disable the catapults"
+    }
+
+    "Save catapults"
+    {
+        "en"    "Save the catapults"
+    }
+
+    "Load catapults"
+    {
+        "en"    "Load the catapults"
     }
 }

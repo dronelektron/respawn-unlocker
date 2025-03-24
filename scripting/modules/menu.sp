@@ -1,164 +1,352 @@
-static TopMenu g_adminMenu = null;
+static char g_catapultName[MAXPLAYERS + 1][CATAPULT_NAME_SIZE];
 
-static TopMenuObject g_respawnUnlockerCategory = INVALID_TOPMENUOBJECT;
-static TopMenuObject g_menuItemCratesManagement = INVALID_TOPMENUOBJECT;
-static TopMenuObject g_menuItemTriggersManagement = INVALID_TOPMENUOBJECT;
+void Menu_RespawnUnlocker(int client) {
+    Menu menu = new Menu(RespawnUnlocker);
 
-void AdminMenu_Create() {
-    TopMenu topMenu = GetAdminTopMenu();
+    menu.SetTitle("%T", RESPAWN_UNLOCKER, client);
 
-    if (LibraryExists(ADMIN_MENU) && topMenu != null) {
-        OnAdminMenuReady(topMenu);
+    AddLocalizedItem(menu, RESPAWN_LOCK, client);
+    AddLocalizedItem(menu, RESPAWN_UNLOCK, client);
+    AddLocalizedItem(menu, WALLS, client);
+    AddLocalizedItem(menu, TRIGGERS, client);
+    AddLocalizedItem(menu, CATAPULTS, client);
+
+    if (AdminMenu_Exists()) {
+        menu.ExitBackButton = true;
+    }
+
+    menu.Display(client, MENU_TIME_FOREVER);
+}
+
+static int RespawnUnlocker(Menu menu, MenuAction action, int param1, int param2) {
+    if (action == MenuAction_Select) {
+        char info[INFO_SIZE];
+
+        menu.GetItem(param2, info, sizeof(info));
+
+        if (StrEqual(info, RESPAWN_LOCK)) {
+            UseCase_LockRespawn(param1);
+            Menu_RespawnUnlocker(param1);
+        } else if (StrEqual(info, RESPAWN_UNLOCK)) {
+            UseCase_UnlockRespawn(param1);
+            Menu_RespawnUnlocker(param1);
+        } else if (StrEqual(info, WALLS)) {
+            Menu_Walls(param1);
+        }  else if (StrEqual(info, TRIGGERS)) {
+            Menu_Triggers(param1);
+        } else if (StrEqual(info, CATAPULTS)) {
+            Menu_Catapults(param1);
+        }
+    } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
+        if (AdminMenu_Exists()) {
+            AdminMenu_Show(param1);
+        }
+    } else if (action == MenuAction_End) {
+        delete menu;
+    }
+
+    return 0;
+}
+
+void Menu_Walls(int client) {
+    Menu menu = new Menu(Walls);
+
+    menu.SetTitle("%T", WALLS, client);
+
+    AddLocalizedItem(menu, WALLS_ENABLE, client);
+    AddLocalizedItem(menu, WALLS_DISABLE, client);
+
+    menu.ExitBackButton = true;
+    menu.Display(client, MENU_TIME_FOREVER);
+}
+
+static int Walls(Menu menu, MenuAction action, int param1, int param2) {
+    if (action == MenuAction_Select) {
+        char info[INFO_SIZE];
+
+        menu.GetItem(param2, info, sizeof(info));
+
+        if (StrEqual(info, WALLS_ENABLE)) {
+            UseCase_EnableWalls(param1);
+        } else if (StrEqual(info, WALLS_DISABLE)) {
+            UseCase_DisableWalls(param1);
+        }
+
+        Menu_Walls(param1);
+    } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
+        BackToParentMenu(param1);
+    } else if (action == MenuAction_End) {
+        delete menu;
+    }
+
+    return 0;
+}
+
+void Menu_Triggers(int client) {
+    Menu menu = new Menu(Triggers);
+
+    menu.SetTitle("%T", TRIGGERS, client);
+
+    AddLocalizedItem(menu, TRIGGER_MARK, client);
+    AddLocalizedItem(menu, TRIGGER_UNMARK, client);
+    AddLocalizedItem(menu, TRIGGER_SHOW, client);
+    AddLocalizedItem(menu, TRIGGERS_ENABLE, client);
+    AddLocalizedItem(menu, TRIGGERS_DISABLE, client);
+    AddLocalizedItem(menu, TRIGGERS_SAVE, client);
+    AddLocalizedItem(menu, TRIGGERS_LOAD, client);
+
+    menu.ExitBackButton = true;
+    menu.Display(client, MENU_TIME_FOREVER);
+}
+
+static int Triggers(Menu menu, MenuAction action, int param1, int param2) {
+    bool showMenuAgain = true;
+
+    if (action == MenuAction_Select) {
+        char info[INFO_SIZE];
+
+        menu.GetItem(param2, info, sizeof(info));
+
+        if (StrEqual(info, TRIGGER_MARK)) {
+            Trigger_Mark(param1);
+        } else if (StrEqual(info, TRIGGER_UNMARK)) {
+            Trigger_Unmark(param1);
+        } else if (StrEqual(info, TRIGGER_SHOW)) {
+            if (TriggerList_Size() == 0) {
+                Message_TriggerListEmpty(param1);
+            } else {
+                Menu_ShowTrigger(param1);
+
+                showMenuAgain = false;
+            }
+        } else if (StrEqual(info, TRIGGERS_ENABLE)) {
+            UseCase_EnableTriggers(param1);
+        } else if (StrEqual(info, TRIGGERS_DISABLE)) {
+            UseCase_DisableTriggers(param1);
+        }  else if (StrEqual(info, TRIGGERS_SAVE)) {
+            UseCase_SaveTriggers(param1);
+        } else if (StrEqual(info, TRIGGERS_LOAD)) {
+            UseCase_LoadTriggers(param1);
+        }
+
+        if (showMenuAgain) {
+            Menu_Triggers(param1);
+        }
+    } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
+        BackToParentMenu(param1);
+    } else if (action == MenuAction_End) {
+        delete menu;
+    }
+
+    return 0;
+}
+
+void Menu_ShowTrigger(int client, int firstItem = 0) {
+    Menu menu = new Menu(ShowTrigger);
+
+    menu.SetTitle("%T", TRIGGER_SHOW, client);
+
+    AddTriggerItems(menu, client);
+
+    menu.ExitBackButton = true;
+    menu.DisplayAt(client, firstItem, MENU_TIME_FOREVER);
+}
+
+static int ShowTrigger(Menu menu, MenuAction action, int param1, int param2) {
+    if (action == MenuAction_Select) {
+        char info[INFO_SIZE];
+
+        menu.GetItem(param2, info, sizeof(info));
+
+        int hammerId = StringToInt(info);
+
+        Menu_ShowTrigger(param1, menu.Selection);
+        Trigger_Path(param1, hammerId);
+    } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
+        Menu_Triggers(param1);
+    } else if (action == MenuAction_End) {
+        delete menu;
+    }
+
+    return 0;
+}
+
+static void AddTriggerItems(Menu menu, int client) {
+    char info[INFO_SIZE];
+    char item[ITEM_SIZE];
+
+    for (int i = 0; i < TriggerList_Size(); i++) {
+        int hammerId = TriggerList_GetHammerId(i);
+
+        IntToString(hammerId, info, sizeof(info));
+        FormatEx(item, sizeof(item), "%T", TRIGGER, client, hammerId);
+
+        menu.AddItem(info, item);
     }
 }
 
-void AdminMenu_Destroy() {
-    g_adminMenu = null;
+void Menu_Catapults(int client) {
+    Menu menu = new Menu(Catapults);
+
+    menu.SetTitle("%T", CATAPULTS, client);
+
+    AddLocalizedItem(menu, CATAPULT_ADD, client);
+    AddLocalizedItem(menu, CATAPULT_LIST, client);
+    AddLocalizedItem(menu, CATAPULTS_ENABLE, client);
+    AddLocalizedItem(menu, CATAPULTS_DISABLE, client);
+    AddLocalizedItem(menu, CATAPULTS_SAVE, client);
+    AddLocalizedItem(menu, CATAPULTS_LOAD, client);
+
+    menu.ExitBackButton = true;
+    menu.Display(client, MENU_TIME_FOREVER);
 }
 
-public void AdminMenu_OnReady(Handle topMenuHandle) {
-    TopMenu topMenu = TopMenu.FromHandle(topMenuHandle);
+static int Catapults(Menu menu, MenuAction action, int param1, int param2) {
+    bool showMenuAgain = true;
 
-    if (topMenu == g_adminMenu) {
+    if (action == MenuAction_Select) {
+        char info[INFO_SIZE];
+
+        menu.GetItem(param2, info, sizeof(info));
+
+        if (StrEqual(info, CATAPULT_ADD)) {
+            Catapult_Add(param1);
+        } else if (StrEqual(info, CATAPULT_LIST)) {
+            Menu_CatapultList(param1);
+
+            showMenuAgain = false;
+        } else if (StrEqual(info, CATAPULTS_ENABLE)) {
+            UseCase_EnableCatapults(param1);
+        } else if (StrEqual(info, CATAPULTS_DISABLE)) {
+            UseCase_DisableCatapults(param1);
+        } else if (StrEqual(info, CATAPULTS_SAVE)) {
+            UseCase_SaveCatapults(param1);
+        } else if (StrEqual(info, CATAPULTS_LOAD)) {
+            UseCase_LoadCatapults(param1);
+        }
+
+        if (showMenuAgain) {
+            Menu_Catapults(param1);
+        }
+    } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
+        BackToParentMenu(param1);
+    } else if (action == MenuAction_End) {
+        delete menu;
+    }
+
+    return 0;
+}
+
+void Menu_CatapultList(int client) {
+    if (CatapultList_Size() == 0) {
+        Message_CatapultListEmpty(client);
+        Menu_Catapults(client);
+
         return;
     }
 
-    g_adminMenu = topMenu;
+    Menu menu = new Menu(CatapultList);
 
-    AdminMenu_Fill();
-}
+    menu.SetTitle("%T", CATAPULT_LIST, client);
 
-void AdminMenu_Fill() {
-    g_respawnUnlockerCategory = g_adminMenu.AddCategory(RESPAWN_UNLOCKER, AdminMenuHandler_RespawnUnlocker);
-
-    if (g_respawnUnlockerCategory != INVALID_TOPMENUOBJECT) {
-        g_menuItemCratesManagement = AdminMenu_AddItem(CRATES_MANAGEMENT);
-        g_menuItemTriggersManagement = AdminMenu_AddItem(TRIGGERS_MANAGEMENT);
-    }
-}
-
-TopMenuObject AdminMenu_AddItem(const char[] name) {
-    return g_adminMenu.AddItem(name, AdminMenuHandler_RespawnUnlocker, g_respawnUnlockerCategory);
-}
-
-public void AdminMenuHandler_RespawnUnlocker(TopMenu topmenu, TopMenuAction action, TopMenuObject topobj_id, int param, char[] buffer, int maxlength) {
-    if (action == TopMenuAction_DisplayOption) {
-        if (topobj_id == g_respawnUnlockerCategory) {
-            Format(buffer, maxlength, "%T", RESPAWN_UNLOCKER, param);
-        } else if (topobj_id == g_menuItemCratesManagement) {
-            Format(buffer, maxlength, "%T", CRATES_MANAGEMENT, param);
-        } else if (topobj_id == g_menuItemTriggersManagement) {
-            Format(buffer, maxlength, "%T", TRIGGERS_MANAGEMENT, param);
-        }
-    } else if (action == TopMenuAction_DisplayTitle) {
-        if (topobj_id == g_respawnUnlockerCategory) {
-            Format(buffer, maxlength, "%T", RESPAWN_UNLOCKER, param);
-        }
-    } else if (action == TopMenuAction_SelectOption) {
-        if (topobj_id == g_menuItemCratesManagement) {
-            Menu_CratesManagement(param);
-        } else if (topobj_id == g_menuItemTriggersManagement) {
-            Menu_TriggersManagement(param);
-        }
-    }
-}
-
-void Menu_CratesManagement(int client) {
-    Menu menu = new Menu(MenuHandler_CratesManagement);
-
-    menu.SetTitle("%T", CRATES_MANAGEMENT, client);
-
-    Menu_AddItem(menu, ITEM_CRATE_ADD, client);
-    Menu_AddItem(menu, ITEM_CRATE_REMOVE, client);
-    Menu_AddItem(menu, ITEM_CRATES_SHOW, client);
-    Menu_AddItem(menu, ITEM_CRATES_HIDE, client);
-    Menu_AddItem(menu, ITEM_CRATES_LOAD, client);
-    Menu_AddItem(menu, ITEM_CRATES_SAVE, client);
+    AddCatapultItems(menu, client);
 
     menu.ExitBackButton = true;
     menu.Display(client, MENU_TIME_FOREVER);
 }
 
-public int MenuHandler_CratesManagement(Menu menu, MenuAction action, int param1, int param2) {
+static int CatapultList(Menu menu, MenuAction action, int param1, int param2) {
     if (action == MenuAction_Select) {
-        char info[MENU_ITEM_INFO_MAX_SIZE];
+        char info[INFO_SIZE];
 
         menu.GetItem(param2, info, sizeof(info));
 
-        if (StrEqual(info, ITEM_CRATE_ADD)) {
-            UseCase_AddCrate(param1);
-        } else if (StrEqual(info, ITEM_CRATE_REMOVE)) {
-            UseCase_RemoveCrate(param1);
-        } else if (StrEqual(info, ITEM_CRATES_SHOW)) {
-            UseCase_ShowCrates(param1);
-        } else if (StrEqual(info, ITEM_CRATES_HIDE)) {
-            UseCase_HideCrates(param1);
-        } else if (StrEqual(info, ITEM_CRATES_LOAD)) {
-            UseCase_LoadCrates(param1);
-        } else if (StrEqual(info, ITEM_CRATES_SAVE)) {
-            UseCase_SaveCrates(param1);
-        }
-
-        Menu_CratesManagement(param1);
-    } else {
-        MenuHandler_Default(menu, action, param1, param2);
-    }
-
-    return 0;
-}
-
-void Menu_TriggersManagement(int client) {
-    Menu menu = new Menu(MenuHandler_TriggersManagement);
-
-    menu.SetTitle("%T", TRIGGERS_MANAGEMENT, client);
-
-    Menu_AddItem(menu, ITEM_TRIGGER_ADD, client);
-    Menu_AddItem(menu, ITEM_TRIGGER_REMOVE, client);
-    Menu_AddItem(menu, ITEM_TRIGGERS_LOAD, client);
-    Menu_AddItem(menu, ITEM_TRIGGERS_SAVE, client);
-
-    menu.ExitBackButton = true;
-    menu.Display(client, MENU_TIME_FOREVER);
-}
-
-public int MenuHandler_TriggersManagement(Menu menu, MenuAction action, int param1, int param2) {
-    if (action == MenuAction_Select) {
-        char info[MENU_ITEM_INFO_MAX_SIZE];
-
-        menu.GetItem(param2, info, sizeof(info));
-
-        if (StrEqual(info, ITEM_TRIGGER_ADD)) {
-            UseCase_AddTriggerToList(param1);
-        } else if (StrEqual(info, ITEM_TRIGGER_REMOVE)) {
-            UseCase_RemoveTriggerFromList(param1);
-        } else if (StrEqual(info, ITEM_TRIGGERS_LOAD)) {
-            UseCase_LoadTriggers(param1);
-        } else if (StrEqual(info, ITEM_TRIGGERS_SAVE)) {
-            UseCase_SaveTriggers(param1);
-        }
-
-        Menu_TriggersManagement(param1);
-    } else {
-        MenuHandler_Default(menu, action, param1, param2);
-    }
-
-    return 0;
-}
-
-void MenuHandler_Default(Menu menu, MenuAction action, int param1, int param2) {
-    if (action == MenuAction_End) {
+        Menu_CatapultEditor(param1, info);
+    } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
+        Menu_Catapults(param1);
+    } else if (action == MenuAction_End) {
         delete menu;
-    } else if (action == MenuAction_Cancel) {
-        if (param2 == MenuCancel_ExitBack && g_adminMenu != null) {
-            g_adminMenu.Display(param1, TopMenuPosition_LastCategory);
+    }
+
+    return 0;
+}
+
+void Menu_CatapultEditor(int client, const char[] name) {
+    strcopy(g_catapultName[client], CATAPULT_NAME_SIZE, name);
+
+    Menu menu = new Menu(CatapultEditor);
+
+    menu.SetTitle("%T", CATAPULT, client, name);
+
+    AddLocalizedItem(menu, CATAPULT_ENABLE, client);
+    AddLocalizedItem(menu, CATAPULT_DISABLE, client);
+    AddLocalizedItem(menu, CATAPULT_SET_ORIGIN, client);
+    AddLocalizedItem(menu, CATAPULT_SET_HEIGHT, client);
+    AddLocalizedItem(menu, CATAPULT_SHOW, client);
+    AddLocalizedItem(menu, CATAPULT_REMOVE, client);
+
+    menu.ExitBackButton = true;
+    menu.Display(client, MENU_TIME_FOREVER);
+}
+
+static int CatapultEditor(Menu menu, MenuAction action, int param1, int param2) {
+    if (action == MenuAction_Select) {
+        char info[INFO_SIZE];
+
+        menu.GetItem(param2, info, sizeof(info));
+
+        if (StrEqual(info, CATAPULT_ENABLE)) {
+            Catapult_Toggle(param1, g_catapultName[param1], ENABLED_YES);
+        } else if (StrEqual(info, CATAPULT_DISABLE)) {
+            Catapult_Toggle(param1, g_catapultName[param1], ENABLED_NO);
+        } else if (StrEqual(info, CATAPULT_SET_ORIGIN)) {
+            Catapult_SetOrigin(param1, g_catapultName[param1]);
+        } else if (StrEqual(info, CATAPULT_SET_HEIGHT)) {
+            Catapult_SetHeight(param1, g_catapultName[param1]);
+        } else if (StrEqual(info, CATAPULT_SHOW)) {
+            Catapult_Path(param1, g_catapultName[param1]);
+        } else if (StrEqual(info, CATAPULT_REMOVE)) {
+            Catapult_Remove(param1, g_catapultName[param1]);
         }
+
+        if (CatapultList_FindByName(g_catapultName[param1]) == INVALID_INDEX) {
+            Menu_CatapultList(param1);
+        } else {
+            Menu_CatapultEditor(param1, g_catapultName[param1]);
+        }
+    } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
+        Menu_CatapultList(param1);
+    } else if (action == MenuAction_End) {
+        delete menu;
+    }
+
+    return 0;
+}
+
+static void BackToParentMenu(int client) {
+    if (AdminMenu_Exists()) {
+        AdminMenu_ShowCategory(client);
+    } else {
+        Menu_RespawnUnlocker(client);
     }
 }
 
-void Menu_AddItem(Menu menu, const char[] phrase, int client) {
-    char buffer[TEXT_BUFFER_MAX_SIZE];
+static void AddCatapultItems(Menu menu, int client) {
+    char info[INFO_SIZE];
+    char item[ITEM_SIZE];
 
-    Format(buffer, sizeof(buffer), "%T", phrase, client);
+    for (int i = 0; i < CatapultList_Size(); i++) {
+        CatapultList_GetName(i, info);
+        FormatEx(item, sizeof(item), "%T", CATAPULT, client, info);
 
-    menu.AddItem(phrase, buffer);
+        menu.AddItem(info, item);
+    }
+}
+
+static void AddLocalizedItem(Menu menu, const char[] phrase, int client) {
+    char item[ITEM_SIZE];
+
+    FormatEx(item, sizeof(item), "%T", phrase, client);
+
+    menu.AddItem(phrase, item);
 }

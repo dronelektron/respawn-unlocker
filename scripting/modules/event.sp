@@ -1,19 +1,16 @@
 void Event_Create() {
-    HookEvent("dod_round_start", Event_RoundStart);
-    HookEvent("dod_round_win", Event_RoundWin);
+    HookEvent("dod_round_start", OnRoundStart);
+    HookEvent("dod_round_win", OnRoundWin);
 }
 
-public Action Event_RoundStart(Event event, const char[] name, bool dontBroadcast) {
-    UseCase_RestoreWalls();
-    CrateEditor_Clear();
-
-    return Plugin_Continue;
+static void OnRoundStart(Event event, const char[] name, bool dontBroadcast) {
+    Wall_ToggleAll(WALL_TEAM, ENABLED_YES);
+    Trigger_UpdateEntities();
+    Catapult_ResetEntities();
 }
 
-public Action Event_RoundWin(Event event, const char[] name, bool dontBroadcast) {
-    UseCase_DisableWalls();
-    UseCase_DisableTriggers();
-    UseCase_AddCrates();
-
-    return Plugin_Continue;
+static void OnRoundWin(Event event, const char[] name, bool dontBroadcast) {
+    if (Variable_AutoUnlock()) {
+        UseCase_UnlockRespawnAuto();
+    }
 }

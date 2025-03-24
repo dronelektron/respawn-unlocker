@@ -1,51 +1,32 @@
-static ConVar g_wallsEnabled = null;
-static ConVar g_triggersEnabled = null;
-static ConVar g_cratesEnabled = null;
-static ConVar g_notificationsEnabled = null;
-static ConVar g_crateColorRed = null;
-static ConVar g_crateColorGreen = null;
-static ConVar g_crateColorBlue = null;
-static ConVar g_crateColorAlpha = null;
+static ConVar g_gravity;
+static ConVar g_autoUnlock;
+static ConVar g_catapultColor;
 
 void Variable_Create() {
-    g_wallsEnabled = CreateConVar("sm_respawnunlocker_walls", "1", "Enable (1) or disable (0) walls disabling");
-    g_triggersEnabled = CreateConVar("sm_respawnunlocker_triggers", "1", "Enable (1) or disable (0) triggers disabling");
-    g_cratesEnabled = CreateConVar("sm_respawnunlocker_crates", "1", "Enable (1) or disable (0) crates adding");
-    g_notificationsEnabled = CreateConVar("sm_respawnunlocker_notifications", "1", "Enable (1) or disable (0) notifications");
-    g_crateColorRed = CreateConVar("sm_respawnunlocker_crate_color_red", "0", "Crate color (red channel)");
-    g_crateColorGreen = CreateConVar("sm_respawnunlocker_crate_color_green", "255", "Crate color (green channel)");
-    g_crateColorBlue = CreateConVar("sm_respawnunlocker_crate_color_blue", "255", "Crate color (blue channel)");
-    g_crateColorAlpha = CreateConVar("sm_respawnunlocker_crate_color_alpha", "255", "Crate color (alpha channel)");
+    g_gravity = FindConVar("sv_gravity");
+    g_autoUnlock = CreateConVar("sm_respawnunlocker_auto", "1", "Automatic respawn unlock (on - 1, off - 0)");
+    g_catapultColor = CreateConVar("sm_respawnunlocker_catapult_color", "EE82EE", "Catapult color (in HEX)");
+    g_catapultColor.AddChangeHook(OnCatapultColor);
 }
 
-bool Variable_IsWallsEnabled() {
-    return g_wallsEnabled.IntValue == 1;
+float Variable_Gravity() {
+    return g_gravity.FloatValue;
 }
 
-bool Variable_IsTriggersEnabled() {
-    return g_triggersEnabled.IntValue == 1;
+bool Variable_AutoUnlock() {
+    return g_autoUnlock.BoolValue;
 }
 
-bool Variable_IsCratesEnabled() {
-    return g_cratesEnabled.IntValue == 1;
+void Variable_CatapultColor(int& red, int& green, int& blue) {
+    char color[COLOR_SIZE];
+
+    g_catapultColor.GetString(color, sizeof(color));
+
+    Color_HexToRgb(color, red, green, blue);
 }
 
-bool Variable_IsNotificationsEnabled() {
-    return g_notificationsEnabled.IntValue == 1;
-}
-
-int Variable_GetCrateColorRed() {
-    return g_crateColorRed.IntValue;
-}
-
-int Variable_GetCrateColorGreen() {
-    return g_crateColorGreen.IntValue;
-}
-
-int Variable_GetCrateColorBlue() {
-    return g_crateColorBlue.IntValue;
-}
-
-int Variable_GetCrateColorAlpha() {
-    return g_crateColorAlpha.IntValue;
+static void OnCatapultColor(ConVar variable, const char[] oldValue, const char[] newValue) {
+    if (Regex_IsBadColor(newValue)) {
+        g_catapultColor.SetString(oldValue);
+    }
 }
