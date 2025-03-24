@@ -46,13 +46,13 @@ static void UnlockRespawn() {
 }
 
 static void EnableWalls() {
-    Wall_Toggle(WALL_TEAM, ENABLED_YES);
-    Wall_Toggle(WALL_BLOCKER, ENABLED_YES);
+    Wall_ToggleAll(WALL_TEAM, ENABLED_YES);
+    Wall_ToggleAll(WALL_BLOCKER, ENABLED_YES);
 }
 
 static void DisableWalls() {
-    Wall_Toggle(WALL_TEAM, ENABLED_NO);
-    Wall_Toggle(WALL_BLOCKER, ENABLED_NO);
+    Wall_ToggleAll(WALL_TEAM, ENABLED_NO);
+    Wall_ToggleAll(WALL_BLOCKER, ENABLED_NO);
 }
 
 void UseCase_SaveTriggers(int client) {

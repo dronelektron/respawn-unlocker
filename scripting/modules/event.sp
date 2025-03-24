@@ -4,7 +4,7 @@ void Event_Create() {
 }
 
 static void OnRoundStart(Event event, const char[] name, bool dontBroadcast) {
-    Wall_Toggle(WALL_TEAM, ENABLED_YES);
+    Wall_ToggleAll(WALL_TEAM, ENABLED_YES);
     Trigger_UpdateEntities();
     Catapult_ResetEntities();
 }
