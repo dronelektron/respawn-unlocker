@@ -2,6 +2,8 @@
 #include <sdktools>
 #include <sdkhooks>
 #include <regex>
+#undef REQUIRE_PLUGIN
+#include <adminmenu>
 
 #include "respawn-unlocker/catapult"
 #include "respawn-unlocker/color"
@@ -9,6 +11,7 @@
 #include "respawn-unlocker/key"
 #include "respawn-unlocker/math"
 #include "respawn-unlocker/menu"
+#include "respawn-unlocker/menu-admin"
 #include "respawn-unlocker/message"
 #include "respawn-unlocker/regex"
 #include "respawn-unlocker/sound"
@@ -27,6 +30,7 @@
 #include "modules/event.sp"
 #include "modules/math.sp"
 #include "modules/menu.sp"
+#include "modules/menu-admin.sp"
 #include "modules/message.sp"
 #include "modules/regex.sp"
 #include "modules/sdk-hook.sp"
@@ -52,6 +56,7 @@ public void OnPluginStart() {
     Command_Create();
     Variable_Create();
     Event_Create();
+    AdminMenu_Create();
     Regex_Create();
     TriggerFilter_Create();
     TriggerList_Create();

@@ -79,3 +79,23 @@ Supported trigger types:
 
 * sm_respawnunlocker_auto - Automatic respawn unlock (on - 1, off - 0) [default: "1"]
 * sm_respawnunlocker_catapult_color - Catapult color (in HEX) [default: "EE82EE"]
+
+### Admin Menu
+
+Add the following to the `addons/sourcemod/configs/adminmenu_sorting.txt`:
+
+```txt
+"Menu"
+{
+    // Other categories
+
+    "Respawn unlocker"
+    {
+        "item"  "Lock respawn"
+        "item"  "Unlock respawn"
+        "item"  "Walls"
+        "item"  "Triggers"
+        "item"  "Catapults"
+    }
+}
+```

@@ -11,6 +11,10 @@ void Menu_RespawnUnlocker(int client) {
     AddLocalizedItem(menu, TRIGGERS, client);
     AddLocalizedItem(menu, CATAPULTS, client);
 
+    if (AdminMenu_Exists()) {
+        menu.ExitBackButton = true;
+    }
+
     menu.Display(client, MENU_TIME_FOREVER);
 }
 
@@ -32,6 +36,10 @@ static int RespawnUnlocker(Menu menu, MenuAction action, int param1, int param2)
             Menu_Triggers(param1);
         } else if (StrEqual(info, CATAPULTS)) {
             Menu_Catapults(param1);
+        }
+    } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
+        if (AdminMenu_Exists()) {
+            AdminMenu_Show(param1);
         }
     } else if (action == MenuAction_End) {
         delete menu;
@@ -66,7 +74,7 @@ static int Walls(Menu menu, MenuAction action, int param1, int param2) {
 
         Menu_Walls(param1);
     } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
-        Menu_RespawnUnlocker(param1);
+        BackToParentMenu(param1);
     } else if (action == MenuAction_End) {
         delete menu;
     }
@@ -125,7 +133,7 @@ static int Triggers(Menu menu, MenuAction action, int param1, int param2) {
             Menu_Triggers(param1);
         }
     } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
-        Menu_RespawnUnlocker(param1);
+        BackToParentMenu(param1);
     } else if (action == MenuAction_End) {
         delete menu;
     }
@@ -221,7 +229,7 @@ static int Catapults(Menu menu, MenuAction action, int param1, int param2) {
             Menu_Catapults(param1);
         }
     } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
-        Menu_RespawnUnlocker(param1);
+        BackToParentMenu(param1);
     } else if (action == MenuAction_End) {
         delete menu;
     }
@@ -313,6 +321,14 @@ static int CatapultEditor(Menu menu, MenuAction action, int param1, int param2) 
     }
 
     return 0;
+}
+
+static void BackToParentMenu(int client) {
+    if (AdminMenu_Exists()) {
+        AdminMenu_ShowCategory(client);
+    } else {
+        Menu_RespawnUnlocker(client);
+    }
 }
 
 static void AddCatapultItems(Menu menu, int client) {
