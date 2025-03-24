@@ -15,6 +15,16 @@
         "en"    "Respawn is unlocked"
     }
 
+    "Walls enabled"
+    {
+        "en"    "Walls are enabled"
+    }
+
+    "Walls disabled"
+    {
+        "en"    "Walls are disabled"
+    }
+
     "Trigger not found"
     {
         "en"    "Trigger is not found"
@@ -77,6 +87,21 @@
     "Unlock respawn"
     {
         "en"    "Unlock the respawn"
+    }
+
+    "Walls"
+    {
+        "en"    "Walls"
+    }
+
+    "Enable walls"
+    {
+        "en"    "Enable the walls"
+    }
+
+    "Disable walls"
+    {
+        "en"    "Disable the walls"
     }
 
     "Triggers"

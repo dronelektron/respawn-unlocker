@@ -52,6 +52,8 @@ Supported trigger types:
 * sm_respawnunlocker - Open the menu
 * sm_respawnunlocker_lock - Lock the respawn
 * sm_respawnunlocker_unlock - Unlock the respawn
+* sm_respawnunlocker_walls_enable - Enable invisible walls
+* sm_respawnunlocker_walls_disable - Disable invisible walls
 * sm_respawnunlocker_trigger_mark - Add trigger to the list
 * sm_respawnunlocker_trigger_unmark - Remove trigger from the list
 * sm_respawnunlocker_trigger_path &lt;hammerid&gt; - Show path to the trigger

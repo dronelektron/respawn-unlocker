@@ -2,6 +2,8 @@ void Command_Create() {
     RegAdminCmd("sm_respawnunlocker", OnRespawnUnlocker, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_lock", OnLockRespawn, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_unlock", OnUnlockRespawn, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_walls_enable", OnEnableWalls, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_walls_disable", OnDisableWalls, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_trigger_mark", OnMarkTrigger, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_trigger_unmark", OnUnmarkTrigger, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_trigger_path", OnTriggerPath, ADMFLAG_GENERIC);
@@ -32,6 +34,18 @@ static Action OnLockRespawn(int client, int args) {
 
 static Action OnUnlockRespawn(int client, int args) {
     UseCase_UnlockRespawn(client);
+
+    return Plugin_Handled;
+}
+
+static Action OnEnableWalls(int client, int args) {
+    UseCase_EnableWalls(client);
+
+    return Plugin_Handled;
+}
+
+static Action OnDisableWalls(int client, int args) {
+    UseCase_DisableWalls(client);
 
     return Plugin_Handled;
 }

@@ -1,8 +1,5 @@
 void UseCase_LockRespawn(int client) {
-    Wall_Toggle(WALL_TEAM, ENABLED_YES);
-    Wall_Toggle(WALL_BLOCKER, ENABLED_YES);
-    Trigger_Toggle(ENABLED_YES);
-    Catapult_ToggleAll(ENABLED_NO);
+    LockRespawn();
     Message_RespawnLocked(client);
 }
 
@@ -16,11 +13,36 @@ void UseCase_UnlockRespawnAuto() {
     Message_RespawnUnlockedColored();
 }
 
+void UseCase_EnableWalls(int client) {
+    EnableWalls();
+    Message_WallsEnabled(client);
+}
+
+void UseCase_DisableWalls(int client) {
+    DisableWalls();
+    Message_WallsDisabled(client);
+}
+
+static void LockRespawn() {
+    EnableWalls();
+    Trigger_Toggle(ENABLED_YES);
+    Catapult_ToggleAll(ENABLED_NO);
+}
+
 static void UnlockRespawn() {
-    Wall_Toggle(WALL_TEAM, ENABLED_NO);
-    Wall_Toggle(WALL_BLOCKER, ENABLED_NO);
+    DisableWalls();
     Trigger_Toggle(ENABLED_NO);
     Catapult_ToggleAll(ENABLED_YES);
+}
+
+static void EnableWalls() {
+    Wall_Toggle(WALL_TEAM, ENABLED_YES);
+    Wall_Toggle(WALL_BLOCKER, ENABLED_YES);
+}
+
+static void DisableWalls() {
+    Wall_Toggle(WALL_TEAM, ENABLED_NO);
+    Wall_Toggle(WALL_BLOCKER, ENABLED_NO);
 }
 
 void UseCase_SaveTriggers(int client) {

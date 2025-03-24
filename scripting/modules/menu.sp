@@ -7,6 +7,7 @@ void Menu_RespawnUnlocker(int client) {
 
     AddLocalizedItem(menu, RESPAWN_LOCK, client);
     AddLocalizedItem(menu, RESPAWN_UNLOCK, client);
+    AddLocalizedItem(menu, WALLS, client);
     AddLocalizedItem(menu, TRIGGERS, client);
     AddLocalizedItem(menu, CATAPULTS, client);
 
@@ -25,7 +26,9 @@ static int RespawnUnlocker(Menu menu, MenuAction action, int param1, int param2)
         } else if (StrEqual(info, RESPAWN_UNLOCK)) {
             UseCase_UnlockRespawn(param1);
             Menu_RespawnUnlocker(param1);
-        } else if (StrEqual(info, TRIGGERS)) {
+        } else if (StrEqual(info, WALLS)) {
+            Menu_Walls(param1);
+        }  else if (StrEqual(info, TRIGGERS)) {
             Menu_Triggers(param1);
         } else if (StrEqual(info, CATAPULTS)) {
             Menu_Catapults(param1);
@@ -81,6 +84,40 @@ static int Triggers(Menu menu, MenuAction action, int param1, int param2) {
         if (showMenuAgain) {
             Menu_Triggers(param1);
         }
+    } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
+        Menu_RespawnUnlocker(param1);
+    } else if (action == MenuAction_End) {
+        delete menu;
+    }
+
+    return 0;
+}
+
+void Menu_Walls(int client) {
+    Menu menu = new Menu(Walls);
+
+    menu.SetTitle("%T", WALLS, client);
+
+    AddLocalizedItem(menu, WALLS_ENABLE, client);
+    AddLocalizedItem(menu, WALLS_DISABLE, client);
+
+    menu.ExitBackButton = true;
+    menu.Display(client, MENU_TIME_FOREVER);
+}
+
+static int Walls(Menu menu, MenuAction action, int param1, int param2) {
+    if (action == MenuAction_Select) {
+        char info[INFO_SIZE];
+
+        menu.GetItem(param2, info, sizeof(info));
+
+        if (StrEqual(info, WALLS_ENABLE)) {
+            UseCase_EnableWalls(param1);
+        } else if (StrEqual(info, WALLS_DISABLE)) {
+            UseCase_DisableWalls(param1);
+        }
+
+        Menu_Walls(param1);
     } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
         Menu_RespawnUnlocker(param1);
     } else if (action == MenuAction_End) {

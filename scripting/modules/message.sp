@@ -18,6 +18,26 @@ void Message_RespawnUnlocked(int client) {
     }
 }
 
+void Message_WallsEnabled(int client) {
+    if (client == CONSOLE) {
+        ShowConsoleActivity("Walls enabled");
+        LogMessage("Walls are enabled");
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Walls enabled");
+        LogMessage("\"%L\" enabled the walls", client);
+    }
+}
+
+void Message_WallsDisabled(int client) {
+    if (client == CONSOLE) {
+        ShowConsoleActivity("Walls disabled");
+        LogMessage("Walls are disabled");
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Walls disabled");
+        LogMessage("\"%L\" disabled the walls", client);
+    }
+}
+
 void Message_RespawnUnlockedColored() {
     PrintToChatAll("%t%t", PREFIX_COLORED, "Respawn unlocked");
 }

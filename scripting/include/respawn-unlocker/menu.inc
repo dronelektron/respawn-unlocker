@@ -10,6 +10,10 @@
 #define RESPAWN_LOCK "Lock respawn"
 #define RESPAWN_UNLOCK "Unlock respawn"
 
+#define WALLS "Walls"
+#define WALLS_ENABLE "Enable walls"
+#define WALLS_DISABLE "Disable walls"
+
 #define TRIGGERS "Triggers"
 #define TRIGGER "Trigger"
 #define TRIGGER_MARK "Mark trigger"

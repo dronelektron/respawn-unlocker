@@ -10,6 +10,16 @@
         "ru"    "Респаун разблокирован"
     }
 
+    "Walls enabled"
+    {
+        "ru"    "Стены включены"
+    }
+
+    "Walls disabled"
+    {
+        "ru"    "Стены выключены"
+    }
+
     "Trigger not found"
     {
         "ru"    "Триггер не найден"
@@ -68,6 +78,21 @@
     "Unlock respawn"
     {
         "ru"    "Разблокировать респаун"
+    }
+
+    "Walls"
+    {
+        "ru"    "Стены"
+    }
+
+    "Enable walls"
+    {
+        "ru"    "Включить стены"
+    }
+
+    "Disable walls"
+    {
+        "ru"    "Выключить стены"
     }
 
     "Triggers"
