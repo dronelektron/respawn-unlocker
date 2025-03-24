@@ -11,6 +11,3 @@
 #define BEAM_FADE_LENGTH 0
 #define BEAM_AMPLITUDE 0.0
 #define BEAM_SPEED 0
-
-#define PRELOAD_YES true
-#define INVALID_MODEL_INDEX 0

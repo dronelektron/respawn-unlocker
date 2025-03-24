@@ -93,7 +93,7 @@ static void HighlightPath(int client, int entity) {
 
     Math_GetMiddle(client, clientMiddle);
     Math_GetMiddle(entity, entityMiddle);
-    Visualizer_DrawBeam(client, clientMiddle, entityMiddle);
+    Visualizer_DrawBeam(client, clientMiddle, entityMiddle, COLOR_WHITE);
 }
 
 static void HighlightTrigger(int client, int entity) {
@@ -108,7 +108,7 @@ static void HighlightTrigger(int client, int entity) {
     AddVectors(origin, mins, mins);
     AddVectors(origin, maxs, maxs);
     Math_GetVertices(mins, maxs, vertices);
-    Visualizer_DrawBox(client, vertices);
+    Visualizer_DrawBox(client, vertices, COLOR_YELLOW);
 }
 
 void Trigger_Path(int client, int hammerId) {

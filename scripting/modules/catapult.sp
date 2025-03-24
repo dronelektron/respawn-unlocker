@@ -6,9 +6,9 @@ float Catapult_GetHeight(int entity) {
 }
 
 void Catapult_Precache() {
-    if (PrecacheModel(CATAPULT_MODEL, PRELOAD_YES) == INVALID_MODEL_INDEX) {
-        SetFailState("Unable to precache the '%s' model", CATAPULT_MODEL);
-    }
+    int index = PrecacheModel(CATAPULT_MODEL, PRELOAD_YES);
+
+    UseCase_AssertModel(index);
 }
 
 void Catapult_Add(int client) {
@@ -114,7 +114,7 @@ static void HighlightPath(int client, int index) {
 
     Math_GetMiddle(client, clientMiddle);
     CatapultList_GetOrigin(index, catapultOrigin);
-    Visualizer_DrawBeam(client, clientMiddle, catapultOrigin);
+    Visualizer_DrawBeam(client, clientMiddle, catapultOrigin, COLOR_WHITE);
 }
 
 static void HighlightCatapult(int client, int index) {
@@ -127,7 +127,7 @@ static void HighlightCatapult(int client, int index) {
     target = origin;
     target[Z] += height;
 
-    Visualizer_DrawBeam(client, origin, target);
+    Visualizer_DrawBeam(client, origin, target, COLOR_YELLOW);
 }
 
 static bool TracePosition(int client, float position[3]) {

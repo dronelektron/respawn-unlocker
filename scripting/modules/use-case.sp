@@ -44,3 +44,9 @@ void UseCase_LoadCatapults(int client) {
     Storage_LoadCatapults();
     Message_CatapultsLoaded(client);
 }
+
+void UseCase_AssertModel(int index) {
+    if (index == INVALID_MODEL_INDEX) {
+        SetFailState("Unable to precache a model");
+    }
+}
