@@ -120,9 +120,9 @@
         "ru"    "Удалить триггер из списка"
     }
 
-    "Show path to trigger"
+    "Show trigger"
     {
-        "ru"    "Показать путь до триггера"
+        "ru"    "Показать триггер"
     }
 
     "Trigger list empty"

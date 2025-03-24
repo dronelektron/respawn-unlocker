@@ -18,7 +18,7 @@
 #define TRIGGER "Trigger"
 #define TRIGGER_MARK "Mark trigger"
 #define TRIGGER_UNMARK "Unmark trigger"
-#define TRIGGER_PATH "Show path to trigger"
+#define TRIGGER_SHOW "Show trigger"
 #define TRIGGERS_ENABLE "Enable triggers"
 #define TRIGGERS_DISABLE "Disable triggers"
 #define TRIGGERS_SAVE "Save triggers"

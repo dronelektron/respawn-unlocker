@@ -81,7 +81,7 @@ void Menu_Triggers(int client) {
 
     AddLocalizedItem(menu, TRIGGER_MARK, client);
     AddLocalizedItem(menu, TRIGGER_UNMARK, client);
-    AddLocalizedItem(menu, TRIGGER_PATH, client);
+    AddLocalizedItem(menu, TRIGGER_SHOW, client);
     AddLocalizedItem(menu, TRIGGERS_ENABLE, client);
     AddLocalizedItem(menu, TRIGGERS_DISABLE, client);
     AddLocalizedItem(menu, TRIGGERS_SAVE, client);
@@ -103,11 +103,11 @@ static int Triggers(Menu menu, MenuAction action, int param1, int param2) {
             Trigger_Mark(param1);
         } else if (StrEqual(info, TRIGGER_UNMARK)) {
             Trigger_Unmark(param1);
-        } else if (StrEqual(info, TRIGGER_PATH)) {
+        } else if (StrEqual(info, TRIGGER_SHOW)) {
             if (TriggerList_Size() == 0) {
                 Message_TriggerListEmpty(param1);
             } else {
-                Menu_ShowPathToTrigger(param1);
+                Menu_ShowTrigger(param1);
 
                 showMenuAgain = false;
             }
@@ -133,10 +133,10 @@ static int Triggers(Menu menu, MenuAction action, int param1, int param2) {
     return 0;
 }
 
-void Menu_ShowPathToTrigger(int client, int firstItem = 0) {
-    Menu menu = new Menu(ShowPathToTrigger);
+void Menu_ShowTrigger(int client, int firstItem = 0) {
+    Menu menu = new Menu(ShowTrigger);
 
-    menu.SetTitle("%T", TRIGGER_PATH, client);
+    menu.SetTitle("%T", TRIGGER_SHOW, client);
 
     AddTriggerItems(menu, client);
 
@@ -144,7 +144,7 @@ void Menu_ShowPathToTrigger(int client, int firstItem = 0) {
     menu.DisplayAt(client, firstItem, MENU_TIME_FOREVER);
 }
 
-static int ShowPathToTrigger(Menu menu, MenuAction action, int param1, int param2) {
+static int ShowTrigger(Menu menu, MenuAction action, int param1, int param2) {
     if (action == MenuAction_Select) {
         char info[INFO_SIZE];
 
@@ -152,7 +152,7 @@ static int ShowPathToTrigger(Menu menu, MenuAction action, int param1, int param
 
         int hammerId = StringToInt(info);
 
-        Menu_ShowPathToTrigger(param1, menu.Selection);
+        Menu_ShowTrigger(param1, menu.Selection);
         Trigger_Path(param1, hammerId);
     } else if (action == MenuAction_Cancel && param2 == MenuCancel_ExitBack) {
         Menu_Triggers(param1);

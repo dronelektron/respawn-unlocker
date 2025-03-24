@@ -129,9 +129,9 @@
         "en"    "Remove trigger from the list"
     }
 
-    "Show path to trigger"
+    "Show trigger"
     {
-        "en"    "Show the path to trigger"
+        "en"    "Show trigger"
     }
 
     "Trigger list empty"
