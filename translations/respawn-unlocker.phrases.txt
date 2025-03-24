@@ -25,6 +25,16 @@
         "en"    "Walls are disabled"
     }
 
+    "Triggers enabled"
+    {
+        "en"    "Triggers are enabled"
+    }
+
+    "Triggers disabled"
+    {
+        "en"    "Triggers are disabled"
+    }
+
     "Trigger not found"
     {
         "en"    "Trigger is not found"
@@ -133,6 +143,16 @@
     {
         "#format"   "{1:d}"
         "en"    "Trigger {1}"
+    }
+
+    "Enable triggers"
+    {
+        "en"    "Enable the triggers"
+    }
+
+    "Disable triggers"
+    {
+        "en"    "Disable the triggers"
     }
 
     "Save triggers"

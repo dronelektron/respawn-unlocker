@@ -7,6 +7,8 @@ void Command_Create() {
     RegAdminCmd("sm_respawnunlocker_trigger_mark", OnMarkTrigger, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_trigger_unmark", OnUnmarkTrigger, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_trigger_path", OnTriggerPath, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_triggers_enable", OnEnableTriggers, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_triggers_disable", OnDisableTriggers, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_triggers_save", OnSaveTriggers, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_triggers_load", OnLoadTriggers, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_catapult_add", OnAddCatapult, ADMFLAG_GENERIC);
@@ -72,6 +74,18 @@ static Action OnTriggerPath(int client, int args) {
     int hammerId = GetCmdArgInt(1);
 
     Trigger_Path(client, hammerId);
+
+    return Plugin_Handled;
+}
+
+static Action OnEnableTriggers(int client, int args) {
+    UseCase_EnableTriggers(client);
+
+    return Plugin_Handled;
+}
+
+static Action OnDisableTriggers(int client, int args) {
+    UseCase_DisableTriggers(client);
 
     return Plugin_Handled;
 }

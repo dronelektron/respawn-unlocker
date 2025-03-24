@@ -20,6 +20,16 @@
         "ru"    "Стены выключены"
     }
 
+    "Triggers enabled"
+    {
+        "ru"    "Триггеры включены"
+    }
+
+    "Triggers disabled"
+    {
+        "ru"    "Триггеры выключены"
+    }
+
     "Trigger not found"
     {
         "ru"    "Триггер не найден"
@@ -123,6 +133,16 @@
     "Trigger"
     {
         "ru"    "Триггер {1}"
+    }
+
+    "Enable triggers"
+    {
+        "ru"    "Включить триггеры"
+    }
+
+    "Disable triggers"
+    {
+        "ru"    "Выключить триггеры"
     }
 
     "Save triggers"

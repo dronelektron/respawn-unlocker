@@ -38,6 +38,26 @@ void Message_WallsDisabled(int client) {
     }
 }
 
+void Message_TriggersEnabled(int client) {
+    if (client == CONSOLE) {
+        ShowConsoleActivity("Triggers enabled");
+        LogMessage("Triggers are enabled");
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Triggers enabled");
+        LogMessage("\"%L\" enabled the triggers", client);
+    }
+}
+
+void Message_TriggersDisabled(int client) {
+    if (client == CONSOLE) {
+        ShowConsoleActivity("Triggers disabled");
+        LogMessage("Triggers are disabled");
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Triggers disabled");
+        LogMessage("\"%L\" disabled the triggers", client);
+    }
+}
+
 void Message_RespawnUnlockedColored() {
     PrintToChatAll("%t%t", PREFIX_COLORED, "Respawn unlocked");
 }

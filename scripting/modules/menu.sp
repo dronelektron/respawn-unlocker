@@ -48,6 +48,8 @@ void Menu_Triggers(int client) {
     AddLocalizedItem(menu, TRIGGER_MARK, client);
     AddLocalizedItem(menu, TRIGGER_UNMARK, client);
     AddLocalizedItem(menu, TRIGGER_PATH, client);
+    AddLocalizedItem(menu, TRIGGERS_ENABLE, client);
+    AddLocalizedItem(menu, TRIGGERS_DISABLE, client);
     AddLocalizedItem(menu, TRIGGERS_SAVE, client);
     AddLocalizedItem(menu, TRIGGERS_LOAD, client);
 
@@ -75,7 +77,11 @@ static int Triggers(Menu menu, MenuAction action, int param1, int param2) {
 
                 showMenuAgain = false;
             }
-        } else if (StrEqual(info, TRIGGERS_SAVE)) {
+        } else if (StrEqual(info, TRIGGERS_ENABLE)) {
+            UseCase_EnableTriggers(param1);
+        } else if (StrEqual(info, TRIGGERS_DISABLE)) {
+            UseCase_DisableTriggers(param1);
+        }  else if (StrEqual(info, TRIGGERS_SAVE)) {
             UseCase_SaveTriggers(param1);
         } else if (StrEqual(info, TRIGGERS_LOAD)) {
             UseCase_LoadTriggers(param1);
