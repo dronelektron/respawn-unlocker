@@ -3,14 +3,36 @@
 Allows you to unlock the respawn:
 
 * Manage the invisible walls
+    * Enable
+    * Disable
 * Manage the triggers
+    * Add to the list
+    * Remove from the list
+    * Show
+    * Save to the file
+    * Load from the file
 * Manage the catapults
+    * Add
+    * Remove
+    * Set origin
+    * Set height
+    * Enable
+    * Disable
+    * Show
+
+Supported wall types:
+
+* func_team_wall
+* func_teamblocker
 
 Supported trigger types:
 
 * trigger_hurt
 * trigger_push
 * trigger_teleport
+
+> [!NOTE]
+> Tracing does not work on disabled triggers
 
 ### Supported Games
 
