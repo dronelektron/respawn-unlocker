@@ -47,7 +47,7 @@ public Plugin myinfo = {
     name = "Respawn unlocker",
     author = "Dron-elektron",
     description = "Allows you to unlock the respawn",
-    version = "1.6.4",
+    version = "2.0.0",
     url = "https://github.com/dronelektron/respawn-unlocker"
 };
 
