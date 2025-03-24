@@ -61,6 +61,7 @@ void UseCase_SaveTriggers(int client) {
 }
 
 void UseCase_LoadTriggers(int client) {
+    Trigger_Toggle(ENABLED_YES);
     Storage_LoadTriggers();
     Trigger_UpdateEntities();
     Message_TriggersLoaded(client);
