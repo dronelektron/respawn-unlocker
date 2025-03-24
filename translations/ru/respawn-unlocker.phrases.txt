@@ -185,6 +185,16 @@
         "ru"    "Катапульта '{1}' выключена"
     }
 
+    "Catapults enabled"
+    {
+        "ru"    "Катапульты включены"
+    }
+
+    "Catapults disabled"
+    {
+        "ru"    "Катапульты выключены"
+    }
+
     "Catapult origin updated"
     {
         "ru"    "У катапульты '{1}' обновлено начало"
@@ -258,6 +268,16 @@
     "Catapult"
     {
         "ru"    "Катапульта {1}"
+    }
+
+    "Enable catapults"
+    {
+        "ru"    "Включить катапульты"
+    }
+
+    "Disable catapults"
+    {
+        "ru"    "Выключить катапульты"
     }
 
     "Save catapults"

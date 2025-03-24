@@ -70,6 +70,8 @@ Supported trigger types:
 * sm_respawnunlocker_catapult_path &lt;name&gt; - Show catapult
 * sm_respawnunlocker_catapult_set_origin &lt;name&gt; - Set catapult origin
 * sm_respawnunlocker_catapult_set_height &lt;name&gt; - Set catapult height
+* sm_respawnunlocker_catapults_enable - Enable catapults
+* sm_respawnunlocker_catapults_disable - Disable catapults
 * sm_respawnunlocker_catapults_save - Save catapults to the file
 * sm_respawnunlocker_catapults_load - Load catapults from the file
 

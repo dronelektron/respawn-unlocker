@@ -184,6 +184,8 @@ void Menu_Catapults(int client) {
 
     AddLocalizedItem(menu, CATAPULT_ADD, client);
     AddLocalizedItem(menu, CATAPULT_LIST, client);
+    AddLocalizedItem(menu, CATAPULTS_ENABLE, client);
+    AddLocalizedItem(menu, CATAPULTS_DISABLE, client);
     AddLocalizedItem(menu, CATAPULTS_SAVE, client);
     AddLocalizedItem(menu, CATAPULTS_LOAD, client);
 
@@ -205,6 +207,10 @@ static int Catapults(Menu menu, MenuAction action, int param1, int param2) {
             Menu_CatapultList(param1);
 
             showMenuAgain = false;
+        } else if (StrEqual(info, CATAPULTS_ENABLE)) {
+            UseCase_EnableCatapults(param1);
+        } else if (StrEqual(info, CATAPULTS_DISABLE)) {
+            UseCase_DisableCatapults(param1);
         } else if (StrEqual(info, CATAPULTS_SAVE)) {
             UseCase_SaveCatapults(param1);
         } else if (StrEqual(info, CATAPULTS_LOAD)) {

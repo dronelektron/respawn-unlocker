@@ -200,6 +200,16 @@
         "en"    "Catapult '{1}' has been disabled"
     }
 
+    "Catapults enabled"
+    {
+        "en"    "Catapults are enabled"
+    }
+
+    "Catapults disabled"
+    {
+        "en"    "Catapults are disabled"
+    }
+
     "Catapult origin updated"
     {
         "#format"   "{1:s}"
@@ -276,6 +286,16 @@
     {
         "#format"   "{1:s}"
         "en"    "Catapult {1}"
+    }
+
+    "Enable catapults"
+    {
+        "en"    "Enable the catapults"
+    }
+
+    "Disable catapults"
+    {
+        "en"    "Disable the catapults"
     }
 
     "Save catapults"

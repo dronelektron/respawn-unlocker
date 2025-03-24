@@ -58,6 +58,26 @@ void Message_TriggersDisabled(int client) {
     }
 }
 
+void Message_CatapultsEnabled(int client) {
+    if (client == CONSOLE) {
+        ShowConsoleActivity("Catapults enabled");
+        LogMessage("Catapults are enabled");
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Catapults enabled");
+        LogMessage("\"%L\" enabled the catapults", client);
+    }
+}
+
+void Message_CatapultsDisabled(int client) {
+    if (client == CONSOLE) {
+        ShowConsoleActivity("Catapults disabled");
+        LogMessage("Catapults are disabled");
+    } else {
+        ShowActivity2(client, PREFIX, "%t", "Catapults disabled");
+        LogMessage("\"%L\" disabled the catapults", client);
+    }
+}
+
 void Message_RespawnUnlockedColored() {
     PrintToChatAll("%t%t", PREFIX_COLORED, "Respawn unlocked");
 }

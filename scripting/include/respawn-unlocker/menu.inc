@@ -34,5 +34,7 @@
 #define CATAPULT_SET_HEIGHT "Set catapult height"
 #define CATAPULT_SHOW "Show catapult"
 #define CATAPULT_REMOVE "Remove catapult"
+#define CATAPULTS_ENABLE "Enable catapults"
+#define CATAPULTS_DISABLE "Disable catapults"
 #define CATAPULTS_SAVE "Save catapults"
 #define CATAPULTS_LOAD "Load catapults"

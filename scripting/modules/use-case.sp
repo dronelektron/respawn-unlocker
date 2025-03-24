@@ -33,6 +33,16 @@ void UseCase_DisableTriggers(int client) {
     Message_TriggersDisabled(client);
 }
 
+void UseCase_EnableCatapults(int client) {
+    Catapult_ToggleAll(ENABLED_YES);
+    Message_CatapultsEnabled(client);
+}
+
+void UseCase_DisableCatapults(int client) {
+    Catapult_ToggleAll(ENABLED_NO);
+    Message_CatapultsDisabled(client);
+}
+
 static void LockRespawn() {
     EnableWalls();
     Trigger_ToggleAll(ENABLED_YES);

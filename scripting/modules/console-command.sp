@@ -18,6 +18,8 @@ void Command_Create() {
     RegAdminCmd("sm_respawnunlocker_catapult_path", OnCatapultPath, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_catapult_set_origin", OnSetCatapultOrigin, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_catapult_set_height", OnSetCatapultHeight, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_catapults_enable", OnEnableCatapults, ADMFLAG_GENERIC);
+    RegAdminCmd("sm_respawnunlocker_catapults_disable", OnDisableCatapults, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_catapults_save", OnSaveCatapults, ADMFLAG_GENERIC);
     RegAdminCmd("sm_respawnunlocker_catapults_load", OnLoadCatapults, ADMFLAG_GENERIC);
 }
@@ -194,6 +196,18 @@ static Action OnSetCatapultHeight(int client, int args) {
 
     GetCmdArg(1, name, sizeof(name));
     Catapult_SetHeight(client, name);
+
+    return Plugin_Handled;
+}
+
+static Action OnEnableCatapults(int client, int args) {
+    UseCase_EnableCatapults(client);
+
+    return Plugin_Handled;
+}
+
+static Action OnDisableCatapults(int client, int args) {
+    UseCase_DisableCatapults(client);
 
     return Plugin_Handled;
 }
