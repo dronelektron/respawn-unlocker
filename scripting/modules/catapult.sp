@@ -136,7 +136,7 @@ static bool TracePosition(int client, float position[3]) {
 
     GetClientEyePosition(client, origin);
     GetClientEyeAngles(client, angles);
-    TR_TraceRayFilter(origin, angles, MASK_ALL, RayType_Infinite, IgnoreClients);
+    TR_TraceRayFilter(origin, angles, MASK_SOLID, RayType_Infinite, IgnoreClients);
     TR_GetEndPosition(position);
 
     return TR_DidHit();
