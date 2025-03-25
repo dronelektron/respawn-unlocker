@@ -86,10 +86,10 @@ static void RespawnUnlocker(TopMenu topMenu, TopMenuAction action, TopMenuObject
     } else if (action == TopMenuAction_SelectOption) {
         if (topMenuObject == g_lockRespawn) {
             UseCase_LockRespawn(param);
-            AdminMenu_Show(param);
+            AdminMenu_ShowCategory(param);
         } else if (topMenuObject == g_unlockRespawn) {
             UseCase_UnlockRespawn(param);
-            AdminMenu_Show(param);
+            AdminMenu_ShowCategory(param);
         } else if (topMenuObject == g_walls) {
             Menu_Walls(param);
         } else if (topMenuObject == g_triggers) {
